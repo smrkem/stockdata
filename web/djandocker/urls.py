@@ -21,5 +21,6 @@ from djanapp import views
 
 urlpatterns = [
     url(r'^helloworld/', views.helloworld ),
+    url(r'^cases/aj_get/', views.aj_get_cases),
     url(r'^admin/', admin.site.urls),
 ]

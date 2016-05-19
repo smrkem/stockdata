@@ -1,6 +1,8 @@
 import React from 'react';
 import CasesDashboard from './cases-dashboard';
 
+var pollingRequest;
+
 // Mock data:
 const cases = [
 {
@@ -34,6 +36,25 @@ export default class App extends React.Component {
         this.state = {
             cases
         };
+    }
+
+    getCases() {
+        $.ajax({
+            url: '/cases/aj_get',
+            dataType: 'json',
+            cache: false,
+            success: (data) => {
+                this.setState({cases:data});
+            },
+            error: (xhr, status, err) => {
+                console.log('error retrieving cases data');
+            }
+        });
+    }
+
+    componentDidMount() {
+        this.getCases();
+        pollingRequest = setInterval(this.getCases, 2000);
     }
 
     render() {
