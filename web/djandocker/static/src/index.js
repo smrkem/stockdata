@@ -1,3 +1,5 @@
-let msg = 'HeLLO From EntRY PoINt';
+import React from 'react';
+import { render } from 'react-dom';
+import App from 'components/app';
 
-console.log(msg);
+render(<App />, document.getElementById('myproject'));
