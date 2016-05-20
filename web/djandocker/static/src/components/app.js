@@ -47,7 +47,12 @@ export default class App extends React.Component {
                 this.setState({cases: data});
             },
             error: (xhr, status, err) => {
-                console.log('error retrieving cases data');
+                console.log(xhr.statusText);
+                alert('error retrieving cases data. is the HQ API running and accessible?');
+                if (pollingRequest) {
+                    clearInterval(pollingRequest);
+                    pollingRequest = false;
+                }
             }
         });
     }
