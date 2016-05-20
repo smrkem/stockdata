@@ -75,6 +75,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# This is for docker setup. If running locally, you can leave it in and rewrite it in settings_local.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -115,5 +116,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'myproject', 'static', 'public'),
 )
 
-
-from .settings_local import *
+# You can overwrite the database settings above locally by copying the example file
+# Comment / Uncomment below to control using settings_local.py
+# from .settings_local import *
