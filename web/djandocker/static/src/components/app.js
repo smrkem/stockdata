@@ -44,7 +44,7 @@ export default class App extends React.Component {
             dataType: 'json',
             cache: false,
             success: (data) => {
-                this.setState({cases:data});
+                this.setState({cases: data});
             },
             error: (xhr, status, err) => {
                 console.log('error retrieving cases data');
@@ -53,8 +53,8 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getCases();
-        pollingRequest = setInterval(this.getCases, 2000);
+        // this.getCases();
+        pollingRequest = setInterval(this.getCases.bind(this), 2000);
     }
 
     render() {
