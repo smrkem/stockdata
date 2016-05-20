@@ -1,54 +1,49 @@
 import React from 'react';
-import CasesDashboard from './cases-dashboard';
+import ItemsBoard from './items-board';
 
-var pollingRequest;
 
 // Mock data:
-const cases = [
+const myitems = [
 {
-  "case_id": 1,
-  "client_data": {
-    "first_name": "John",
+  "some_key_1": 1,
+  "some_key_2": {
     "id": 1,
-    "last_name": "Testcase",
-    "url": "http://localhost:5000/api/v1life-insured/1"
-  },
-  "client_system_id": null,
-  "hq_url": "http://localhost:5000/api/v1/cases/1/hq/"
+    "foo": "Bar",
+  }
 },
 {
-  "case_id": 2,
-  "client_data": {
-    "first_name": "Mark",
-    "id": 2,
-    "last_name": "Smith",
-    "url": "http://localhost:5000/api/v1life-insured/2"
-  },
-  "client_system_id": null,
-  "hq_url": "http://localhost:5000/api/v1/cases/2/hq/"
+    "some_key_1": 3,
+    "some_key_2": {
+        "id": 23,
+        "foo": "Baz",
+    },
+    "some_key_3": "Bux"
 }
 ];
+
+
+var pollingRequest;
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            cases
+            myitems
         };
     }
 
-    getCases() {
+    getItems() {
         $.ajax({
-            url: '/cases/aj_get',
+            url: '/myapp/items',
             dataType: 'json',
             cache: false,
             success: (data) => {
-                this.setState({cases: data});
+                this.setState({myitems: data});
             },
             error: (xhr, status, err) => {
                 console.log(xhr.statusText);
-                alert('error retrieving cases data. is the HQ API running and accessible?');
+                alert('error retrieving items data. is the remote API running and accessible?');
                 if (pollingRequest) {
                     clearInterval(pollingRequest);
                     pollingRequest = false;
@@ -58,15 +53,14 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        // this.getCases();
-        pollingRequest = setInterval(this.getCases.bind(this), 2000);
+        pollingRequest = setInterval(this.getItems.bind(this), 2000);
     }
 
     render() {
         return (
             <div>
-                <h1>Cases Dashboard</h1>
-                <CasesDashboard cases={this.state.cases} />
+                <h1>Items Board</h1>
+                <ItemsBoard items={this.state.myitems} />
             </div>
         );
     }
