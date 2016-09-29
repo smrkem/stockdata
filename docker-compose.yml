@@ -6,10 +6,9 @@ web:
   links:
     - postgres:postgres
   volumes:
-    - ./web:/usr/src/app
-    - ./web/static:/usr/src/app/static
+    - /usr/src/app/static
   env_file: .env
-  command: /usr/local/bin/gunicorn djandocker.wsgi:application -w 2 -b :8000
+  command: /usr/local/bin/gunicorn -w 2 -b :8000 myapp:app
 
 nginx:
   restart: always
@@ -23,10 +22,16 @@ nginx:
   links:
     - web:web
 
+data:
+  image: postgres:latest
+  volumes:
+    - /var/lib/postgresql
+  command: "true"
+
 postgres:
   restart: always
   image: postgres:latest
+  volumes_from:
+    - data
   ports:
     - "5432:5432"
-  volumes:
-    - pgdata:/var/lib/postgresql/data/
