@@ -1,10 +1,16 @@
-## Docker: Flask + nginx + Postgresql
+## TDD w/ Docker, Flask
 ***
-based off realpython's [tutorial](https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/)
+based off http://www.obeythetestinggoat.com/
+and also realpython's [tutorial](https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/)
+
 
 ### Setup
 1. `docker-compose build`
 3. `docker-compose up`
+
+This'll get the webserver up and running with the Flask app. It should be accessible from local at the docker-machine ip.
+
+In order to run this in the background, use `docker-compose up -d`
 
 
 ### Being an Attempt at a TDD Double-Loop Flask App
@@ -12,17 +18,4 @@ Gonna start with __very__ basic functional tests (FTs) and go from there.
 
 Ideally with some sort of decent documentation of the process.
 
-
-### Helpful docker Stuff
-
-tip: when getting error:
-```
-ERROR: Couldn't connect to Docker daemon - you might need to run `docker-machine start default`.
-```
-try running:
-```
-eval $(docker-machine env default)
-```
-
-***
-to ssh into a container named x_web_1: `docker exec -it x_web_1 /bin/bash`
+I have an example of capturing FT output in a file in another repo which I'll use here and see if it works out.
