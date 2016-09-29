@@ -1,7 +1,8 @@
 ## TDD w/ Docker, Flask
 ***
-based off http://www.obeythetestinggoat.com/
-and also realpython's [Django Development With Docker Compose and Machine tutorial](https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/)
+based off
+- http://www.obeythetestinggoat.com/
+- realpython's [Django Development With Docker Compose and Machine tutorial](https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/)
 
 ### Being an Attempt at a TDD Double-Loop Flask App
 Gonna start with __very__ basic functional tests (FTs) and go from there.
