@@ -6,7 +6,8 @@ web:
   links:
     - postgres:postgres
   volumes:
-    - /usr/src/app/static
+    - ./web:/usr/src/app
+    - ./web/static:/usr/src/app/static
   env_file: .env
   command: /usr/local/bin/gunicorn -w 2 -b :8000 myapp:app
 
