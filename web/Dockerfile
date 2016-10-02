@@ -1,6 +1,10 @@
 FROM python:3.5.2
 MAINTAINER Matthew Smrke <smrkem@gmail.com>
 
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y fontconfig firefox-esr ttf-freefont xvfb
+
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
