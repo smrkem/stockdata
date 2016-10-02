@@ -10,7 +10,8 @@ class NewVisitorTest(unittest.TestCase):
         pass
 
     def test_test_is_running(self):
-        self.assertEqual(1, 0)
+        print("++++++WORKING!!!+++++")
+        self.assertEqual(5, 2)
 
 
 if __name__ == '__main__':
