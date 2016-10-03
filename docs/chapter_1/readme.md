@@ -58,8 +58,34 @@ from app import views
 ```
 
 I'm gonna try, in my folder structure and packages to replace the more generic app with the actual app's name 'stockdata'.
-No idea if that will work out ok - when will I learn my lesson?
+No idea if that will work out ok - when will I learn my lesson? Here's the going vesion of the `web` container's structure.
+```
+web
+├── Dockerfile
+├── acceptance_tests
+│   └── acceptance_tests.py
+├── config.py
+├── requirements.txt
+├── run.py
+└── stockdata
+    ├── __init__.py
+    └── views.py
+```
 
 But the refactor is working fine, and during my poking around and sidetrips, I discovered the `--reload` flag that can be
-passed to gunicorn starting command. it's like magic.
+passed to gunicorn starting command. it's like magic. So finally, a first semi-useful passing FT and a first attempt
+at a decent app structure.
+
+```
+root@b1b67c5ee175:/usr/src/app# xvfb-run python acceptance_tests/acceptance_tests.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 2.220s
+
+OK
+root@b1b67c5ee175:/usr/src/app#
+```
+
+Man - that's still feels like an ugly way to run the tests.
+
 
