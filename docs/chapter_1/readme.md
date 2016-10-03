@@ -88,4 +88,7 @@ root@b1b67c5ee175:/usr/src/app#
 
 Man - that's still feels like an ugly way to run the tests.
 
+Here's the refactoring merge diff -
+https://github.com/smrkem/docker-flask-tdd/pull/3/files
 
+(and I very nearly remembered to do everything right to not include the doc updates in the diff :))
