@@ -123,3 +123,21 @@ so for now the simpler the better.
 I'm going to try just replacing the web container's run command in the `docker-compose.yml` file with something to just run
 the Flask app.
 
+```
+web:
+  restart: always
+  build: ./web
+  ports:
+    - "5000:5000"
+  links:
+    - postgres:postgres
+  volumes:
+    - ./web:/usr/src/app
+  env_file: .env
+  command: python run.py
+```
+
+And I just entirely ditched the nginx container for now. I also had to change the `ports` so I could visit my app from local,
+and got rid of the `expose`.
+
+Here's the 
