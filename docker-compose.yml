@@ -1,33 +1,19 @@
 web:
   restart: always
   build: ./web
-  expose:
-    - "8000"
+  ports:
+    - "5000:5000"
   links:
     - postgres:postgres
   volumes:
     - ./web:/usr/src/app
-    - ./web/static:/usr/src/app/static
   env_file: .env
-  command: /usr/local/bin/gunicorn -w 2 -b :8000 run:app --reload
-
-nginx:
-  restart: always
-  build: ./nginx/
-  ports:
-    - "80:80"
-  volumes:
-    - /www/static
-  volumes_from:
-    - web
-  links:
-    - web:web
+  command: python run.py
 
 data:
   image: postgres:latest
   volumes:
     - /var/lib/postgresql
-  command: "true"
 
 postgres:
   restart: always
