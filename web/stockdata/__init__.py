@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask
 from config import BaseConfig
 
@@ -6,10 +5,7 @@ from config import BaseConfig
 app = Flask(__name__)
 app.config.from_object(BaseConfig)
 
-@app.route('/', methods=['GET'])
-def index():
-    return "Hi Karl..."
-
+from stockdata import views
 
 if __name__ == '__main__':
     app.run()

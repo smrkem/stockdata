@@ -9,7 +9,7 @@ web:
     - ./web:/usr/src/app
     - ./web/static:/usr/src/app/static
   env_file: .env
-  command: /usr/local/bin/gunicorn -w 2 -b :8000 myapp:app
+  command: /usr/local/bin/gunicorn -w 2 -b :8000 run:app --reload
 
 nginx:
   restart: always

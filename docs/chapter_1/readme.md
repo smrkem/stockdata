@@ -88,6 +88,7 @@ root@b1b67c5ee175:/usr/src/app#
 
 Man - that's still feels like an ugly way to run the tests.
 
+<<<<<<< HEAD
 Here's the refactoring merge diff -
 https://github.com/smrkem/docker-flask-tdd/pull/3/files
 
@@ -121,3 +122,4 @@ so for now the simpler the better.
 
 I'm going to try just replacing the web container's run command in the `docker-compose.yml` file with something to just run
 the Flask app.
+
