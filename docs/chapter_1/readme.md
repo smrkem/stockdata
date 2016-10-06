@@ -88,8 +88,41 @@ root@b1b67c5ee175:/usr/src/app#
 
 Man - that's still feels like an ugly way to run the tests.
 
+
 Here's the refactoring merge diff -
 https://github.com/smrkem/docker-flask-tdd/pull/3/files
+
+(and I very nearly remembered to do everything right to not include the doc updates in the diff :))
+
+****
+## Building The StockData App
+The app i'm building is going to be a simple, database-driven was for me to keep track of the stocks I'm interested in.
+I recently got interested in the stock market - but aside from that I think this'll give a great opportunity to explore
+some key areas:
+- user system and auth
+- a couple basic models
+- a few simple forms
+- potentially some data collection with api integration / scraping down the line
+
+
+### Templates and Views
+First real development task is to create some views and start using proper templates -
+probably with the obligatory bootstrap libraries.
+
+How the hell do I write a test for that?
+
+I don't want to go checking for any specific strings in the template - our current passing FT isn't great.
+In django there was a lovely `assert_template_used('template name')`. Turns out, Flask has something similar,
+but with the catch that I'd also need to install flask-testing.
+
+## GRRRrrrr
+So i need a much better handle on the whole container ecosystem. Currently the tests are running against the gunicorn site.
+I don't know exactly what effect that is going to have, but I've been banging my head against Flask's contexts lately,
+so for now the simpler the better.
+
+I'm going to try just replacing the web container's run command in the `docker-compose.yml` file with something to just run
+the Flask app.
+>>>>>>> master
 
 (and I very nearly remembered to do everything right to not include the doc updates in the diff :))
 
