@@ -140,4 +140,17 @@ web:
 And I just entirely ditched the nginx container for now. I also had to change the `ports` so I could visit my app from local,
 and got rid of the `expose`.
 
-Here's the 
+Here's the merge: https://github.com/smrkem/docker-flask-tdd/pull/4
+
+- Forgot to update the pip requirements.txt file :(
+
+Everything's working well. Turns out I was kinda testing the wrong thing we selenium. That should be for user-acceptance tests
+and should have no knowledge about the server code or implementation.
+
+Testing a certain template was called is definitely more of a unit test for a views thing. So after some refactoring
+
+(https://github.com/smrkem/docker-flask-tdd/commit/f2eaff564b032f6ad3b464734f49e2749f7507d7)
+
+things are finally starting to make decent sense. There's still some ugly importing and organization, but definitely
+closing in on something better.
+
