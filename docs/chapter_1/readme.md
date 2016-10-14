@@ -154,3 +154,46 @@ Testing a certain template was called is definitely more of a unit test for a vi
 things are finally starting to make decent sense. There's still some ugly importing and organization, but definitely
 closing in on something better.
 
+***
+
+After some configuration and playing around, I feel i have a good base to start building the app.
+
+The application itself is organized as a package named stockdata:
+```
+.
+├── acceptance_tests
+│   └── acceptance_tests.py
+├── config.py
+├── requirements.txt
+├── run.py
+└── stockdata
+    ├── __init__.py
+    ├── templates
+    │   └── index.html
+    └── views.py
+```
+and I can whip the whole thing up with:
+```
+docker-compose up -d
+```
+
+then go into a container to run the tests:
+```
+docker exec -it stockdata_web_1 /bin/bash
+```
+and the tests all pass! woot!
+
+There'll be an opportunity to look into setting up a docker-compose to run the tests with the right command(s)
+automatically - along with some more refactoring of the Flask app to use a manage.py file and a testrunner. Figure
+I'll look at that stuff when I attach a db.
+
+This is really the end of setting things up - so I think this is gonna become chapter_0, part 2 or something like that.
+I want to start chapter_1 off with some initial FTs that start describing my app.
+
+### Stockdata
+(imaginative title - huh?)
+It will start off as something to keep track of various equities (stocks) and associated data (exchange, symbol, ...)
+including dynamic data like price, volume, market cap, ... stored with its datetime.
+
+One I introduce users, they can have a stock portfolio, total market value, etc.
+Can watch certain stocks and set notifications for conditions (can do this in TD)
