@@ -1,15 +1,7 @@
 import unittest
 from selenium import webdriver as wd
 from flask_testing import LiveServerTestCase, TestCase
-
-# Path hack.
-# import sys, os
-# sys.path.insert(0, os.path.abspath('.'))
-
 from stockdata import app
-
-
-LIVE_SERVER_URL = 'http://localhost:5000/'
 
 
 class ViewsUnitTest(TestCase):
