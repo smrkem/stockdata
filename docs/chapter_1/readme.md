@@ -7,6 +7,7 @@ I want to find a US Stock to invest in. My starting criteria is:
 
 I ran this basic screener on my online broker account, including the filter Sector & Industry: Telecommunications.  There were 17 results - and I was able to download a csv.  
 
+[us_under_4-10152016.csv](../data/us_under_4-10152016.csv)  
 
 I'll start my app using this list as my first source of data.  
 My thinking is that the app will likely end up querying a 'somthing' and getting back one or more 'Stock' objects. That something might be a file, the app's own db, an external service or whatever.  
