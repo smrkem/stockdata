@@ -183,8 +183,22 @@ docker exec -it stockdata_web_1 /bin/bash
 ```
 and the tests all pass! woot!
 
-There'll be an opportunity to look into setting up a docker-compose to run the tests with the right command(s)
-automatically - along with some more refactoring of the Flask app to use a manage.py file and a testrunner. Figure
+### Fixing the Docker test process  
+The last thing I want to do is fix up the test running process.  
+Currently I'm building the containers, running them in the background, and using `docker exec` to go into the web container to manually run the command.  
+```
+xvfb-run python acceptance_tests/acceptance_tests.py
+```
+
+After some experimenting and false starts, I had issues trying to run `xvfb-run python ...` directly, so I ended up adding a `runtests.sh` script to the web container. Now I can just run
+```
+docker-compose run --rm web sh /usr/src/app/runtests.sh
+```
+from my host and the containers will spin up, run the tests putting output to the console, and then go away.  
+
+***
+
+There'll be an opportunity to do some more refactoring of the Flask app to use a manage.py file and a testrunner. Figure
 I'll look at that stuff when I attach a db.
 
 This is really the end of setting things up - so I think this is gonna become chapter_0, part 2 or something like that.
@@ -196,4 +210,5 @@ It will start off as something to keep track of various equities (stocks) and as
 including dynamic data like price, volume, market cap, ... stored with its datetime.
 
 One I introduce users, they can have a stock portfolio, total market value, etc.
+
 Can watch certain stocks and set notifications for conditions (can do this in TD)
