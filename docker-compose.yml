@@ -8,7 +8,6 @@ web:
   volumes:
     - ./web:/usr/src/app
   env_file: .env
-  tty: true
   command: python run.py
 
 data:
