@@ -1,6 +1,9 @@
-from flask import render_template
+from flask import render_template, request
 from stockdata import app
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    stock = None
+    if request.method == 'POST':
+        stock = {'name': 'American Electric Technologies Inc'}
+    return render_template('index.html', stock=stock)

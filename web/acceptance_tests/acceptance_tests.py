@@ -15,6 +15,11 @@ class ViewsUnitTest(TestCase):
         response = self.client.get('/')
         self.assert_template_used('index.html')
 
+    def test_posting_symbol_returns_stock_name(self):
+        response = self.client.post('/', data={'symbol': 'AETI'})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("American Electric Technologies Inc", response.data.decode('utf8'))
+
 
 class NewVisitorTest(LiveServerTestCase):
 
@@ -35,18 +40,18 @@ class NewVisitorTest(LiveServerTestCase):
         # He hears about a new app called StockData and goes to the homepage.
         self.browser.get(self.get_server_url())
         self.assertEqual("StockData", self.browser.title)
+        self.assertIn("StockData", self.browser.find_element_by_tag_name('h1').text)
 
         # He sees an input box where he can input a stock symbol
-        inputbox = self.browser.find_element_by_id("symbol")
+        inputbox = self.browser.find_element_by_id("in_symbol")
         self.assertEqual(inputbox.get_attribute('placeholder'), "Enter a stock symbol")
 
         # He enters "AETI" and hits Enter.
         inputbox.send_keys("AETI")
         inputbox.send_keys(Keys.ENTER)
 
-        # And sees the page refresh with the name "American Electric Technologies Inc"
         self.assertIn("American Electric Technologies Inc",
-                      self.browser.find_element_by_tag_name("body").text)
+                      self.browser.page_source)
 
 
 

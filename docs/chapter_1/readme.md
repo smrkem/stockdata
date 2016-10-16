@@ -19,3 +19,24 @@ What would be useful I think, is if I could input a stock symbol (and exchange?)
 - company information
 - trend data
 - competitor info
+
+***
+
+All that begins with the ability to input a stock symbol (and maybe an exchange - we'll see) and get back some info. I wrote
+a first FT that does just that. Running these tests gives:
+```
+... selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"symbol"} ...
+```
+perfect.
+
+A quick addition of an input element to my 'index.html' template gets me past that and to
+```
+AssertionError: 'American Electric Technologies Inc' not found in 'StockData'
+```
+
+It'd be easy to get carried away at this point. Flask probably has some decent options for forms and validation and such -
+and I could really start digging in to what should happen when the server receives the symbol. But I'm forcing myself to
+keep it simple. All I want to do is determine that something has been submitted, and do something in response. For now, I'll
+return the hardcoded name.
+
+
