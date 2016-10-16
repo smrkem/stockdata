@@ -1,5 +1,6 @@
 import unittest
 from selenium import webdriver as wd
+from selenium.webdriver.common.keys import Keys
 from flask_testing import LiveServerTestCase, TestCase
 from stockdata import app
 
@@ -30,10 +31,24 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.quit()
 
     def test_can_visit_homepage(self):
+        # Jim needs to get some stock info.
+        # He hears about a new app called StockData and goes to the homepage.
         self.browser.get(self.get_server_url())
-
         self.assertEqual("StockData", self.browser.title)
-        self.assertEqual("Hello, Karl", self.browser.find_element_by_tag_name('h1').text)
+
+        # He sees an input box where he can input a stock symbol
+        inputbox = self.browser.find_element_by_id("symbol")
+        self.assertEqual(inputbox.get_attribute('placeholder'), "Enter a stock symbol")
+
+        # He enters "AETI" and hits Enter.
+        inputbox.send_keys("AETI")
+        inputbox.send_keys(Keys.ENTER)
+
+        # And sees the page refresh with the name "American Electric Technologies Inc"
+        self.assertIn("American Electric Technologies Inc",
+                      self.browser.find_element_by_tag_name("body").text)
+
+
 
 
 if __name__ == '__main__':
