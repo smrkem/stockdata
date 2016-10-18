@@ -12,13 +12,18 @@ class ViewsUnitTest(TestCase):
         return app
 
     def test_home_view_calls_index_template(self):
-        response = self.client.get('/')
+        self.client.get('/')
         self.assert_template_used('index.html')
 
-    def test_posting_symbol_returns_stock_name(self):
+    def test_posting_symbol_returns_stock_info(self):
         response = self.client.post('/', data={'symbol': 'AETI'})
+        stock = {
+            "name": "American Electric Technologies Inc",
+            "exchange": "NASDAQ"
+        }
+
         self.assertEqual(response.status_code, 200)
-        self.assertIn("American Electric Technologies Inc", response.data.decode('utf8'))
+        self.assertEqual(self.get_context_variable('stock'), stock)
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -57,6 +62,7 @@ class NewVisitorTest(LiveServerTestCase):
                       self.browser.page_source)
 
         # He tries a different stock symbol and sees the new name and exchange on the page.
+        inputbox = self.browser.find_element_by_id("in_symbol")
         inputbox.send_keys("CRNT")
         inputbox.send_keys(Keys.ENTER)
 

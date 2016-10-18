@@ -5,5 +5,8 @@ from stockdata import app
 def index():
     stock = None
     if request.method == 'POST':
-        stock = {'name': 'American Electric Technologies Inc'}
+        stock = {
+            "name": "American Electric Technologies Inc",
+            "exchange": "NASDAQ"
+        }
     return render_template('index.html', stock=stock)
