@@ -50,10 +50,20 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys("AETI")
         inputbox.send_keys(Keys.ENTER)
 
+        # He sees the stock name and stock exchange on the page.
         self.assertIn("American Electric Technologies Inc",
                       self.browser.page_source)
+        self.assertIn("NASDAQ",
+                      self.browser.page_source)
 
+        # He tries a different stock symbol and sees the new name and exchange on the page.
+        inputbox.send_keys("CRNT")
+        inputbox.send_keys(Keys.ENTER)
 
+        self.assertIn("Ceragon Networks Ltd",
+                      self.browser.page_source)
+        self.assertIn("NASDAQ",
+                      self.browser.page_source)
 
 
 if __name__ == '__main__':
