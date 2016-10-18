@@ -39,4 +39,25 @@ and I could really start digging in to what should happen when the server receiv
 keep it simple. All I want to do is determine that something has been submitted, and do something in response. For now, I'll
 return the hardcoded name.
 
+https://github.com/smrkem/docker-flask-tdd/pull/5
+
+A couple additions to the tests and views files and we're there. Not very compelling, but neither was the FT.
+We'll add some more details to the stock info and also test for different symbols.
+
+Here's the agenda:
+- write some new tests that check for more details and multiple stocks
+- write some code so all tests pass
+- refactor the view code so it gets the stock info from a dependency
+- ensure all tests pass
+- refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)
+- refactor front-end code to match so all tests are back to passing
+
+### The POC Spike
+
+I had hoped to get a lot of Test Driven Development done before taking another detour - I mean the whole getting docker set up
+properly for testing was serious effort. But the truth is I started this without a clear idea of what it should be. I'm pretty new
+stocks and what data would be useful, as well to the tech side and what sort of data and services is available.
+
+This is honestly a really cool and exciting part for me - I'll put TDD and specific requirements aside for now. A quick
+Google for available services and a brand new git branch (`poc/yahoo-finance`) later and I'm ready to explore.
 
