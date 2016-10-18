@@ -25,6 +25,11 @@ class ViewsUnitTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.get_context_variable('stock'), stock)
 
+    def test_posting_invalid_symbol_returns_error(self):
+        response = self.client.post('/', data={'symbol': 'not-valid'})
+        errors = ["Could not find any stock for symbol: 'not-valid'"]
+        self.assertEqual(self.get_context_variable('errors'), errors)
+
 
 class NewVisitorTest(LiveServerTestCase):
 
@@ -61,6 +66,14 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn("NASDAQ",
                       self.browser.page_source)
 
+        # Jim tries to enter some junk to see if the app breaks
+        inputbox = self.browser.find_element_by_id("in_symbol")
+        inputbox.send_keys("INVALID")
+        inputbox.send_keys(Keys.ENTER)
+
+        self.assertIn("Could not find any stock for symbol: 'INVALID'",
+                      self.browser.page_source)
+
         # He tries a different stock symbol and sees the new name and exchange on the page.
         inputbox = self.browser.find_element_by_id("in_symbol")
         inputbox.send_keys("CRNT")
@@ -70,6 +83,7 @@ class NewVisitorTest(LiveServerTestCase):
                       self.browser.page_source)
         self.assertIn("NASDAQ",
                       self.browser.page_source)
+
 
 
 if __name__ == '__main__':

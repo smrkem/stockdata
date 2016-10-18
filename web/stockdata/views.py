@@ -3,10 +3,20 @@ from stockdata import app
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    stock = None
-    if request.method == 'POST':
-        stock = {
+    stockdata = {
+        "AETI": {
             "name": "American Electric Technologies Inc",
             "exchange": "NASDAQ"
+        },
+        "CRNT": {
+            "name": "Ceragon Networks Ltd",
+            "exchange": "NASDAQ"
         }
-    return render_template('index.html', stock=stock)
+    }
+    stock = None
+    errors = []
+    if request.method == 'POST' and request.form['symbol']:
+        stock = stockdata.get(request.form['symbol'])
+        if stock is None:
+            errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
+    return render_template('index.html', stock=stock, errors=errors)

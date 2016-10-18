@@ -12,5 +12,8 @@
       <br>
       {{ stock.exchange }}
       {% endif %}
+      {% for error in errors %}
+      {{ error }}<br>
+      {% endfor %}
   </body>
 </html>

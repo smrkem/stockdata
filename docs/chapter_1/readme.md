@@ -75,6 +75,13 @@ def test_posting_symbol_returns_stock_info(self):
 ```
 which gives: [test output](../test_messages/message_01.txt))
 
+****
+Aside: popping in the command I use to create that here for easy reference:
+```
+stockdata-run-tests >> docs/message_01.txt 2>&1
+```
+****
+
 I've still got that failing FT at the top, but that's good. Getting my unit tests to pass gets me a little farther in my FT.
 I straight-up copy and paste the tests definition of `stock` into the view, add a new variable to the template and I get:
 ```
@@ -84,6 +91,127 @@ https://github.com/smrkem/docker-flask-tdd/commit/34b5e3d6c04d70ecd83fe3338a30d2
 
 
 
+We want to be returning the info for the stock symbol that gets POSTed - which means having some way of looking up the stock symbol.
+This data might eventually come from anywhere - ideally an external service unless I want a gigantic database that's impossible
+to keep up to date.
+
+If the view can pass a `get_stock` message to some object and get back something decent, we'll have what we need -
+hopefully in a smart and future-proof way. Time to add a new FT and unit test.
+
+First the FT:
+```
+# Jim tries to enter some junk to see if the app breaks
+        inputbox = self.browser.find_element_by_id("in_symbol")
+        inputbox.send_keys("INVALID")
+        inputbox.send_keys(Keys.ENTER)
+
+        self.assertIn("Could not find any stock for symbol: 'INVALID'",
+                      self.browser.page_source)
+```
+which yields:
+```
+AssertionError: "Could not find any stock for symbol: 'INVALID'" not found in '<html ...'
+```
+
+Now in to the unit tests - I'll check to see if there's an errors object in the response, and if so I'll print them out.
+```
+def test_posting_invalid_symbol_returns_error(self):
+    response = self.client.post('/', data={'symbol': 'not-valid'})
+    errors = ["Could not find any stock for symbol: 'INVALID'"]
+    self.assertEqual(self.get_context_variable('errors'), errors)
+```
+which fails, telling me what to do next:
+```
+flask_testing.utils.ContextVariableDoesNotExist
+```
+
+Again, I'm deliberately keeping things dead simple. Initially, my data source is that 1 limited csv file - from which I
+just chose 2 to test against. Using that as a base, I want to build something easy to fix up and extend. For now, those 2
+samples just become a python dict keyed off the stock symbol.
+
+The new view looks like so:
+```
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    stockdata = {
+        "AETI": {
+            "name": "American Electric Technologies Inc",
+            "exchange": "NASDAQ"
+        }
+    }
+    stock = None
+    errors = []
+    if request.method == 'POST':
+        stock = stockdata["AETI"]
+        if stock is None:
+            errors.append("Could not find any stock for symbol: 'INVALID'")
+    return render_template('index.html', stock=stock, errors=errors)
+```
+but the error test is still failing:
+```
+AssertionError: Lists differ: [] != ["Could not find any stock for symbol: 'INVALID'"]
+```
+since of course the lookup is still hardcoded in and always passes. Looking back at the `index.html` template, I named the
+input `symbol` (and the id `in_symbol` - the 'in_' denoting an input - which was a friggin' guess. It might be a good idea to
+denote form inputs like that for javascript...)
+
+I have no idea at this point how to go looking into the POST data - instead of googling I'll just debug the `request` object
+right from the view and run the tests. I add `print(dir(request)` to see what it responds to and run the test. After more
+trial-and-error than I'd like to admit, the view gets to:
+```
+def index():
+    stockdata = {
+        "AETI": {
+            "name": "American Electric Technologies Inc",
+            "exchange": "NASDAQ"
+        }
+    }
+    stock = None
+    errors = []
+    if request.method == 'POST' and request.form['symbol']:
+        stock = stockdata.get(request.form['symbol'])
+        if stock is None:
+            errors.append("Could not find any stock for symbol: {}".format(request.form['symbol']))
+    return render_template('index.html', stock=stock, errors=errors)
+```
+It wasn't obvious to me that I should use the `.get` method on the stubbed `stockdata` data source. Indexing directly into
+the dict with an improper key, threw an exception instead of just returning None - which caused my tests to fails in a truly
+frightening way.
+[test output](../test_messages/message_03.txt))
+
+
+but now just the FT is failing. I'm not yet displaying the errors in the page. After a little
+```
+{% for error in errors %}
+  {{ error }}<br>
+{% endfor %}
+```
+in the template, the next FT is failing where we expect:
+```
+AssertionError: 'Ceragon Networks Ltd' not found in '<html ...'
+```
+(and in the '...' of that error message is contained my "Could not find any stock for symbol: 'CRNT'" that I was hoping for!
+The template is super ugly and bare-bones at this point, but that's pretty much the last item on my ToDo list.
+
+Getting the rest of the tests to pass should be a simple matter of adding that other stock to my faked out data source.
+```
+stockdata = {
+    "AETI": {
+        "name": "American Electric Technologies Inc",
+        "exchange": "NASDAQ"
+    },
+    "CRNT": {
+        "name": "Ceragon Networks Ltd",
+        "exchange": "NASDAQ"
+    }
+}
+```
+```
+Ran 4 tests in 2.819s
+
+OK
+```
+Sweeeeeeeeet!
 
 
 ### The POC Spike
