@@ -47,10 +47,44 @@ We'll add some more details to the stock info and also test for different symbol
 Here's the agenda:
 - write some new tests that check for more details and multiple stocks
 - write some code so all tests pass
-- refactor the view code so it gets the stock info from a dependency
+- refactor the view code so it gets the stock info from an object dependency
 - ensure all tests pass
+- refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source
 - refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)
 - refactor front-end code to match so all tests are back to passing
+
+### The Double Loop
+No idea if I'm using terminology correctly here - bear with me. This is 'outside-in' development. We start with testing the outer
+user experience in our FTs. This is the outer loop and leads nicely into the inner, unit-testing loop.
+
+Some failing FTs: https://github.com/smrkem/docker-flask-tdd/commit/eb2d1d13b8870affbb9b48529d5d479b1442e8dc
+
+and now I move on the the unit tests. Instead of adding a new unit test for each property I want to check for,
+`test_posting_symbol_returns_stock_name`, `test_posting_symbol_returns_stock_exchange`, ... All i really wanna do
+is check that the response contains a stock info object.
+```
+def test_posting_symbol_returns_stock_info(self):
+    response = self.client.post('/', data={'symbol': 'AETI'})
+    stock = {
+        "name": "American Electric Technologies",
+        "exchange": "NASDAQ"
+    }
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(self.get_context_variable('stock'), stock)
+```
+which gives: [test output](../test_messages/message_01.txt))
+
+I've still got that failing FT at the top, but that's good. Getting my unit tests to pass gets me a little farther in my FT.
+I straight-up copy and paste the tests definition of `stock` into the view, add a new variable to the template and I get:
+```
+AssertionError: 'Ceragon Networks Ltd' not found in '<html ...>'
+```
+https://github.com/smrkem/docker-flask-tdd/commit/34b5e3d6c04d70ecd83fe3338a30d210351de7ae
+
+
+
+
 
 ### The POC Spike
 
