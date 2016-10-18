@@ -3,6 +3,12 @@
     <title>StockData</title>
   </head>
   <body>
-      <h1>Hello, Karl</h1>
+      <h1>StockData</h1>
+      <form method="post">
+        <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">
+      </form>
+      {% if stock %}
+      {{ stock.name }}
+      {% endif %}
   </body>
 </html>
