@@ -117,7 +117,7 @@ Now in to the unit tests - I'll check to see if there's an errors object in the 
 ```
 def test_posting_invalid_symbol_returns_error(self):
     response = self.client.post('/', data={'symbol': 'not-valid'})
-    errors = ["Could not find any stock for symbol: 'INVALID'"]
+    errors = ["Could not find any stock for symbol: 'not-valid'"]
     self.assertEqual(self.get_context_variable('errors'), errors)
 ```
 which fails, telling me what to do next:
@@ -144,12 +144,12 @@ def index():
     if request.method == 'POST':
         stock = stockdata["AETI"]
         if stock is None:
-            errors.append("Could not find any stock for symbol: 'INVALID'")
+            errors.append("Could not find any stock for symbol: 'not-valid'")
     return render_template('index.html', stock=stock, errors=errors)
 ```
 but the error test is still failing:
 ```
-AssertionError: Lists differ: [] != ["Could not find any stock for symbol: 'INVALID'"]
+AssertionError: Lists differ: [] != ["Could not find any stock for symbol: 'not-valid'"]
 ```
 since of course the lookup is still hardcoded in and always passes. Looking back at the `index.html` template, I named the
 input `symbol` (and the id `in_symbol` - the 'in_' denoting an input - which was a friggin' guess. It might be a good idea to
