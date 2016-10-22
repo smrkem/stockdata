@@ -258,8 +258,21 @@ def index():
     return render_template('index.html', stock=stock, errors=errors)
 ```
 
+Running the tests after these changes still gives
+```
+----------------------------------------------------------------------
+Ran 4 tests in 2.864s
 
-
+OK
+```
+Fantastic! Here's the current ToDo list:
+- ~write some new tests that check for more details and multiple stocks~
+- ~write some code so all tests pass~
+- ~refactor the view code so it gets the stock info from an object dependency~
+- ~ensure all tests pass~
+- refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source
+- refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)
+- refactor front-end code to match so all tests are back to passing
 
 
 
