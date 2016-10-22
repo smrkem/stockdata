@@ -275,8 +275,64 @@ Fantastic! Here's the current ToDo list:
 - refactor front-end code to match so all tests are back to passing
 
 
+### 4. Refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source
 
+This will be looking at the unit test only. At least for now - and maybe indefinitely - the FTs will be making real
+requests.
 
+#### Patching
+
+My views, and lots of the eventual classes, will probably call other objects, modules and services to get their job done.
+Patching lets you create fake versions of those external dependencies on the fly - so my tests will be able to test only
+the code it's meant to.
+
+It's not really a complicated concept - but just starting out I'm finding that it can get a bit tricky at times. I want to
+patch the StockData object in the view. You can patch an object in a couple ways - but using the `@patch` decorator is
+straightforward. You pass it a string containing the service to patch, and it gives you back a mock object by adding it to
+the test function's argument list - I can call it whatever I want, so I'm going with 'mock_stockdata' for clarity.
+
+I could do
+```
+@patch('stockdata.views.StockData')
+def test_posting_symbol_returns_stock_info(self, mock_stockdata):
+    mock_stockdata.return_value.get_stock_info.return_value = {
+        "name": "American Electric Technologies Inc",
+        "exchange": "NASDAQ"
+    }
+    response = self.client.post('/', data={'symbol': 'AETI'})
+    stock = {
+        "name": "American Electric Technologies Inc",
+        "exchange": "NASDAQ"
+    }
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(self.get_context_variable('stock'), stock)
+```
+But that's starting to feel a little ridiculous. Tell the mock to return a certain object, and then
+test that object is in the view response. I no longer care what symbol i'm POSTing only that the dependency is
+receiving the correct message. I'm testing _functionality_, not _validity_.
+
+The test becomes
+```
+```
+and they're still all passing. Just so everything doesn't feel too much like magic at this point, I made a small typo in
+the POSTed symbol.
+```
+AssertionError: Expected call: get_stock_info('ANYSsYMBOL')
+Actual call: get_stock_info('ANYSYMBOL')
+```
+That's friggin cool.
+It's easy give the invalid symbol test a similar treatment:
+```
+@patch('stockdata.views.StockData')
+def test_posting_invalid_symbol_returns_error(self, mock_stockdata):
+    mock_stockdata.return_value.get_stock_info.return_value = None
+    response = self.client.post('/', data={'symbol': 'not-valid'})
+
+    errors = ["Could not find any stock for symbol: 'not-valid'"]
+    self.assertEqual(self.get_context_variable('errors'), errors)
+    mock_stockdata.return_value.get_stock_info.assert_called_with('not-valid')
+```
 
 
 ### The POC Spike

@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from selenium import webdriver as wd
 from selenium.webdriver.common.keys import Keys
 from flask_testing import LiveServerTestCase, TestCase
@@ -15,20 +16,23 @@ class ViewsUnitTest(TestCase):
         self.client.get('/')
         self.assert_template_used('index.html')
 
-    def test_posting_symbol_returns_stock_info(self):
-        response = self.client.post('/', data={'symbol': 'AETI'})
-        stock = {
-            "name": "American Electric Technologies Inc",
-            "exchange": "NASDAQ"
-        }
+    @patch('stockdata.views.StockData')
+    def test_posting_symbol_returns_stock_info(self, mock_stockdata):
+        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
+        response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(self.get_context_variable('stock'), stock)
+        mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+        self.assertEqual(self.get_context_variable('stock'), {"stock":"data"})
 
-    def test_posting_invalid_symbol_returns_error(self):
+    @patch('stockdata.views.StockData')
+    def test_posting_invalid_symbol_returns_error(self, mock_stockdata):
+        mock_stockdata.return_value.get_stock_info.return_value = None
         response = self.client.post('/', data={'symbol': 'not-valid'})
+
         errors = ["Could not find any stock for symbol: 'not-valid'"]
         self.assertEqual(self.get_context_variable('errors'), errors)
+        mock_stockdata.return_value.get_stock_info.assert_called_with('not-valid')
 
 
 class NewVisitorTest(LiveServerTestCase):
