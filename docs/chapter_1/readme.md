@@ -213,6 +213,58 @@ OK
 ```
 Sweeeeeeeeet!
 
+### 3. Refactor the view code so it gets the stock info from an object dependency
+
+With all tests passing it's time to do some refactoring. I'll create a new file in the `stockdata` app called
+`services.py` - the idea being that it'll have a StockData object whose job it will be to return stock info for
+a passed symbol.
+
+Ordinarily I'd start by writing unit tests for the new class, but it will likely end up being a wrapper for external
+requests - and I have no idea what it should look like yet. There is still huge benefit to refactoring now though. It'll
+let me get existing tests independant of that future, unknown dependency.
+
+```
+class StockData:
+
+    def __init__(self):
+        self.stockdata = {
+            "AETI": {
+                "name": "American Electric Technologies Inc",
+                "exchange": "NASDAQ"
+            },
+            "CRNT": {
+                "name": "Ceragon Networks Ltd",
+                "exchange": "NASDAQ"
+            }
+        }
+
+    def get_stock_info(self, symbol):
+        return self.stockdata[symbol]
+```
+
+and the view becomes:
+```
+...
+from stockdata.services import StockData
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    stock = None
+    errors = []
+    if request.method == 'POST' and request.form['symbol']:
+        stock = StockData().get_stock_info(request.form['symbol'])
+        if stock is None:
+            errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
+    return render_template('index.html', stock=stock, errors=errors)
+```
+
+
+
+
+
+
+
+
 
 ### The POC Spike
 
