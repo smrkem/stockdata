@@ -355,6 +355,7 @@ def submit_stock_symbol(self, symbol):
 ```
 
 The tests all pass and are way more readable.
+
 https://github.com/smrkem/docker-flask-tdd/commit/fe4e930989083a7c7e93c029150c3d840a315544
 
 
@@ -377,14 +378,16 @@ yuck! That needs a little love. Refactoring the tests, I guess I'll throw the st
 symbol as well for clarity. In the tests I'll throw in another helper function that I can just pass a tuple of the info I'm expecting.
 
 I also want to tidy up the errors display.  Here's the commit with the new FT:
+
 https://github.com/smrkem/docker-flask-tdd/commit/92615ee31b61bb20a9b5d205e20cc41ab1bbd803
 
 This starts giving me the expected failures, which I fix one at a time by adding to the template (and a quick addition to the service
 so it also returns the symbol). Here are the test steps I went through:
 
-[test output](../test_messages/message_04.txt))
+[test output](../test_messages/message_04.txt)
 
 which resulted in the following code changes:
+
 https://github.com/smrkem/docker-flask-tdd/commit/995eeffd0bcb28b4856d8627661c129bf16da59c
 
 ***
