@@ -381,11 +381,28 @@ https://github.com/smrkem/docker-flask-tdd/commit/92615ee31b61bb20a9b5d205e20cc4
 
 This starts giving me the expected failures, which I fix one at a time by adding to the template (and a quick addition to the service
 so it also returns the symbol). Here are the test steps I went through:
+
 [test output](../test_messages/message_04.txt))
 
 which resulted in the following code changes:
 https://github.com/smrkem/docker-flask-tdd/commit/995eeffd0bcb28b4856d8627661c129bf16da59c
 
+***
+
+Cool. My ToDo list is complete and all tests are passing.
+- ~~write some new tests that check for more details and multiple stocks~~
+- ~~write some code so all tests pass~~
+- ~~refactor the view code so it gets the stock info from an object dependency~~
+- ~~ensure all tests pass~~
+- ~~refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source~~
+- ~~refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)~~
+- ~~refactor front-end code to match so all tests are back to passing~~
+
+My app doesn't do anything interesting - just spits back hardcoded data that we already knew. But it's pretty thoroughly tested
+and I'm sure it's doing that much correctly. Ultimately I want to be able to get this info externally, and also much more
+meaningful data - the kind of stuff that might help me to decide if a given stock is a good purchase for me or not.
+
+I'll have to do a bit of discovery since I'm not even sure what's possible - this next part is gonna be fun.
 
 ### The POC Spike
 
@@ -394,5 +411,5 @@ properly for testing was serious effort. But the truth is I started this without
 stocks and what data would be useful, as well to the tech side and what sort of data and services is available.
 
 This is honestly a really cool and exciting part for me - I'll put TDD and specific requirements aside for now. A quick
-Google for available services and a brand new git branch (`poc/yahoo-finance`) later and I'm ready to explore.
+Google for available services and a brand new git branch (`poc/yahoo-finance`) later and I'm ready to start exploring in the next chapter.
 
