@@ -1,0 +1,25 @@
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+127.0.0.1 - - [18/Oct/2016 22:02:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2016 22:02:44] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Oct/2016 22:02:44] "POST / HTTP/1.1" 200 -
+F.F
+======================================================================
+FAIL: test_can_visit_homepage (__main__.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "acceptance_tests/acceptance_tests.py", line 58, in test_can_visit_homepage
+    self.browser.page_source)
+AssertionError: 'NASDAQ' not found in '<html xmlns="http://www.w3.org/1999/xhtml"><head>\n    <title>StockData</title>\n  </head>\n  <body>\n      <h1>StockData</h1>\n      <form method="post">\n        <input type="text" placeholder="Enter a stock symbol" id="in_symbol" name="symbol" />\n      </form>\n      \n      American Electric Technologies Inc\n      \n  \n</body></html>'
+
+======================================================================
+FAIL: test_posting_symbol_returns_stock_info (__main__.ViewsUnitTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "acceptance_tests/acceptance_tests.py", line 22, in test_posting_symbol_returns_stock_info
+    self.assertIn("NASDAQ", response.data.decode('utf8'))
+AssertionError: 'NASDAQ' not found in '<html>\n  <head>\n    <title>StockData</title>\n  </head>\n  <body>\n      <h1>StockData</h1>\n      <form method="post">\n        <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">\n      </form>\n      \n      American Electric Technologies Inc\n      \n  </body>\n</html>'
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.681s
+
+FAILED (failures=2)

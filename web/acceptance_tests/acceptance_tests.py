@@ -1,5 +1,7 @@
 import unittest
+from unittest.mock import patch
 from selenium import webdriver as wd
+from selenium.webdriver.common.keys import Keys
 from flask_testing import LiveServerTestCase, TestCase
 from stockdata import app
 
@@ -11,8 +13,26 @@ class ViewsUnitTest(TestCase):
         return app
 
     def test_home_view_calls_index_template(self):
-        response = self.client.get('/')
+        self.client.get('/')
         self.assert_template_used('index.html')
+
+    @patch('stockdata.views.StockData')
+    def test_posting_symbol_returns_stock_info(self, mock_stockdata):
+        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
+        response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
+
+        self.assertEqual(response.status_code, 200)
+        mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+        self.assertEqual(self.get_context_variable('stock'), {"stock":"data"})
+
+    @patch('stockdata.views.StockData')
+    def test_posting_invalid_symbol_returns_error(self, mock_stockdata):
+        mock_stockdata.return_value.get_stock_info.return_value = None
+        response = self.client.post('/', data={'symbol': 'not-valid'})
+
+        errors = ["Could not find any stock for symbol: 'not-valid'"]
+        self.assertEqual(self.get_context_variable('errors'), errors)
+        mock_stockdata.return_value.get_stock_info.assert_called_with('not-valid')
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -29,11 +49,41 @@ class NewVisitorTest(LiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_visit_homepage(self):
-        self.browser.get(self.get_server_url())
+    def submit_stock_symbol(self, symbol):
+        inputbox = self.browser.find_element_by_id("in_symbol")
+        inputbox.send_keys(symbol)
+        inputbox.send_keys(Keys.ENTER)
 
+    def check_stock_info_for(self, stockinfo):
+        stockinfo_table = self.browser.find_element_by_id("stock-info")
+        for value in stockinfo:
+            self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+
+    def test_can_visit_homepage(self):
+        # Jim needs to get some stock info.
+        # He hears about a new app called StockData and goes to the homepage.
+        self.browser.get(self.get_server_url())
         self.assertEqual("StockData", self.browser.title)
-        self.assertEqual("Hello, Karl", self.browser.find_element_by_tag_name('h1').text)
+        self.assertIn("StockData", self.browser.find_element_by_tag_name('h1').text)
+
+        # He sees an input box where he can input a stock symbol
+        inputbox = self.browser.find_element_by_id("in_symbol")
+        self.assertEqual(inputbox.get_attribute('placeholder'), "Enter a stock symbol")
+
+        # He enters "AETI" and hits Enter.
+        self.submit_stock_symbol("AETI")
+
+        # He sees the stock name and stock exchange on the page.
+        self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+
+        # Jim tries to enter some junk to see if the app breaks
+        self.submit_stock_symbol("INVALID")
+        errors = self.browser.find_element_by_id("errors")
+        self.assertIn("Could not find any stock for symbol: 'INVALID'", errors.text)
+
+        # He tries a different stock symbol and sees the new name and exchange on the page.
+        self.submit_stock_symbol("CRNT")
+        self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NASDAQ"))
 
 
 if __name__ == '__main__':

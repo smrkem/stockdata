@@ -183,7 +183,6 @@ docker exec -it stockdata_web_1 /bin/bash
 ```
 and the tests all pass! woot!
 
-
 ### Fixing the Docker test process  
 The last thing I want to do is fix up the test running process.  
 Currently I'm building the containers, running them in the background, and using `docker exec` to go into the web container to manually run the command.  
@@ -211,4 +210,5 @@ It will start off as something to keep track of various equities (stocks) and as
 including dynamic data like price, volume, market cap, ... stored with its datetime.
 
 One I introduce users, they can have a stock portfolio, total market value, etc.
+
 Can watch certain stocks and set notifications for conditions (can do this in TD)
