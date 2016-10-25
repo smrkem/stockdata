@@ -1,0 +1,101 @@
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+127.0.0.1 - - [25/Oct/2016 19:24:17] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:24:17] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:24:17] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:24:17] "POST / HTTP/1.1" 200 -
+E...
+======================================================================
+ERROR: test_can_visit_homepage (__main__.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "acceptance_tests/acceptance_tests.py", line 77, in test_can_visit_homepage
+    self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+  File "acceptance_tests/acceptance_tests.py", line 58, in check_stock_info_for
+    stockinfo_table = self.browser.find_element_by_id("stock-info")
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"stock-info"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmpi13rkwpo/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
+    at fxdriver.Timer.prototype.setTimeout/<.notify (file:///tmp/tmpi13rkwpo/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
+
+----------------------------------------------------------------------
+Ran 4 tests in 5.629s
+
+FAILED (errors=1)
+
+***
+
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+127.0.0.1 - - [25/Oct/2016 19:29:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:29:15] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:29:15] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:29:15] "POST / HTTP/1.1" 200 -
+F...
+======================================================================
+FAIL: test_can_visit_homepage (__main__.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "acceptance_tests/acceptance_tests.py", line 77, in test_can_visit_homepage
+    self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+  File "acceptance_tests/acceptance_tests.py", line 60, in check_stock_info_for
+    self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+AssertionError: 'AETI' not found in 'Symbol\nName American Electric Technologies Inc\nExchange NASDAQ' : Check AETI is in stock info
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.629s
+
+FAILED (failures=1)
+
+***
+
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+127.0.0.1 - - [25/Oct/2016 19:30:23] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:30:24] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:30:24] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:30:24] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:30:24] "POST / HTTP/1.1" 200 -
+E...
+======================================================================
+ERROR: test_can_visit_homepage (__main__.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "acceptance_tests/acceptance_tests.py", line 81, in test_can_visit_homepage
+    errors = self.browser.find_element_by_id("errors")
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"errors"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp3hrix8ws/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
+    at fxdriver.Timer.prototype.setTimeout/<.notify (file:///tmp/tmp3hrix8ws/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
+
+----------------------------------------------------------------------
+Ran 4 tests in 5.877s
+
+FAILED (errors=1)
+
+***
+
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+127.0.0.1 - - [25/Oct/2016 19:31:55] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:31:55] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2016 19:31:55] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:31:55] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2016 19:31:55] "POST / HTTP/1.1" 200 -
+....
+----------------------------------------------------------------------
+Ran 4 tests in 2.994s
+
+OK

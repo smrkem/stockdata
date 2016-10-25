@@ -343,6 +343,50 @@ def test_posting_invalid_symbol_returns_error(self, mock_stockdata):
 ```
 
 
+### 5. Refactor tests to look for a better defined 'stock' on the page
+
+Lastly, I want to tidy up the FTs and the front end display in general. As always, I'll begin with the tests. There's a pretty
+bad smell around the repetitive action of submitting a stock symbol. That pattern is repeated often enough that it's good fodder for a helper function.
+```
+def submit_stock_symbol(self, symbol):
+    inputbox = self.browser.find_element_by_id("in_symbol")
+    inputbox.send_keys(symbol)
+    inputbox.send_keys(Keys.ENTER)
+```
+
+The tests all pass and are way more readable.
+https://github.com/smrkem/docker-flask-tdd/commit/fe4e930989083a7c7e93c029150c3d840a315544
+
+
+My current front end display really sucks. Here's the template:
+```
+<h1>StockData</h1>
+<form method="post">
+<input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">
+</form>
+{% if stock %}
+{{ stock.name }}
+<br>
+{{ stock.exchange }}
+{% endif %}
+{% for error in errors %}
+{{ error }}<br>
+{% endfor %}
+```
+yuck! That needs a little love. Refactoring the tests, I guess I'll throw the stock information into a table, and include the
+symbol as well for clarity. In the tests I'll throw in another helper function that I can just pass a tuple of the info I'm expecting.
+
+I also want to tidy up the errors display.  Here's the commit with the new FT:
+https://github.com/smrkem/docker-flask-tdd/commit/92615ee31b61bb20a9b5d205e20cc41ab1bbd803
+
+This starts giving me the expected failures, which I fix one at a time by adding to the template (and a quick addition to the service
+so it also returns the symbol). Here are the test steps I went through:
+[test output](../test_messages/message_04.txt))
+
+which resulted in the following code changes:
+https://github.com/smrkem/docker-flask-tdd/commit/995eeffd0bcb28b4856d8627661c129bf16da59c
+
+
 ### The POC Spike
 
 I had hoped to get a lot of Test Driven Development done before taking another detour - I mean the whole getting docker set up
