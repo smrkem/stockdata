@@ -409,6 +409,7 @@ Cool. My ToDo list is complete and all tests are passing.
 - ~~refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source~~
 - ~~refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)~~
 - ~~refactor front-end code to match so all tests are back to passing~~
+
 ***
 
 My app doesn't do anything interesting - just spits back hardcoded data that we already knew. But it's pretty thoroughly tested
