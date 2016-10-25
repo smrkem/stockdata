@@ -44,6 +44,8 @@ https://github.com/smrkem/docker-flask-tdd/pull/5
 A couple additions to the tests and views files and we're there. Not very compelling, but neither was the FT.
 We'll add some more details to the stock info and also test for different symbols.
 
+***
+
 Here's the agenda:
 - write some new tests that check for more details and multiple stocks
 - write some code so all tests pass
@@ -52,6 +54,7 @@ Here's the agenda:
 - refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source
 - refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)
 - refactor front-end code to match so all tests are back to passing
+***
 
 ### The Double Loop
 No idea if I'm using terminology correctly here - bear with me. This is 'outside-in' development. We start with testing the outer
@@ -265,6 +268,8 @@ Ran 4 tests in 2.864s
 
 OK
 ```
+***
+
 Fantastic! Here's the current ToDo list:
 - ~~write some new tests that check for more details and multiple stocks~~
 - ~~write some code so all tests pass~~
@@ -274,6 +279,7 @@ Fantastic! Here's the current ToDo list:
 - refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)
 - refactor front-end code to match so all tests are back to passing
 
+***
 
 ### 4. Refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source
 
@@ -400,6 +406,7 @@ Cool. My ToDo list is complete and all tests are passing.
 - ~~refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source~~
 - ~~refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)~~
 - ~~refactor front-end code to match so all tests are back to passing~~
+***
 
 My app doesn't do anything interesting - just spits back hardcoded data that we already knew. But it's pretty thoroughly tested
 and I'm sure it's doing that much correctly. Ultimately I want to be able to get this info externally, and also much more
