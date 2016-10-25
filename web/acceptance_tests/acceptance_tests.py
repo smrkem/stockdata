@@ -54,6 +54,11 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys(symbol)
         inputbox.send_keys(Keys.ENTER)
 
+    def check_stock_info_for(self, stockinfo):
+        stockinfo_table = self.browser.find_element_by_id("stock-info")
+        for value in stockinfo:
+            self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+
     def test_can_visit_homepage(self):
         # Jim needs to get some stock info.
         # He hears about a new app called StockData and goes to the homepage.
@@ -69,22 +74,16 @@ class NewVisitorTest(LiveServerTestCase):
         self.submit_stock_symbol("AETI")
 
         # He sees the stock name and stock exchange on the page.
-        self.assertIn("American Electric Technologies Inc",
-                      self.browser.page_source)
-        self.assertIn("NASDAQ",
-                      self.browser.page_source)
+        self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
 
         # Jim tries to enter some junk to see if the app breaks
         self.submit_stock_symbol("INVALID")
-        self.assertIn("Could not find any stock for symbol: 'INVALID'",
-                      self.browser.page_source)
+        errors = self.browser.find_element_by_id("errors")
+        self.assertIn("Could not find any stock for symbol: 'INVALID'", errors.text)
 
         # He tries a different stock symbol and sees the new name and exchange on the page.
         self.submit_stock_symbol("CRNT")
-        self.assertIn("Ceragon Networks Ltd",
-                      self.browser.page_source)
-        self.assertIn("NASDAQ",
-                      self.browser.page_source)
+        self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NASDAQ"))
 
 
 if __name__ == '__main__':
