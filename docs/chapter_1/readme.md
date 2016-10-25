@@ -54,6 +54,7 @@ Here's the agenda:
 - refactor tests to use mocking / dependency injection so a test doesn't rely on actual stock data source
 - refactor tests to look for a better defined 'stock' on the page (instead of currently just asserting info is in the page_source)
 - refactor front-end code to match so all tests are back to passing
+
 ***
 
 ### The Double Loop
