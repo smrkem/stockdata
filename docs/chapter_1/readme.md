@@ -314,6 +314,14 @@ receiving the correct message. I'm testing _functionality_, not _validity_.
 
 The test becomes
 ```
+@patch('stockdata.views.StockData')
+def test_posting_symbol_returns_stock_info(self, mock_stockdata):
+    mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
+    response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
+
+    self.assertEqual(response.status_code, 200)
+    mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+    self.assertEqual(self.get_context_variable('stock'), {"stock":"data"})
 ```
 and they're still all passing. Just so everything doesn't feel too much like magic at this point, I made a small typo in
 the POSTed symbol.
