@@ -77,7 +77,9 @@ def test_posting_symbol_returns_stock_info(self):
     self.assertEqual(response.status_code, 200)
     self.assertEqual(self.get_context_variable('stock'), stock)
 ```
-which gives: [test output](../test_messages/message_01.txt))
+which gives:
+
+[test output](../test_messages/message_01.txt)
 
 ****
 Aside: popping in the command I use to create that here for easy reference:
