@@ -1,3 +1,7 @@
+from yahoo_finance import Share
+import googlefinance
+
+
 class StockData:
 
     def __init__(self):
@@ -15,4 +19,19 @@ class StockData:
         }
 
     def get_stock_info(self, symbol):
-        return self.stockdata.get(symbol)
+        # stock = googlefinance.getQuotes(symbol)
+        # stockinfo = googlefinance.request([symbol])
+        # url = googlefinance.buildUrl([symbol])
+        # print(stockinfo)
+        # print(type(stockinfo))
+        # print(dir(stockinfo))
+        # print(url)
+        stock = Share(symbol)
+        # print(type(stock))
+        # print(stock.get_info())
+        print(stock.data_set)
+
+        # print(stock.get_earnings_share())
+        print("**********************")
+        # return self.stockdata.get(symbol)
+        return stock
