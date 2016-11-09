@@ -24,5 +24,12 @@ to scrape Google Finance urls of the form:
 
 https://www.google.com/finance?q=NEON:NASDAQ&fstype=ii
 
+looks like `fstype=ii` might denote Financials. Haven't messed around with trying different values yet.
+
+When there are no financials for the market and symbol, then the
+```
+<div id="app" ... <div class="fjfe-content">
+```
+element will be empty.
 
 

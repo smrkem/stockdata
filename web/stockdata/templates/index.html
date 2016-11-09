@@ -14,7 +14,7 @@
       <form method="post">
         <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">
       </form>
-      {% if stock %}
+    {% if stock %}
       <table id="stock-info">
         <tr>
           <td>Symbol</td>
@@ -29,6 +29,26 @@
           <td>{{ stock.exchange }}</td>
         </tr>
       </table>
+      <br>
+      <br>
+      {% if stock.financials %}
+      <table id="stock-financials">
+        <tr>
+          <td></td>
+          {% for header in stock.financials.headers %}
+            <td>{{ header }}</td>
+          {% endfor %}
+        </tr>
+        {% for key, values in stock.financials.data.items() %}
+        <tr>
+          <td>{{ key }}</td>
+          {% for value in values %}
+          <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
       {% endif %}
+    {% endif %}
   </body>
 </html>

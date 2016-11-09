@@ -10,9 +10,4 @@ def index():
         stock = StockData().get_stock_info(request.form['symbol'])
         if stock is None:
             errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
-        # print(type(stock))
-        # print(dir(stock))
-        # print(stock)
-        # print(stock.get_info())
-        # print(stock.get_name())
     return render_template('index.html', stock=stock, errors=errors)
