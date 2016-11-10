@@ -1,3 +1,9 @@
+This is a readme from the poc branch:
+
+https://github.com/smrkem/docker-flask-tdd/tree/poc/yahoo-finance
+
+***
+
 found this online, which is nice enough to detail the different countries, exchanges and stock symbol suffixes:
 
 http://www.jarloo.com/yahoo_finance/
