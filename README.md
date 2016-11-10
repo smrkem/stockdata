@@ -3,6 +3,8 @@
 based off
 - http://www.obeythetestinggoat.com/
 - realpython's [Django Development With Docker Compose and Machine tutorial](https://realpython.com/blog/python/django-development-with-docker-compose-and-machine/)
+- sentdex [youtube videos](https://www.youtube.com/channel/UCfzlCWGWYyIQ0aLC5w48gBQ) and web tutorials https://pythonprogramming.net
+
 
 ### Being an Attempt at a TDD Double-Loop Flask App
 Gonna start with __very__ basic functional tests (FTs) and go from there.
