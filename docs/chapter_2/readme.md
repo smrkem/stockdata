@@ -33,3 +33,12 @@ When there are no financials for the market and symbol, then the
 element will be empty.
 
 
+***
+```
+# Jim inputs the symbol "SYMB"
+# He sees the page refresh with the 52-week high, 200-day-ave, 50-day-ave and 7-day ave
+```
+
+I'm thinking it's gonna be good, in general, to compare how things look at various timescales - maybe get a good picture of where things are headed in the short term.
+
+Gonna do rolling statistics on a year's worth of historical data - like standard deviation (volatility) for 1-year, 200-day, 50-day and 7-day
