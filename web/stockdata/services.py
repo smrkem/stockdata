@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from pyquery import  PyQuery as pq
 import requests
+import datetime
+
 
 class StockData:
 
@@ -15,18 +17,31 @@ class StockData:
     def get_stock_info(self, symbol):
         self.exchange = "NASDAQ"
         self.symbol = symbol
-        self.fetch_stock_info(self.symbol, self.exchange)
+        stock = Share(symbol)
+        # self.fetch_stock_info(self.symbol, self.exchange)
+        print(stock.get_50day_moving_avg())
+        print(stock.get_year_high())
 
-        if not self.column_data:
-            return None
-        return {
-            'symbol': self.symbol,
-            'exchange': self.exchange,
-            'financials': {
-                'headers': self.column_headers,
-                'data': self.column_data
-            }
-        }
+        today = datetime.date.today()
+        last_year = today - datetime.timedelta(days=313)
+        historical_data = stock.get_historical(str(last_year), str(today))
+        historical_df = pd.DataFrame(historical_data)
+        print(historical_df)
+        # for entry in historical_data:
+        #     print(type(entry))
+        #     print(entry)
+
+        # if not self.column_data:
+        #     return None
+        # return {
+        #     'symbol': self.symbol,
+        #     'exchange': self.exchange,
+        #     'financials': {
+        #         'headers': self.column_headers,
+        #         'data': self.column_data
+        #     }
+        # }
+        return stock
 
     def fetch_stock_info(self, symbol, market):
         page = requests.get("https://www.google.com/finance?q={}:{}&fstype=ii".format(self.exchange, self.symbol))
