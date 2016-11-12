@@ -51,7 +51,18 @@ That's the outer loop (FT), inner-loop (unit test) rythym i'm trying to get down
 It's starting to become a hassle to keep sticking all the tests in a single file. It'll be good to look into a testrunner
 like nose or maybe a Flask manage.py approach. This'll also allow me to fix up how those tests are structured a bit.
 
+Here's the diff that gets the Flask Manager approach (using a `manage.py` file) working:
 
+https://github.com/smrkem/docker-flask-tdd/commit/e78bc2b9743202cfdcea689520d90e1b3d485b53
+
+
+Now that I have test-discovery, I can split up my tests into folders (that apparently need to be modules with an `__init__.py` file?)
+and name them a little better. What I had before was gonna get real messy, real quick.
+
+https://github.com/smrkem/docker-flask-tdd/commit/9b5ec1dae8656e95998efae199dceef8e4f31f06
+
+
+Things are working pretty good - that `z_acceptance_tests` naming was just cuz I like my FTs to run after all the unit tests.
 
 
 
