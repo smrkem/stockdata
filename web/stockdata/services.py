@@ -15,18 +15,21 @@ class StockData:
         self.exchange = None
 
     def get_stock_info(self, symbol):
+        print("Symbol: {}".format(symbol))
         self.exchange = "NASDAQ"
         self.symbol = symbol
         stock = Share(symbol)
+        print("type: {}".format(type(stock)))
         # self.fetch_stock_info(self.symbol, self.exchange)
         print(stock.get_50day_moving_avg())
         print(stock.get_year_high())
-
-        today = datetime.date.today()
-        last_year = today - datetime.timedelta(days=313)
-        historical_data = stock.get_historical(str(last_year), str(today))
-        historical_df = pd.DataFrame(historical_data)
-        print(historical_df)
+        print(stock.get_stock_exchange())
+        print(stock.get_name())
+        # today = datetime.date.today()
+        # last_year = today - datetime.timedelta(days=313)
+        # historical_data = stock.get_historical(str(last_year), str(today))
+        # historical_df = pd.DataFrame(historical_data)
+        # print(historical_df)
         # for entry in historical_data:
         #     print(type(entry))
         #     print(entry)
@@ -58,4 +61,3 @@ class StockData:
             df.dropna(how='all', inplace=True)
             self.column_headers = list(df.columns.values)
             self.column_data = df.T.to_dict('list')
-
