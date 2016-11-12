@@ -27,5 +27,5 @@ In order to run this in the background, use `docker-compose up -d`
 
 ### To Run Tests
 ```
-docker-compose run --rm web sh /usr/src/app/runtests.sh
+docker-compose run --rm web sh runtests.sh
 ```
