@@ -8,7 +8,7 @@ manager.add_command("runserver", Server(host='0.0.0.0'))
 @manager.command
 def test():
     """Runs all tests in the tests/ folder."""
-    tests = unittest.TestLoader().discover('tests', pattern='*tests.py')
+    tests = unittest.TestLoader().discover('tests', pattern='test*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0
