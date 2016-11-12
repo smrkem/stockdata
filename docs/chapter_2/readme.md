@@ -34,20 +34,25 @@ I'm going to start with a simple test:
 
 Here's my todo list (which will probably evolve along the way):
 
+
+***
 ### Agenda:
 1. Write FT that checks getting 1yr high and current price.
 2. Plan my approach
 3. Write unit tests for the approach
 4. Code till unit tests pass, verifying FT passes at the end
-5. Add bootstrap to the app so it looks nicer  
-
+5. Add bootstrap to the app so it looks nicer
 ***
 
 That's the outer loop (FT), inner-loop (unit test) rythym i'm trying to get down.
 
 ### 1. Write FT that checks getting 1yr high and current price.
 
-It's starting to become a hassle
+It's starting to become a hassle to keep sticking all the tests in a single file. It'll be good to look into a testrunner
+like nose or maybe a Flask manage.py approach. This'll also allow me to fix up how those tests are structured a bit.
+
+
+
 
 
 
