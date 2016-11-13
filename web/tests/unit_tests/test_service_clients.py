@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest import mock
 from flask_testing import TestCase
 from stockdata import app
 from stockdata.services import StockData
@@ -15,12 +15,13 @@ class StockDataTest(TestCase):
         stock = StockData()
         self.assertIsInstance(stock.sources, type(list()))
 
-    def test_stockdata_format(self):
+    def test_get_stockinfo_calls_source_get_stockinfo(self):
         stock = StockData()
-        self.assertIsInstance(stock.stockdata, type(dict()))
-        self.assertEqual(stock.stockdata.keys(), [
-            'Name', 'Exchange', 'Symbol'
-        ])
+        mock_source = mock.MagicMock()
+        stock.sources.append(mock_source)
+        stock.get_stock_info("SYMB")
+        mock_source.get_stock_info.assert_called_with("SYMB")
+
 
 
 if __name__ == '__main__':
