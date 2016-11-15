@@ -119,10 +119,10 @@ Ran 6 tests in 2.992s
 FAILED (failures=1, errors=1)
 ```
 
-
+'''
+    Ultimately I'm gonna want to be able to get info from a list of sources,
+    maybe depending on what's asked for in the query. For now, the minimal thing is for
+    get_stock_info to call the YahooFinanceClient's get_stock_info.
+    '''
 
 ### 3. Write FT that checks getting 1yr high and current price.
-
-
-
-

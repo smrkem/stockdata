@@ -1,7 +1,9 @@
+from stockdata.sources.YahooFinanceClient import YahooFinanceClient
+
+
 class StockData:
 
     def __init__(self):
-        self.sources = list()
         self.stockdata = {
             "AETI": {
                 "symbol": "AETI",
@@ -16,5 +18,4 @@ class StockData:
         }
 
     def get_stock_info(self, symbol):
-        stockdata = self.sources[0].get_stock_info(symbol)
-        return self.stockdata.get(symbol)
+        return YahooFinanceClient().get_stock_info(symbol)
