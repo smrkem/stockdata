@@ -94,6 +94,30 @@ services and clients `test_service_clients.py`.
 
 https://github.com/smrkem/docker-flask-tdd/commit/f1f79b032186d02792d0ab0b2d94659d9e81e0aa
 
+which fails expectedly:
+```
+
+======================================================================
+ERROR: test_has_a_list_of_sources (unit_tests.test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit_tests/test_service_clients.py", line 16, in test_has_a_list_of_sources
+    self.assertIsInstance(stock.sources, type(list()))
+AttributeError: 'StockData' object has no attribute 'sources'
+
+======================================================================
+FAIL: test_stockdata_format (unit_tests.test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit_tests/test_service_clients.py", line 22, in test_stockdata_format
+    'Name', 'Exchange', 'Symbol'
+AssertionError: dict_keys(['AETI', 'CRNT']) != ['Name', 'Exchange', 'Symbol']
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.992s
+
+FAILED (failures=1, errors=1)
+```
 
 
 

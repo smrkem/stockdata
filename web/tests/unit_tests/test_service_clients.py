@@ -11,6 +11,13 @@ class StockDataTest(TestCase):
         app.config['TESTING'] = True
         return app
 
+    def test_has_source(self):
+        '''
+        Ultimately I'm gonna want to be able to get info from a list of sources,
+        maybe depending on what's asked for in the query. For now, the minimal thing is for
+        get_stock_info to call the YahooFinanceClient's get_stock_info.
+        :return:
+        '''
     def test_has_a_list_of_sources(self):
         stock = StockData()
         self.assertIsInstance(stock.sources, type(list()))
