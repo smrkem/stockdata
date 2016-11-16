@@ -1,2 +1,2 @@
-xvfb-run python acceptance_tests/acceptance_tests.py
+xvfb-run python manage.py test
 exit 0

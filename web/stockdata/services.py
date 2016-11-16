@@ -1,3 +1,6 @@
+from stockdata.sources.YahooFinanceClient import YahooFinanceClient
+
+
 class StockData:
 
     def __init__(self):
@@ -15,4 +18,4 @@ class StockData:
         }
 
     def get_stock_info(self, symbol):
-        return self.stockdata.get(symbol)
+        return YahooFinanceClient().get_stock_info(symbol)
