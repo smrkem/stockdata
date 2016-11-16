@@ -151,7 +151,16 @@ I wasn't even done yet. One more commit before the tests are failing in any way 
 https://github.com/smrkem/docker-flask-tdd/commit/2559111e474d614fb2443fdecfdb81ee17218857
 
 
-And the FT is still failing - expected, but kinda noisy. Next up - another detour to let me use Manager to just run unit_tests.
+And the FT is still failing - expected, but kinda noisy. Next up - another detour to let me use Manager to just run unit_tests.  
+
+https://github.com/smrkem/docker-flask-tdd/commit/0d68e8c480407f9dfc2d71091cfb7fa386393022
+
+That was almost fun. A little hacky and unneccessary - but now I can run just the unit tests with
+```
+docker-compose run --rm web sh runtests.sh unit
+```
+(which i've aliased to just `tdddocker-run-tests unit`). And i was also able to get rid of that stupid `z_acceptance_tests` folder name too. Now that I can run just the unit tests, don't care a whole lot if the FTs come first. The majority of my time is spent going back and forth between unit tests and coding - in the inner loop.
+
 
 
 
