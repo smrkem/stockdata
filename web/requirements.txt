@@ -11,3 +11,4 @@ selenium==2.53.6
 SQLAlchemy==0.9.9
 Werkzeug==0.10.4
 flask-script
+yahoo-finance

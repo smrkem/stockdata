@@ -3,7 +3,7 @@ from unittest.mock import patch
 from flask_testing import TestCase
 from stockdata import app
 from stockdata.services.StockData import StockData
-from stockdata.services.sources import YahooFinanceClient
+from stockdata.services.sources.YahooFinanceClient import YahooFinanceClient
 
 
 class StockDataTest(TestCase):
@@ -33,13 +33,32 @@ class YahooFinanceClientTest(TestCase):
     def test_get_stock_info_gets_share_for_symbol(self, mock_share):
         YahooFinanceClient().get_stock_info("SYMB")
         mock_share.assert_called_with("SYMB")
-        mock_share.return_value.assert_called_with("SYMB")
-        self.fail('write test')
 
     @patch('stockdata.services.sources.YahooFinanceClient.Share')
     def test_get_stock_info_fetches_name(self, mock_share):
-        YahooFinanceClient().get_stock_info()
-        self.fail('write test')
+        YahooFinanceClient().get_stock_info("SYMB")
+        mock_share.return_value.get_name.assert_called_with()
+
+    @patch('stockdata.services.sources.YahooFinanceClient.Share')
+    def test_get_stock_info_fetches_exchange(self, mock_share):
+        YahooFinanceClient().get_stock_info("SYMB")
+        mock_share.return_value.get_stock_exchange.assert_called_with()
+
+    @patch('stockdata.services.sources.YahooFinanceClient.Share')
+    def test_get_stock_info_returns_stock(self, mock_share):
+        mock_share.return_value.get_stock_exchange.return_value = "TST"
+        mock_share.return_value.get_name.return_value = "Test Company Name"
+
+        expected_stock = {
+            "symbol": "SYMB",
+            "name": "Test Company Name",
+            "exchange": "TST"
+        }
+        actual_stock = YahooFinanceClient().get_stock_info("SYMB")
+
+        self.assertEqual(actual_stock, expected_stock)
+
+
 
 if __name__ == '__main__':
     unittest.main()
