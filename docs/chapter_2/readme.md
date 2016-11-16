@@ -175,7 +175,7 @@ So the unit tests are failing with:
 ```
 AttributeError: <module 'stockdata.services.sources.YahooFinanceClient' from '/usr/src/app/stockdata/services/sources/YahooFinanceClient.py'> does not have the attribute 'Share'
 ```
-_(wow. i'm still learning python's module / package import rules, and those long module name chains *really* feels wrong)
+_(wow. i'm still learning python's module / package import rules, and those long module name chains *really* feels wrong)_
 
 
 
