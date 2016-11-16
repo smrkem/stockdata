@@ -14,10 +14,10 @@ class StockDataTest(TestCase):
 
     @patch('stockdata.services.StockData.YahooFinanceClient')
     def test_get_stock_info_calls_source_get_stock_info(self, mock_source):
-        mock_source.get_stock_info.return_value = {"stock":"data"}
+        mock_source.return_value.get_stock_info.return_value = {"stock":"data"}
         stock = StockData()
         stockdata = stock.get_stock_info("SYMB")
-        mock_source.get_stock_info.assert_called_with("SYMB")
+        mock_source.return_value.get_stock_info.assert_called_with("SYMB")
         self.assertEqual(stockdata, {"stock":"data"})
 
 
