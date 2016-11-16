@@ -90,39 +90,27 @@ Things are working pretty good - that `z_acceptance_tests` naming was just cuz I
 ### 2. Refactor project to get info from yahoo-finance - Get all tests back to passing
 
 I'm going to be adding a YahooFinanceClient as 'source' for the StockData class. I start with a new test file for
-services and clients `test_service_clients.py`.
+services and clients `test_service_clients.py`.  
 
-https://github.com/smrkem/docker-flask-tdd/commit/f1f79b032186d02792d0ab0b2d94659d9e81e0aa
 
-which fails expectedly:
+Ultimately I'm gonna want to be able to get info from a list of sources, maybe depending on what's asked for in the query. For now, the minimal thing is for get_stock_info to call the YahooFinanceClient's get_stock_info.
+
 ```
 
-======================================================================
-ERROR: test_has_a_list_of_sources (unit_tests.test_service_clients.StockDataTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/usr/src/app/tests/unit_tests/test_service_clients.py", line 16, in test_has_a_list_of_sources
-    self.assertIsInstance(stock.sources, type(list()))
-AttributeError: 'StockData' object has no attribute 'sources'
+class StockDataTest(TestCase):
 
-======================================================================
-FAIL: test_stockdata_format (unit_tests.test_service_clients.StockDataTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/usr/src/app/tests/unit_tests/test_service_clients.py", line 22, in test_stockdata_format
-    'Name', 'Exchange', 'Symbol'
-AssertionError: dict_keys(['AETI', 'CRNT']) != ['Name', 'Exchange', 'Symbol']
+    def create_app(self):
+        app.config['TESTING'] = True
+        return app
 
-----------------------------------------------------------------------
-Ran 6 tests in 2.992s
+    @patch('stockdata.services.YahooFinanceClient')
+    def test_get_stock_info_calls_source_get_stock_info(self, mock_source):
+        mock_source.return_value.get_stock_info.return_value = {"stock":"data"}
+        stock = StockData()
+        stockdata = stock.get_stock_info("SYMB")
+        mock_source.return_value.get_stock_info.assert_called_with("SYMB")
+        self.assertEqual(stockdata, {"stock":"data"})
 
-FAILED (failures=1, errors=1)
-```
-
-'''
-    Ultimately I'm gonna want to be able to get info from a list of sources,
-    maybe depending on what's asked for in the query. For now, the minimal thing is for
-    get_stock_info to call the YahooFinanceClient's get_stock_info.
-    '''
+```  
 
 ### 3. Write FT that checks getting 1yr high and current price.
