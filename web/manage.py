@@ -6,9 +6,10 @@ manager = Manager(app)
 manager.add_command("runserver", Server(host='0.0.0.0'))
 
 @manager.command
-def test():
+def test(testtype='all'):
     """Runs all tests in the tests/ folder."""
-    tests = unittest.TestLoader().discover('tests', pattern='test*.py')
+    test_type = "tests" if testtype is "all" else "tests/{}".format(testtype)
+    tests = unittest.TestLoader().discover(test_type, pattern='test*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0

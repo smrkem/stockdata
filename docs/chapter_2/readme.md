@@ -154,4 +154,5 @@ https://github.com/smrkem/docker-flask-tdd/commit/2559111e474d614fb2443fdecfdb81
 And the FT is still failing - expected, but kinda noisy. Next up - another detour to let me use Manager to just run unit_tests.
 
 
+
 ### 3. Write FT that checks getting 1yr high and current price.
