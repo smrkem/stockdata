@@ -15,7 +15,7 @@ so there's a good chance a little data-analysis might find it's way in here.
 
 ##### Future Considerations
 
-This will lead into all kinds of questions like:
+This will lead to all kinds of questions like:
 
 - what happens when Google changes the site layout or functionality?
 - how can something like this be FT'd ?
@@ -159,8 +159,23 @@ That was almost fun. A little hacky and unneccessary - but now I can run just th
 ```
 docker-compose run --rm web sh runtests.sh unit
 ```
-(which i've aliased to just `tdddocker-run-tests unit`). And i was also able to get rid of that stupid `z_acceptance_tests` folder name too. Now that I can run just the unit tests, don't care a whole lot if the FTs come first. The majority of my time is spent going back and forth between unit tests and coding - in the inner loop.
+(which i've aliased to just `tdddocker-run-tests unit`). And i was also able to get rid of that stupid `z_acceptance_tests` folder name too. Now that I can run just the unit tests, don't care a whole lot if the FTs come first. The majority of my time is spent going back and forth between unit tests and coding - in the inner loop.  
 
+
+
+
+_just had to fix the unit test patching_  
+_and also wondering if markdown will respect the 4 blank lines i left above this in atom editor (which keeps getting rid of the 2 blank spaces i'm leaving on each empty line - cuz markdown ... who the fuck knows?)
+
+
+
+So the unit tests are failing with:  
+- [test_messages](../test_messages/message_06.txt)  
+
+```
+AttributeError: <module 'stockdata.services.sources.YahooFinanceClient' from '/usr/src/app/stockdata/services/sources/YahooFinanceClient.py'> does not have the attribute 'Share'
+```
+_(wow. i'm still learning python's module / package import rules, and those long module name chains *really* feels wrong)
 
 
 

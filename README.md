@@ -29,3 +29,8 @@ In order to run this in the background, use `docker-compose up -d`
 ```
 docker-compose run --rm web sh runtests.sh
 ```
+
+
+### Commands
+(alias tdddocker-run-tests="docker-compose run --rm web sh runtests.sh")
+- `tdddocker-run-tests >> docs/message_01.txt 2>&1`  

@@ -1,0 +1,35 @@
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ERROR
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ERROR
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1149, in patched
+    arg = patching.__enter__()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1221, in __enter__
+    original, local = self.get_original()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1195, in get_original
+    "%s does not have the attribute %r" % (target, name)
+AttributeError: <module 'stockdata.services.sources.YahooFinanceClient' from '/usr/src/app/stockdata/services/sources/YahooFinanceClient.py'> does not have the attribute 'Share'
+
+======================================================================
+ERROR: test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1149, in patched
+    arg = patching.__enter__()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1221, in __enter__
+    original, local = self.get_original()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1195, in get_original
+    "%s does not have the attribute %r" % (target, name)
+AttributeError: <module 'stockdata.services.sources.YahooFinanceClient' from '/usr/src/app/stockdata/services/sources/YahooFinanceClient.py'> does not have the attribute 'Share'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.018s
+
+FAILED (errors=2)
