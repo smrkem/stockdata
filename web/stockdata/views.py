@@ -1,6 +1,6 @@
 from flask import render_template, request
 from stockdata import app
-from stockdata.services import StockData
+from stockdata.services.StockData import StockData
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
