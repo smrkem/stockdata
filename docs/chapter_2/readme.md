@@ -63,7 +63,6 @@ Here's my todo list (which will probably evolve along the way):
 1. Refactor project to use Flask Manager (`manage.py`)
 2. Refactor project to get info from yahoo-finance - Get all tests back to passing
 3. Write FT that checks getting 1yr high and current price.
-2. Plan my approach
 3. Write unit tests for the approach
 4. Code till unit tests pass, verifying FT passes at the end
 5. Add bootstrap to the app so it looks nicer
@@ -176,6 +175,29 @@ So the unit tests are failing with:
 AttributeError: <module 'stockdata.services.sources.YahooFinanceClient' from '/usr/src/app/stockdata/services/sources/YahooFinanceClient.py'> does not have the attribute 'Share'
 ```
 _(wow. i'm still learning python's module / package import rules, and those long module name chains *really* feels wrong)_
+
+Stuck a
+```
+from yahoo_finance import Share
+```
+in there and also added `yahoo-finance` to my requirements.txt (which means i need to do a `docker-compose buld` again). Had to tidy up the codebase a bit too - embarassing :(  
+
+
+
+_speaking of embarassing_, the next failure is:  
+```
+YahooFinanceClient().get_stock_info()
+TypeError: 'module' object is not callable
+```
+
+Fixing that, and another round of inner TDD, there's new tests and code:
+
+https://github.com/smrkem/docker-flask-tdd/commit/444508bd5530485bfad999533e7db7ab25952974
+
+and the test failure messages that lead to it:
+
+
+[test_messages](../test_messages/message_07.txt)
 
 
 
