@@ -138,5 +138,20 @@ class YahooFinanceClient:
 
 Notice that now my unit tests are all passing, but the FT broke. That's cool - totally expected and I'll know I've done my job right when the FT passes at the end (though it'll likely need some small modifications)  
 
+Now i add some tests for the YahooFinanceClient - just in the same `test_service_clients.py` file. Along the way I get caught up refactoring my services organization. Looking at the diff:  
+
+https://github.com/smrkem/docker-flask-tdd/commit/4301cb91878abbf1ffca5e10e11624ebb6ffe0f3
+
+I'm not at all sure that was a good idea.
+
+...  
+
+I wasn't even done yet. One more commit before the tests are failing in any way that makes sense.  
+
+https://github.com/smrkem/docker-flask-tdd/commit/2559111e474d614fb2443fdecfdb81ee17218857
+
+
+And the FT is still failing - expected, but kinda noisy. Next up - another detour to let me use Manager to just run unit_tests.
+
 
 ### 3. Write FT that checks getting 1yr high and current price.
