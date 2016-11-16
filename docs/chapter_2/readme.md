@@ -113,4 +113,30 @@ class StockDataTest(TestCase):
 
 ```  
 
+A quick bout of inner TDD and my `services.py` becomes:  
+```
+from stockdata.sources.YahooFinanceClient import YahooFinanceClient
+
+
+class StockData:
+
+    def get_stock_info(self, symbol):
+        return YahooFinanceClient().get_stock_info(symbol)
+```
+and I've added a new 'sources' folder (with an __init__.py) for the vary basic `sources/YahooFinanceClient.py`:
+```
+class YahooFinanceClient:
+
+    def get_stock_info(self, symbol):
+        pass
+```
+
+
+
+[test_messages](../test_messages/message_05.txt)
+
+
+Notice that now my unit tests are all passing, but the FT broke. That's cool - totally expected and I'll know I've done my job right when the FT passes at the end (though it'll likely need some small modifications)  
+
+
 ### 3. Write FT that checks getting 1yr high and current price.
