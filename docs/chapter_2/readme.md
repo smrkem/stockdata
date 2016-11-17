@@ -250,6 +250,31 @@ def get_stock_info(self, symbol):
     }
 ```
 
+but other than that, all I needed to do was correct the company names and change the exchange to be whatever those acronyms the yahoo-finance service is returning. Guess I'll get to learn those over time.
+
+All my tests are green:
+```
+$ tdddocker-run-tests
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_visit_homepage (acceptance.test_getting_stock_info.NewVisitorTest) ... ...
+ok
+test_get_stock_info_calls_source_get_stock_info (unit.test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_exchange (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_returns_stock (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (unit.test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (unit.test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (unit.test_views.HomeViewTest) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 6.482s
+
+OK
+```
+
+which feels fantastic. Firing up the server and visiting the app in my browser I have to play around and convince myself it's all good for a while.  
+- `docker-compose up -d`
 
 
 ### 3. Write FT that checks getting 1yr high and current price.
