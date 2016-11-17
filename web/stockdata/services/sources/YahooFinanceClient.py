@@ -5,8 +5,13 @@ class YahooFinanceClient:
 
     def get_stock_info(self, symbol):
         stock = Share(symbol)
+        stock_name = stock.get_name()
+        if stock_name is None:
+            return None
+
+        stock_exchange = stock.get_stock_exchange()
         return {
             "symbol": symbol,
-            "name": stock.get_name(),
-            "exchange": stock.get_stock_exchange()
+            "name": stock_name,
+            "exchange": stock_exchange
         }

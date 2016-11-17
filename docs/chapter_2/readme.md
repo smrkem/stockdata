@@ -199,6 +199,57 @@ and the test failure messages that lead to it:
 
 [test_messages](../test_messages/message_07.txt)
 
+The StockData class is not using a YahooFinanceClient 'source' to query yahoo-finance. I know my code is making the right calls, but no idea if yahoo-finance is returning anything that makes sense with what i'm doing - or anything at all.  
+
+For that I go look at how my FTs are doing - which I can run pretty easily now (using my alias) with:
+- `tdddocker-run-tests acceptance`
+
+```
+
+======================================================================
+FAIL: test_can_visit_homepage (test_getting_stock_info.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/acceptance/test_getting_stock_info.py", line 47, in test_can_visit_homepage
+    self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+  File "/usr/src/app/tests/acceptance/test_getting_stock_info.py", line 30, in check_stock_info_for
+    self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+AssertionError: 'American Electric Technologies Inc' not found in 'Symbol AETI\nName American Electric Technologies,\nExchange NCM' : Check American Electric Technologies Inc is in stock info
+
+----------------------------------------------------------------------
+Ran 1 test in 6.483s
+
+FAILED (failures=1)
+```
+
+That's cool. It's calling yahoo-finance with "AETI" and everythings cool - except yahoo is calling the company something slightly different. I haven't looked at that initial `us_under_4` spreadsheet in forever. don't care about it anymore. Yahoo variation works fine there.
+
+I had been struggling with the choice between leaving my acceptance tests to query the actual external service (which is way easier and less hacky) - or attempting to mock its response.  
+
+Decided for now to keep it making actual requests. I don't plan on running my FTs often and repeatedly, and this way I'm testing the whole system.
+
+On my way to fixing the FTs - i encountered this error:  
+```
+raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"errors"}
+```
+
+which meant a small refactor to the YahooFinanceClient:
+```
+def get_stock_info(self, symbol):
+    stock = Share(symbol)
+    stock_name = stock.get_name()
+    if stock_name is None:
+        return None
+
+    stock_exchange = stock.get_stock_exchange()
+    return {
+        "symbol": symbol,
+        "name": stock_name,
+        "exchange": stock_exchange
+    }
+```
+
 
 
 ### 3. Write FT that checks getting 1yr high and current price.

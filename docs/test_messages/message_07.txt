@@ -136,3 +136,16 @@ FAILED (failures=1)
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ///////////////////////////////////////////////////////////////////////
 -
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.020s
+
+OK

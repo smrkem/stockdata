@@ -44,7 +44,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.submit_stock_symbol("AETI")
 
         # He sees the stock name and stock exchange on the page.
-        self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+        self.check_stock_info_for(("AETI", "American Electric Technologies", "NCM"))
 
         # Jim tries to enter some junk to see if the app breaks
         self.submit_stock_symbol("INVALID")
@@ -53,7 +53,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # He tries a different stock symbol and sees the new name and exchange on the page.
         self.submit_stock_symbol("CRNT")
-        self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NASDAQ"))
+        self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NMS"))
 
 
 if __name__ == '__main__':
