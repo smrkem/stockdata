@@ -63,9 +63,9 @@ Here's my todo list (which will probably evolve along the way):
 1. Refactor project to use Flask Manager (`manage.py`)
 2. Refactor project to get info from yahoo-finance - Get all tests back to passing
 3. Write FT that checks getting 1yr high and current price.
-3. Write unit tests for the approach
-4. Code till unit tests pass, verifying FT passes at the end
-5. Add bootstrap to the app so it looks nicer
+4. Write unit tests for the approach
+5. Code till unit tests pass, verifying FT passes at the end
+6. Add bootstrap to the app so it looks nicer
 ***
 
 That's the outer loop (FT), inner-loop (unit test) rythym i'm trying to get down.
@@ -277,4 +277,120 @@ which feels fantastic. Firing up the server and visiting the app in my browser I
 - `docker-compose up -d`
 
 
-### 3. Write FT that checks getting 1yr high and current price.
+### 3. Write FT that checks getting 1yr high and current price.  
+That's all great, but the app still isn't very useful. The whole time i was playing in the browser I was excited thinking about how much more this thing can easily show me.  
+
+Here's the agenda at this point:
+
+
+***
+### Agenda:
+1. ~Refactor project to use Flask Manager (`manage.py`)~
+2. ~Refactor project to get info from yahoo-finance - Get all tests back to passing~
+3. Write FT that checks getting 1yr high and current price.
+4. Write unit tests for the approach
+5. Code till unit tests pass, verifying FT passes at the end
+6. Add bootstrap to the app so it looks nicer
+***
+
+The app can display the stock's current price and 1yr high on the page - seems like a decent idea. But I don't want to test for specific values on those guys. I'm thinking it'll be good to check for numeric values and that's it. I don't even want to check the 1yr high is larger than current price cuz that might not always be true.
+
+My `check_stock_info_for` seems like the best place to do that (and i'll add some structure to my template html to ease the process).
+```
+def check_stock_info_for(self, stockinfo):
+    stockinfo_table = self.browser.find_element_by_id("stock-info")
+    for value in stockinfo:
+        self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+    current_price = stockinfo_table.find_element_by_id("stck-curent-price").text
+    year_high = stockinfo_table.find_element_by_id("stck-1yr-high").text
+    self.assertTrue(current_price.isdigit())
+    self.assertTrue(year_high.isdigit())
+```
+
+This may not be the right way to check that - but i guess i'll figure that out when i finish the inner TDD loop. For now the FT fails with
+```
+Message: Unable to locate element: {"method":"id","selector":"stck-curent-price"}
+```
+which I can easily remedy with an update to the template, adding :
+```
+<tr>
+  <td>Current Price:</td>
+  <td id="stck-curent-price">{{ stock.current_price }}</td>
+</tr>
+<tr>
+  <td>1 Year High:</td>
+  <td id="stck-1yr-high">{{ stock.year-high }}</td>
+</tr>
+```
+
+I leave the outer FT loop, failing with a promising:
+```
+self.assertTrue(current_price.isdigit())
+AssertionError: False is not true
+```
+and head inwards.
+
+First add some unit tests:
+```
+@patch('stockdata.services.sources.YahooFinanceClient.Share')
++    def test_get_stock_info_fetches_year_high(self, mock_share):
++        YahooFinanceClient().get_stock_info("SYMB")
++        mock_share.return_value.get_year_high.assert_called_with()
++
++    @patch('stockdata.services.sources.YahooFinanceClient.Share')
++    def test_get_stock_info_fetches_current_price(self, mock_share):
++        YahooFinanceClient().get_stock_info("SYMB")
++        mock_share.return_value.get_price.assert_called_with()
++
++    @patch('stockdata.services.sources.YahooFinanceClient.Share')
+def test_get_stock_info_returns_stock(self, mock_share):
+    mock_share.return_value.get_stock_exchange.return_value = "TST"
+    mock_share.return_value.get_name.return_value = "Test Company Name"
++        mock_share.return_value.get_price.return_value = 2.32
++        mock_share.return_value.get_year_high.return_value = 6.66
+
+    expected_stock = {
+        "symbol": "SYMB",
+        "name": "Test Company Name",
+-            "exchange": "TST"
++            "exchange": "TST",
++            "current_price": 2.32,
++            "year_high": 6.66
+    }
+    actual_stock = YahooFinanceClient().get_stock_info("SYMB")
+
+```
+
+and then some code to make them pass:
+```
+class YahooFinanceClient:
+
+    def get_stock_info(self, symbol):
+        stock = Share(symbol)
+        stock_name = stock.get_name()
+        if stock_name is None:
+            return None
+        stock_exchange = stock.get_stock_exchange()
+        current_price = stock.get_price()
+        year_high = stock.get_year_high()
+
+        return {
+            "symbol": symbol,
+            "name": stock_name,
+            "exchange": stock_exchange,
+            "current_price": current_price,
+            "year_high": year_high
+        }
+```
+Perfect. Turns out I need a minor correction to my FTs. Just replacing:
+```
+self.assertTrue(current_price.isdigit())
+self.assertTrue(year_high.isdigit())
+```
+
+with
+```
+self.assertRegexpMatches(current_price, r'^\d+\.\d+')
+self.assertRegexpMatches(year_high, r'^\d+\.\d+')]
+```
+and all my tests are passing. Check out the app in the browser and we're starting to get some actual data. It's a bit of a pain having to figure out the right extension for Canadian stocks (OGI.V, BLO.CN) or probably any non-nassaq / nyse traded stock. Maybe i'll add something to make that easier...

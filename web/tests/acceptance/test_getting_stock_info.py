@@ -30,8 +30,8 @@ class NewVisitorTest(LiveServerTestCase):
             self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
         current_price = stockinfo_table.find_element_by_id("stck-curent-price").text
         year_high = stockinfo_table.find_element_by_id("stck-1yr-high").text
-        self.assertTrue(current_price.isdigit())
-        self.assertTrue(year_high.isdigit())
+        self.assertRegexpMatches(current_price, r'^\d+\.\d+')
+        self.assertRegexpMatches(year_high, r'^\d+\.\d+')
 
     def test_can_visit_homepage(self):
         # Jim needs to get some stock info.
