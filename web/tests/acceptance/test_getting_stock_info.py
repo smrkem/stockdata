@@ -28,6 +28,10 @@ class NewVisitorTest(LiveServerTestCase):
         stockinfo_table = self.browser.find_element_by_id("stock-info")
         for value in stockinfo:
             self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+        current_price = stockinfo_table.find_element_by_id("stck-curent-price").text
+        year_high = stockinfo_table.find_element_by_id("stck-1yr-high").text
+        self.assertTrue(current_price.isdigit())
+        self.assertTrue(year_high.isdigit())
 
     def test_can_visit_homepage(self):
         # Jim needs to get some stock info.
@@ -45,6 +49,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # He sees the stock name and stock exchange on the page.
         self.check_stock_info_for(("AETI", "American Electric Technologies", "NCM"))
+
 
         # Jim tries to enter some junk to see if the app breaks
         self.submit_stock_symbol("INVALID")

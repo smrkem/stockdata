@@ -45,14 +45,28 @@ class YahooFinanceClientTest(TestCase):
         mock_share.return_value.get_stock_exchange.assert_called_with()
 
     @patch('stockdata.services.sources.YahooFinanceClient.Share')
+    def test_get_stock_info_fetches_year_high(self, mock_share):
+        YahooFinanceClient().get_stock_info("SYMB")
+        mock_share.return_value.get_year_high.assert_called_with()
+
+    @patch('stockdata.services.sources.YahooFinanceClient.Share')
+    def test_get_stock_info_fetches_current_price(self, mock_share):
+        YahooFinanceClient().get_stock_info("SYMB")
+        mock_share.return_value.get_price.assert_called_with()
+
+    @patch('stockdata.services.sources.YahooFinanceClient.Share')
     def test_get_stock_info_returns_stock(self, mock_share):
         mock_share.return_value.get_stock_exchange.return_value = "TST"
         mock_share.return_value.get_name.return_value = "Test Company Name"
+        mock_share.return_value.get_price.return_value = 2.32
+        mock_share.return_value.get_year_high.return_value = 6.66
 
         expected_stock = {
             "symbol": "SYMB",
             "name": "Test Company Name",
-            "exchange": "TST"
+            "exchange": "TST",
+            "current_price": 2.32,
+            "year_high": 6.66
         }
         actual_stock = YahooFinanceClient().get_stock_info("SYMB")
 
