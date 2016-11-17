@@ -285,8 +285,8 @@ Here's the agenda at this point:
 
 ***
 ### Agenda:
-1. ~Refactor project to use Flask Manager (`manage.py`)~
-2. ~Refactor project to get info from yahoo-finance - Get all tests back to passing~
+1. ~~Refactor project to use Flask Manager (`manage.py`)~~
+2. ~~Refactor project to get info from yahoo-finance - Get all tests back to passing~~
 3. Write FT that checks getting 1yr high and current price.
 4. Write unit tests for the approach
 5. Code till unit tests pass, verifying FT passes at the end
@@ -394,3 +394,14 @@ self.assertRegexpMatches(current_price, r'^\d+\.\d+')
 self.assertRegexpMatches(year_high, r'^\d+\.\d+')]
 ```
 and all my tests are passing. Check out the app in the browser and we're starting to get some actual data. It's a bit of a pain having to figure out the right extension for Canadian stocks (OGI.V, BLO.CN) or probably any non-nassaq / nyse traded stock. Maybe i'll add something to make that easier...
+
+
+***
+### Agenda:
+1. ~~Refactor project to use Flask Manager (`manage.py`)~~
+2. ~~Refactor project to get info from yahoo-finance - Get all tests back to passing~~
+3. ~~Write FT that checks getting 1yr high and current price.~~
+4. ~~Write unit tests for the approach~~
+5. ~~Code till unit tests pass, verifying FT passes at the end~~
+6. Add bootstrap to the app so it looks nicer
+***
