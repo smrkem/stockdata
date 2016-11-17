@@ -28,6 +28,14 @@
           <td>Exchange</td>
           <td>{{ stock.exchange }}</td>
         </tr>
+        <tr>
+          <td>Current Price:</td>
+          <td id="stck-curent-price">{{ stock.current_price }}</td>
+        </tr>
+        <tr>
+          <td>1 Year High:</td>
+          <td id="stck-1yr-high">{{ stock.year_high }}</td>
+        </tr>
       </table>
       {% endif %}
   </body>
