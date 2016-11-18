@@ -409,11 +409,9 @@ and all my tests are passing. Check out the app in the browser and we're startin
 __i have a bad feeling about leaving those wierd module imports too long. need to learn the right approach there.__
 
 -
-I'm wondering if a `StockData` class really belongs in services.
-Maybe it'll be a kind of 'controller' soon - who knows? If it's just in the app folder
-then imports and things are going to get easier. So long 'sources' folder :)  
+I'm wondering if a `StockData` class really belongs in services. maybe it's really a controller, but that feels like the view class too. maybe it'll be a model for a stock type object. that feels kinda right but i'm not sure. I'm gonna put it in a 'controllers' folder and also rename the files to not match the class name. I'm finding that's getting in my way.  
 
-
+at some point i'm just going to have to google "python packages and modules organization" or something like that. and i lost track of the diff for that reorganization. i clearly don't totally get how to use `git rm --cache` properly yet.
 -
 
 i've been holding off on the `stock.get_historical(str(last_year), str(today))` stuff but i think i've got a decent approach. I'd want to be able to run different types of queries on the price data - what yahoo-finance returns is a list.
@@ -422,5 +420,9 @@ for instance, i think it'd be cool to see a visual representation of the stock's
 
 for now, i'll just return a dict keyed by date, with the volume and pct_change. percent change formula is `(new - old) / old`, and i should probably also return the min and max volumes.
 
-
 -
+i start with a new FT, that verifies the price-volume-trend data shows up in the page, outside-in style. For me it's enough to verify the element shows up in the html with the right data squirreled away inside a data attribute.
+
+Finally - some front-end work.
+
+I might look into using a js framework to test that, given the right data - the visualization will appear correctly. but i'll push that overhead off for now and forego the tdd process for the front-end.

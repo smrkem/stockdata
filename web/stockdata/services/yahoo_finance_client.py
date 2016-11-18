@@ -14,12 +14,6 @@ class YahooFinanceClient:
         current_price = stock.get_price()
         year_high = stock.get_year_high()
 
-        # today = datetime.date.today()
-        # last_year = today - datetime.timedelta(days=313)
-        # historical_data = stock.get_historical(str(last_year), str(today))
-        # historical_df = pd.DataFrame(historical_data)
-        # print(historical_df)
-
         return {
             "symbol": symbol,
             "name": stock_name,
