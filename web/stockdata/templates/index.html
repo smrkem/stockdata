@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>StockData</title>
+  </head>
+  <body>
+      <h1>StockData</h1>
+      {% if errors %}
+      <ul id="errors">
+        {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <form method="post">
+        <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">
+      </form>
+      {% if stock %}
+      <table id="stock-info">
+        <tr>
+          <td>Symbol</td>
+          <td>{{ stock.symbol }}</td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>{{ stock.name }}</td>
+        </tr>
+        <tr>
+          <td>Exchange</td>
+          <td>{{ stock.exchange }}</td>
+        </tr>
+        <tr>
+          <td>Current Price:</td>
+          <td id="stck-curent-price">{{ stock.current_price }}</td>
+        </tr>
+        <tr>
+          <td>1 Year High:</td>
+          <td id="stck-1yr-high">{{ stock.year_high }}</td>
+        </tr>
+      </table>
+      {% endif %}
+  </body>
+</html>
