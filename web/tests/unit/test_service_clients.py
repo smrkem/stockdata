@@ -27,40 +27,13 @@ class StockDataTest(TestCase):
         mock_share.return_value.get_name.return_value = "Test Company Name"
         mock_share.return_value.get_price.return_value = 2.32
         mock_share.return_value.get_year_high.return_value = 6.66
-        pv_data = [{'Close': '1.69', 'Volume': '792600', 'Low': '1.61', 'Symbol': 'TST', 'Open': '1.82', 'High': '1.88', 'Adj_Close': '1.69', 'Date': '2016-11-17'},
-                   {'Close': '1.67', 'Volume': '756800', 'Low': '1.50', 'Symbol': 'TST', 'Open': '1.50', 'High': '1.73', 'Adj_Close': '1.67', 'Date': '2016-11-16'},
-                   {'Close': '1.48', 'Volume': '625600', 'Low': '1.34', 'Symbol': 'TST', 'Open': '1.34', 'High': '1.48', 'Adj_Close': '1.48', 'Date': '2016-11-15'}
-                   ]
-        mock_share.return_value.get_historical.return_value = pv_data
 
-        expected_pv_trend_data = {
-            "max_volume": 792600,
-            "min_volume": 625600,
-            "pv_data": [
-                {
-                    "volume": 792600,
-                    "pct_change": -7.1,
-                    "date": "2016-11-17"
-                },
-                {
-                    "volume": 756800,
-                    "pct_change": 11.3,
-                    "date": "2016-11-16"
-                },
-                {
-                    "volume": 625600,
-                    "pct_change": 10.4,
-                    "date": "2016-11-15"
-                }
-            ]
-        }
         expected_stock = {
             "symbol": "SYMB",
             "name": "Test Company Name",
             "exchange": "TST",
             "current_price": 2.32,
             "year_high": 6.66
-            "pv_trend_data": pv_data
         }
         actual_stock = stock.get_stock_info("SYMB")
 
