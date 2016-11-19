@@ -1,6 +1,4 @@
 from yahoo_finance import Share
-import datetime
-import pandas as pd
 
 
 class YahooFinanceClient:
