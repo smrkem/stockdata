@@ -526,6 +526,26 @@ it's likely that other sources might return info that needs the same or similar 
 inside the source (yahoo finance client) just yet if i can avoid it.
 
 I want percent change for each day, along with some descriptive meta data like the min and max volumes for the entire
-period. For this, something like a pandas DataFrame is gonna be sweet.
+period. Something like a pandas DataFrame is gonna be sweet for this. I write some unit tests:
 
- 
+https://github.com/smrkem/docker-flask-tdd/commit/0291c2d256624b9f481957a44cfda221787fcbee
+
+with some encouraging failures.
+ ```
+ $ tdddocker-run-tests unit
+...
+======================================================================
+FAIL: test_get_stock_info_returns_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+...
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'exchange': 'TST', 'name': 'Test Company N[60 chars]YMB'} != {'name': 'Test Company Name', 'symbol': ...
+
+======================================================================
+FAIL: test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+...
+AssertionError: Expected call: get_historical()
+Not called
+
+```
