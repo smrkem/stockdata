@@ -501,3 +501,31 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIsInstance(pv_trend_data, type(list()))
         self.assertGreater(len(pv_trend_data), 2)
 ```
+
+
+This fails, with an expected:
+```
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"price-volume-trend-graph"}
+```
+
+
+so, outside-in - about to head to the inner loop.
+1. plan the approach
+2. write unit tests then code
+3. repeat 2 unit FT passes
+
+First i add the necessary to the template - not at all sure about whether or not I should've used quotes around the
+`data-pv_data` attribute (name corrected in later commit) - guess I'll find out soon enough. And i'm happy to see I
+can move the `test_get_stock_info_returns_stock` function to the StockData tests with basically no effort. Patching
+still works unaltered.
+
+https://github.com/smrkem/docker-flask-tdd/commit/8337cd7f409e4b6f119af2af661cecfd2c4738e5
+
+The reason for that change was that I'm going to want the StockData class to be responsible for any data prepping -
+it's likely that other sources might return info that needs the same or similar treatment. I don't want to bury that functionaility
+inside the source (yahoo finance client) just yet if i can avoid it.
+
+I want percent change for each day, along with some descriptive meta data like the min and max volumes for the entire
+period. For this, something like a pandas DataFrame is gonna be sweet.
+
+ 
