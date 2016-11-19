@@ -44,21 +44,29 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id("in_symbol")
         self.assertEqual(inputbox.get_attribute('placeholder'), "Enter a stock symbol")
 
+        # Jim tries to enter some junk to see if the app breaks
+        self.submit_stock_symbol("INVALID")
+        errors = self.browser.find_element_by_id("errors")
+        self.assertIn("Could not find any stock for symbol: 'INVALID'", errors.text)
+
         # He enters "AETI" and hits Enter.
         self.submit_stock_symbol("AETI")
 
         # He sees the stock name and stock exchange on the page.
         self.check_stock_info_for(("AETI", "American Electric Technologies", "NCM"))
 
-
-        # Jim tries to enter some junk to see if the app breaks
-        self.submit_stock_symbol("INVALID")
-        errors = self.browser.find_element_by_id("errors")
-        self.assertIn("Could not find any stock for symbol: 'INVALID'", errors.text)
+    def test_can_view_stock_info(self):
+        # Jim returns to the app
+        self.browser.get(self.get_server_url())
 
         # He tries a different stock symbol and sees the new name and exchange on the page.
         self.submit_stock_symbol("CRNT")
         self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NMS"))
+
+        # Along with some price-volume trend data
+        pv_trend = self.browser.find_element_by_id("price-volume-trend-graph")
+        self.assertsomething()
+
 
 
 if __name__ == '__main__':
