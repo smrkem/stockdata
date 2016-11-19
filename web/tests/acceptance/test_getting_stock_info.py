@@ -1,4 +1,4 @@
-import unittest
+import unittest, json
 from selenium import webdriver as wd
 from selenium.webdriver.common.keys import Keys
 from flask_testing import LiveServerTestCase
@@ -64,9 +64,10 @@ class NewVisitorTest(LiveServerTestCase):
         self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NMS"))
 
         # Along with some price-volume trend data
-        pv_trend = self.browser.find_element_by_id("price-volume-trend-graph")
-        self.assertsomething()
-
+        pv_trend_graph = self.browser.find_element_by_id("price-volume-trend-graph")
+        pv_trend_data = json.loads(pv_trend_graph.get_attribute("pv_data"))
+        self.assertIsInstance(pv_trend_data, type(list()))
+        self.assertGreater(len(pv_trend_data), 2)
 
 
 if __name__ == '__main__':
