@@ -20,6 +20,24 @@ class StockDataTest(TestCase):
         mock_source.return_value.get_stock_info.assert_called_with("SYMB")
         self.assertEqual(stockdata, {"stock":"data"})
 
+    @patch('stockdata.services.yahoo_finance_client.Share')
+    def test_get_stock_info_returns_stock(self, mock_share):
+        stock = StockData()
+        mock_share.return_value.get_stock_exchange.return_value = "TST"
+        mock_share.return_value.get_name.return_value = "Test Company Name"
+        mock_share.return_value.get_price.return_value = 2.32
+        mock_share.return_value.get_year_high.return_value = 6.66
+
+        expected_stock = {
+            "symbol": "SYMB",
+            "name": "Test Company Name",
+            "exchange": "TST",
+            "current_price": 2.32,
+            "year_high": 6.66
+        }
+        actual_stock = stock.get_stock_info("SYMB")
+
+        self.assertEqual(actual_stock, expected_stock)
 
 
 class YahooFinanceClientTest(TestCase):
@@ -27,7 +45,6 @@ class YahooFinanceClientTest(TestCase):
     def create_app(self):
         app.config['TESTING'] = True
         return app
-
 
     @patch('stockdata.services.yahoo_finance_client.Share')
     def test_get_stock_info_gets_share_for_symbol(self, mock_share):
@@ -53,25 +70,6 @@ class YahooFinanceClientTest(TestCase):
     def test_get_stock_info_fetches_current_price(self, mock_share):
         YahooFinanceClient().get_stock_info("SYMB")
         mock_share.return_value.get_price.assert_called_with()
-
-    @patch('stockdata.services.yahoo_finance_client.Share')
-    def test_get_stock_info_returns_stock(self, mock_share):
-        mock_share.return_value.get_stock_exchange.return_value = "TST"
-        mock_share.return_value.get_name.return_value = "Test Company Name"
-        mock_share.return_value.get_price.return_value = 2.32
-        mock_share.return_value.get_year_high.return_value = 6.66
-
-        expected_stock = {
-            "symbol": "SYMB",
-            "name": "Test Company Name",
-            "exchange": "TST",
-            "current_price": 2.32,
-            "year_high": 6.66
-        }
-        actual_stock = YahooFinanceClient().get_stock_info("SYMB")
-
-        self.assertEqual(actual_stock, expected_stock)
-
 
 
 if __name__ == '__main__':

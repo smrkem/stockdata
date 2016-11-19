@@ -37,6 +37,9 @@
           <td id="stck-1yr-high">{{ stock.year_high }}</td>
         </tr>
       </table>
+        {% if stock.pv_trend_data %}
+        <div id="price-volume-trend-graph" data.pv_data={{ stock.year_high }} ></div>
+        {% endif %}
       {% endif %}
   </body>
 </html>
