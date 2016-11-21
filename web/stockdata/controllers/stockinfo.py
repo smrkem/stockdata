@@ -15,4 +15,5 @@ class StockData:
             "exchange": stockinfo['exchange'],
             "current_price": stockinfo['current_price'],
             "year_high": stockinfo['year_high'],
+            "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
         }
