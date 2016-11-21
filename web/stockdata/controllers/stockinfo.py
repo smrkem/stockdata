@@ -5,6 +5,8 @@ class StockData:
 
     def get_stock_info(self, symbol):
         stockinfo = YahooFinanceClient().get_stock_info(symbol)
+        if stockinfo is None:
+            return None;
         return {
             "symbol": symbol,
             "name": stockinfo['name'],

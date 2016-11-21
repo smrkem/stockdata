@@ -34,7 +34,7 @@ class StockDataTest(TestCase):
 
         actual_stock = stock.get_stock_info("INVLD")
 
-        self.assertNone(actual_stock)
+        self.assertIsNone(actual_stock)
 
 
     @patch('stockdata.services.yahoo_finance_client.Share')
