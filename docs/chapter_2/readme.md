@@ -549,3 +549,31 @@ AssertionError: Expected call: get_historical()
 Not called
 
 ```
+
+I add the new functionality, along with refactoring the stockdata class so it'll be able to do more.   
+
+https://github.com/smrkem/docker-flask-tdd/commit/54b157778b1df4ebe85e8a0fc942070527740cba
+
+including refactoring the tests.
+
+Along the way, my FTs catch a new bug:
+```
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"errors"}
+```
+
+i didn't even introduce that intentionally for documentation stuff - cool to see it in action. I'm not handling return values of `None` properly. Earlier in that same message i see:
+```
+File "/usr/src/app/stockdata/controllers/stockinfo.py", line 10, in get_stock_info
+  "name": stockinfo['name'],
+TypeError: 'NoneType' object is not subscriptable
+```
+which is nice and helpful in fixing the bug. I add a new unit test:  
+
+
+https://github.com/smrkem/docker-flask-tdd/commit/a04ca51801cce2a46db067f73142af212d1395f2
+
+and i'm realizing those unit tests are getting off track and starting to test things they shouldn't. I don't want to get sidetracked, but i'll add
+- make service unit tests only test direct class. fix patching up.  
+to some kind of a backlog.  
+
+which fails with the same error as above.

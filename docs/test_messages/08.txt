@@ -1,0 +1,110 @@
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_view_stock_info (acceptance.test_getting_stock_info.NewVisitorTest) ... 127.0.0.1 - - [21/Nov/2016 21:59:29] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:29] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [21/Nov/2016 21:59:30] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [21/Nov/2016 21:59:33] "POST / HTTP/1.1" 200 -
+ERROR
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_visit_homepage (acceptance.test_getting_stock_info.NewVisitorTest) ... 127.0.0.1 - - [21/Nov/2016 21:59:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:42] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "POST / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/src/app/stockdata/views.py", line 10, in index
+    stock = StockData().get_stock_info(request.form['symbol'])
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 22, in get_stock_info
+    "name": stockinfo['name'],
+TypeError: 'NoneType' object is not subscriptable
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2016 21:59:43] "GET /?__debugger__=yes&cmd=resource&f=source.png HTTP/1.1" 200 -
+ERROR
+test_get_stock_info_calls_source_get_stock_info (unit.test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_stock (unit.test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_fetches_current_price (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (unit.test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (unit.test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (unit.test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (unit.test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_can_view_stock_info (acceptance.test_getting_stock_info.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/acceptance/test_getting_stock_info.py", line 67, in test_can_view_stock_info
+    pv_trend_graph = self.browser.find_element_by_id("price-volume-trend-graph")
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"price-volume-trend-graph"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp31sucsv1/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
+    at fxdriver.Timer.prototype.setTimeout/<.notify (file:///tmp/tmp31sucsv1/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
+
+======================================================================
+ERROR: test_can_visit_homepage (acceptance.test_getting_stock_info.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/acceptance/test_getting_stock_info.py", line 49, in test_can_visit_homepage
+    errors = self.browser.find_element_by_id("errors")
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"errors"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmpvt5ds7ih/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
+    at fxdriver.Timer.prototype.setTimeout/<.notify (file:///tmp/tmpvt5ds7ih/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
+
+======================================================================
+FAIL: test_get_stock_info_returns_stock (unit.test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 74, in test_get_stock_info_returns_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'symbol': 'SYMB', 'name': 'Test Company Name', 'exchange': '[42 chars]6.66} != {'symbol': 'SYMB', 'current_price': 2.32, 'year_high': 6.66, [499 chars]TST'}
+Diff is 1087 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 20.526s
+
+FAILED (failures=1, errors=2)
