@@ -28,7 +28,17 @@ class StockDataTest(TestCase):
         self.assertEqual(stockdata, test_stock)
 
     @patch('stockdata.services.yahoo_finance_client.Share')
-    def test_get_stock_info_returns_stock(self, mock_share):
+    def test_get_stock_info_returns_none_for_no_results(self, mock_share):
+        stock = StockData()
+        mock_share.return_value.get_name.return_value = None
+
+        actual_stock = stock.get_stock_info("INVLD")
+
+        self.assertNone(actual_stock)
+
+
+    @patch('stockdata.services.yahoo_finance_client.Share')
+    def test_get_stock_info_returns_formatted_stock(self, mock_share):
         stock = StockData()
         mock_share.return_value.get_stock_exchange.return_value = "TST"
         mock_share.return_value.get_name.return_value = "Test Company Name"
