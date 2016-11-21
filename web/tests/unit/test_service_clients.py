@@ -35,11 +35,11 @@ class StockDataTest(TestCase):
         mock_share.return_value.get_name.return_value = "Test Company Name"
         mock_share.return_value.get_price.return_value = 2.32
         mock_share.return_value.get_year_high.return_value = 6.66
-        pv_data = [{'Close': '1.69', 'Volume': '792600', 'Low': '1.61', 'Symbol': 'TST', 'Open': '1.82', 'High': '1.88', 'Adj_Close': '1.69', 'Date': '2016-11-17'},
+        price_history = [{'Close': '1.69', 'Volume': '792600', 'Low': '1.61', 'Symbol': 'TST', 'Open': '1.82', 'High': '1.88', 'Adj_Close': '1.69', 'Date': '2016-11-17'},
                    {'Close': '1.67', 'Volume': '756800', 'Low': '1.50', 'Symbol': 'TST', 'Open': '1.50', 'High': '1.73', 'Adj_Close': '1.67', 'Date': '2016-11-16'},
                    {'Close': '1.48', 'Volume': '625600', 'Low': '1.34', 'Symbol': 'TST', 'Open': '1.34', 'High': '1.48', 'Adj_Close': '1.48', 'Date': '2016-11-15'}
                    ]
-        mock_share.return_value.get_historical.return_value = pv_data
+        mock_share.return_value.get_historical.return_value = price_history
 
         expected_pv_trend_data = {
             "max_volume": 792600,
@@ -68,7 +68,7 @@ class StockDataTest(TestCase):
             "exchange": "TST",
             "current_price": 2.32,
             "year_high": 6.66,
-            "pv_trend_data": pv_data
+            "pv_trend_data": expected_pv_trend_data
         }
         actual_stock = stock.get_stock_info("SYMB")
 
