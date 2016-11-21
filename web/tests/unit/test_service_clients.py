@@ -14,18 +14,9 @@ class StockDataTest(TestCase):
 
     @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
     def test_get_stock_info_calls_source_get_stock_info(self, mock_source):
-        test_stock = {
-            "symbol": "SYMB",
-            "name": "Test Company Name",
-            "exchange": "TST",
-            "current_price": 2.32,
-            "year_high": 6.66
-        }
-        mock_source.return_value.get_stock_info.return_value = test_stock
         stock = StockData()
         stockdata = stock.get_stock_info("SYMB")
         mock_source.return_value.get_stock_info.assert_called_with("SYMB")
-        self.assertEqual(stockdata, test_stock)
 
     @patch('stockdata.services.yahoo_finance_client.Share')
     def test_get_stock_info_returns_none_for_no_results(self, mock_share):
