@@ -577,3 +577,7 @@ and i'm realizing those unit tests are getting off track and starting to test th
 to some kind of a backlog.  
 
 which fails with the same error as above.
+
+An easy fix - but i also need a small correction to the assertion in the unit test.  
+
+https://github.com/smrkem/docker-flask-tdd/commit/bb9d643e421c5a5b72994b453f903850818c4688

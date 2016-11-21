@@ -1,0 +1,28 @@
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'name': 'Test Company Name', 'exchange': '[60 chars]6.66} != {'current_price': 2.32, 'symbol': 'SYMB', '[517 chars]ame'}
+Diff is 1087 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.035s
+
+FAILED (failures=1)
