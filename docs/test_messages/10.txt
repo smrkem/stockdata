@@ -1,0 +1,1039 @@
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 18, in test_get_stock_info_calls_source_get_stock_info
+    stockdata = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+AttributeError: 'StockData' object has no attribute 'get_pv_trend_data'
+
+======================================================================
+ERROR: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 73, in test_get_stock_info_returns_formatted_stock
+    actual_stock = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+AttributeError: 'StockData' object has no attribute 'get_pv_trend_data'
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.042s
+
+FAILED (errors=2)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 18, in test_get_stock_info_calls_source_get_stock_info
+    stockdata = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 73, in test_get_stock_info_returns_formatted_stock
+    actual_stock = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.039s
+
+FAILED (errors=2)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_takes_a_list (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 18, in test_get_stock_info_calls_source_get_stock_info
+    stockdata = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 73, in test_get_stock_info_returns_formatted_stock
+    actual_stock = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+FAIL: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 81, in test_get_pv_trenddata_returns_formatted_data
+    self.fail("write me")
+AssertionError: write me
+
+======================================================================
+FAIL: test_get_pv_trenddata_takes_a_list (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 78, in test_get_pv_trenddata_takes_a_list
+    self.fail("write me")
+AssertionError: write me
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.044s
+
+FAILED (failures=2, errors=2)
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+
+======================================================================
+FAIL: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 83, in test_get_pv_trenddata_returns_formatted_data
+    self.assertEqual(actual_pv_trend_data, self.expected_pv_trend_data)
+AssertionError: None != {'max_volume': 792600, 'pv_data': [{'volu[197 chars]5600}
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 78, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'exc[93 chars]ta': None, 'current_price': 2.32} != {'exc[93 chars]ta': {'max_volume': 792600, 'pv_data': [{'volu[221 chars]2.32}
+Diff is 726 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.040s
+
+FAILED (failures=2)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 85, in test_get_pv_trenddata_returns_formatted_data
+    self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
+AssertionError: False is not true : key: max_volume was not in actual_pv_trend_data
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 79, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'cur[117 chars]a': {}} != {'cur[117 chars]a': {'max_volume': 792600, 'pv_data': [{'volum[197 chars]600}}
+Diff is 724 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.041s
+
+FAILED (failures=2)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 85, in test_get_pv_trenddata_returns_formatted_data
+    self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
+AssertionError: False is not true : key: pv_data was not in actual_pv_trend_data
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 79, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'sym[60 chars]me': None}, 'name': 'Test Company Name', 'year[31 chars]2.32} != {'sym[60 chars]me': 792600, 'pv_data': [{'volume': 792600, 'p[254 chars]2.32}
+Diff is 827 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.040s
+
+FAILED (failures=2)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 85, in test_get_pv_trenddata_returns_formatted_data
+    self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
+AssertionError: False is not true : key: min_volume was not in actual_pv_trend_data
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 79, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'pv_trend_data': {'max_volume': None, 'pv_data': None}, 'curr[97 chars]TST'} != {'pv_trend_data': {'min_volume': 625600, 'max_volume': 792600,[303 chars]TST'}
+Diff is 759 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.061s
+
+FAILED (failures=2)
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ...
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 79, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'cur[93 chars]me': None, 'max_volume': None, 'pv_data': None[35 chars]TST'} != {'cur[93 chars]me': 625600, 'max_volume': 792600, 'pv_data': [221 chars]TST'}
+Diff is 779 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.045s
+
+FAILED (failures=1)
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 90, in test_get_pv_trenddata_gets_max_volume
+    self.assertEqual(actual_pv_trend_data['max_volume'], 792600)
+AssertionError: None != 792600
+
+======================================================================
+FAIL: test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 95, in test_get_pv_trenddata_gets_min_volume
+    self.assertEqual(actual_pv_trend_data['min_volume'], 625600)
+AssertionError: None != 625600
+
+======================================================================
+FAIL: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 100, in test_get_pv_trenddata_gets_pv_data
+    self.assertEqual(actual_pv_trend_data['pv_data'], self.expected_pv_trend_data['pv_data'])
+AssertionError: None != [{'pct_change': -7.1, 'volume': 792600, '[140 chars]15'}]
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 79, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'pv_[20 chars]ta': None, 'min_volume': None, 'max_volume': N[108 chars]2.32} != {'pv_[20 chars]ta': [{'pct_change': -7.1, 'volume': 792600, '[294 chars]2.32}
+Diff is 779 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.068s
+
+FAILED (failures=4)
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+Starting dockerflasktdd_data_1
+Starting dockerflasktdd_postgres_1
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2175, in get_value
+    return tslib.get_value_box(s, key)
+  File "pandas/tslib.pyx", line 881, in pandas.tslib.get_value_box (pandas/tslib.c:18246)
+  File "pandas/tslib.pyx", line 890, in pandas.tslib.get_value_box (pandas/tslib.c:17880)
+TypeError: 'str' object cannot be interpreted as an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 89, in test_get_pv_trenddata_gets_max_volume
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 34, in get_pv_trend_data
+    "max_volume": df_stats['Volume']['max'],
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/series.py", line 601, in __getitem__
+    result = self.index.get_value(self, key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2183, in get_value
+    raise e1
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2169, in get_value
+    tz=getattr(series.dtype, 'tz', None))
+  File "pandas/index.pyx", line 105, in pandas.index.IndexEngine.get_value (pandas/index.c:3567)
+  File "pandas/index.pyx", line 113, in pandas.index.IndexEngine.get_value (pandas/index.c:3250)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: 'max'
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2175, in get_value
+    return tslib.get_value_box(s, key)
+  File "pandas/tslib.pyx", line 881, in pandas.tslib.get_value_box (pandas/tslib.c:18246)
+  File "pandas/tslib.pyx", line 890, in pandas.tslib.get_value_box (pandas/tslib.c:17880)
+TypeError: 'str' object cannot be interpreted as an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 94, in test_get_pv_trenddata_gets_min_volume
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 34, in get_pv_trend_data
+    "max_volume": df_stats['Volume']['max'],
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/series.py", line 601, in __getitem__
+    result = self.index.get_value(self, key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2183, in get_value
+    raise e1
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2169, in get_value
+    tz=getattr(series.dtype, 'tz', None))
+  File "pandas/index.pyx", line 105, in pandas.index.IndexEngine.get_value (pandas/index.c:3567)
+  File "pandas/index.pyx", line 113, in pandas.index.IndexEngine.get_value (pandas/index.c:3250)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: 'max'
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2175, in get_value
+    return tslib.get_value_box(s, key)
+  File "pandas/tslib.pyx", line 881, in pandas.tslib.get_value_box (pandas/tslib.c:18246)
+  File "pandas/tslib.pyx", line 890, in pandas.tslib.get_value_box (pandas/tslib.c:17880)
+TypeError: 'str' object cannot be interpreted as an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 99, in test_get_pv_trenddata_gets_pv_data
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 34, in get_pv_trend_data
+    "max_volume": df_stats['Volume']['max'],
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/series.py", line 601, in __getitem__
+    result = self.index.get_value(self, key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2183, in get_value
+    raise e1
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2169, in get_value
+    tz=getattr(series.dtype, 'tz', None))
+  File "pandas/index.pyx", line 105, in pandas.index.IndexEngine.get_value (pandas/index.c:3567)
+  File "pandas/index.pyx", line 113, in pandas.index.IndexEngine.get_value (pandas/index.c:3250)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: 'max'
+
+======================================================================
+ERROR: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2175, in get_value
+    return tslib.get_value_box(s, key)
+  File "pandas/tslib.pyx", line 881, in pandas.tslib.get_value_box (pandas/tslib.c:18246)
+  File "pandas/tslib.pyx", line 890, in pandas.tslib.get_value_box (pandas/tslib.c:17880)
+TypeError: 'str' object cannot be interpreted as an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 83, in test_get_pv_trenddata_returns_formatted_data
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 34, in get_pv_trend_data
+    "max_volume": df_stats['Volume']['max'],
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/series.py", line 601, in __getitem__
+    result = self.index.get_value(self, key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2183, in get_value
+    raise e1
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2169, in get_value
+    tz=getattr(series.dtype, 'tz', None))
+  File "pandas/index.pyx", line 105, in pandas.index.IndexEngine.get_value (pandas/index.c:3567)
+  File "pandas/index.pyx", line 113, in pandas.index.IndexEngine.get_value (pandas/index.c:3250)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: 'max'
+
+======================================================================
+ERROR: test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 47, in test_get_stock_info_calls_source_get_stock_info
+    stockdata = self.stockdata.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 22, in get_pv_trend_data
+    df = pd.DataFrame(price_history)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 325, in __init__
+    raise TypeError("data argument can't be an iterator")
+TypeError: data argument can't be an iterator
+
+======================================================================
+ERROR: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2175, in get_value
+    return tslib.get_value_box(s, key)
+  File "pandas/tslib.pyx", line 881, in pandas.tslib.get_value_box (pandas/tslib.c:18246)
+  File "pandas/tslib.pyx", line 890, in pandas.tslib.get_value_box (pandas/tslib.c:17880)
+TypeError: 'str' object cannot be interpreted as an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 77, in test_get_stock_info_returns_formatted_stock
+    actual_stock = stock.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 34, in get_pv_trend_data
+    "max_volume": df_stats['Volume']['max'],
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/series.py", line 601, in __getitem__
+    result = self.index.get_value(self, key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2183, in get_value
+    raise e1
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2169, in get_value
+    tz=getattr(series.dtype, 'tz', None))
+  File "pandas/index.pyx", line 105, in pandas.index.IndexEngine.get_value (pandas/index.c:3567)
+  File "pandas/index.pyx", line 113, in pandas.index.IndexEngine.get_value (pandas/index.c:3250)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: 'max'
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.127s
+
+FAILED (errors=6)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 103, in test_get_pv_trenddata_gets_min_volume
+    self.assertEqual(actual_pv_trend_data['min_volume'], 625600)
+AssertionError: None != 625600
+
+======================================================================
+FAIL: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 108, in test_get_pv_trenddata_gets_pv_data
+    self.assertEqual(actual_pv_trend_data['pv_data'], self.expected_pv_trend_data['pv_data'])
+AssertionError: None != [{'pct_change': -7.1, 'date': '2016-11-17[140 chars]600}]
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 87, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'cur[43 chars]ta': None, 'min_volume': None, 'max_volume': 7[89 chars]TST'} != {'cur[43 chars]ta': [{'pct_change': -7.1, 'date': '2016-11-17[271 chars]TST'}
+Diff is 783 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.126s
+
+FAILED (failures=3)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2134, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 91, in test_get_pv_trenddata_gets_max_volume
+    actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 36, in get_pv_trend_data
+    "pv_data": df['Volume', 'Date', 'pct_change'].to_dict('records')
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2059, in __getitem__
+    return self._getitem_column(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2066, in _getitem_column
+    return self._get_item_cache(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/generic.py", line 1386, in _get_item_cache
+    values = self._data.get(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/internals.py", line 3541, in get
+    loc = self.items.get_loc(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2136, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2134, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 95, in test_get_pv_trenddata_gets_min_volume
+    actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 36, in get_pv_trend_data
+    "pv_data": df['Volume', 'Date', 'pct_change'].to_dict('records')
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2059, in __getitem__
+    return self._getitem_column(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2066, in _getitem_column
+    return self._get_item_cache(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/generic.py", line 1386, in _get_item_cache
+    values = self._data.get(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/internals.py", line 3541, in get
+    loc = self.items.get_loc(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2136, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2134, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 99, in test_get_pv_trenddata_gets_pv_data
+    actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 36, in get_pv_trend_data
+    "pv_data": df['Volume', 'Date', 'pct_change'].to_dict('records')
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2059, in __getitem__
+    return self._getitem_column(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2066, in _getitem_column
+    return self._get_item_cache(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/generic.py", line 1386, in _get_item_cache
+    values = self._data.get(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/internals.py", line 3541, in get
+    loc = self.items.get_loc(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2136, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+======================================================================
+ERROR: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2134, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 86, in test_get_pv_trenddata_returns_formatted_data
+    actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 36, in get_pv_trend_data
+    "pv_data": df['Volume', 'Date', 'pct_change'].to_dict('records')
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2059, in __getitem__
+    return self._getitem_column(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2066, in _getitem_column
+    return self._get_item_cache(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/generic.py", line 1386, in _get_item_cache
+    values = self._data.get(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/internals.py", line 3541, in get
+    loc = self.items.get_loc(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2136, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+======================================================================
+ERROR: test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2134, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 55, in test_get_stock_info_calls_source_get_stock_info
+    stockdata = self.stockdata.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 36, in get_pv_trend_data
+    "pv_data": df['Volume', 'Date', 'pct_change'].to_dict('records')
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2059, in __getitem__
+    return self._getitem_column(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2066, in _getitem_column
+    return self._get_item_cache(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/generic.py", line 1386, in _get_item_cache
+    values = self._data.get(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/internals.py", line 3541, in get
+    loc = self.items.get_loc(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2136, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+======================================================================
+ERROR: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2134, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 73, in test_get_stock_info_returns_formatted_stock
+    actual_stock = self.stockdata.get_stock_info("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 18, in get_stock_info
+    "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 36, in get_pv_trend_data
+    "pv_data": df['Volume', 'Date', 'pct_change'].to_dict('records')
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2059, in __getitem__
+    return self._getitem_column(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 2066, in _getitem_column
+    return self._get_item_cache(key)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/generic.py", line 1386, in _get_item_cache
+    values = self._data.get(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/core/internals.py", line 3541, in get
+    loc = self.items.get_loc(item)
+  File "/usr/local/lib/python3.5/site-packages/pandas/indexes/base.py", line 2136, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas/index.pyx", line 139, in pandas.index.IndexEngine.get_loc (pandas/index.c:4443)
+  File "pandas/index.pyx", line 161, in pandas.index.IndexEngine.get_loc (pandas/index.c:4289)
+  File "pandas/src/hashtable_class_helper.pxi", line 732, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13733)
+  File "pandas/src/hashtable_class_helper.pxi", line 740, in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13687)
+KeyError: ('Volume', 'Date', 'pct_change')
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.114s
+
+FAILED (errors=6)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... FAIL
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 100, in test_get_pv_trenddata_gets_pv_data
+    self.assertEqual(actual_pv_trend_data['pv_data'], self.expected_pv_trend_data['pv_data'])
+AssertionError: Lists differ: [{'Date': '2016-11-17', 'pct_change': -7.142[180 chars]600}] != [{'volume': 792600, 'pct_change': -7.1, 'dat[137 chars]15'}]
+
+First differing element 0:
+{'Date': '2016-11-17', 'pct_change': -7.1428571428571495, 'Volume': 792600}
+{'volume': 792600, 'pct_change': -7.1, 'date': '2016-11-17'}
+
+- [{'Date': '2016-11-17', 'Volume': 792600, 'pct_change': -7.1428571428571495},
+-  {'Date': '2016-11-16', 'Volume': 756800, 'pct_change': 11.333333333333329},
+-  {'Date': '2016-11-15', 'Volume': 625600, 'pct_change': 10.447761194029843}]
++ [{'date': '2016-11-17', 'pct_change': -7.1, 'volume': 792600},
++  {'date': '2016-11-16', 'pct_change': 11.3, 'volume': 756800},
++  {'date': '2016-11-15', 'pct_change': 10.4, 'volume': 625600}]
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 83, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'sym[118 chars]25600.0, 'pv_data': [{'Date': '2016-11-17', 'p[243 chars]6.66} != {'sym[118 chars]25600, 'pv_data': [{'volume': 792600, 'pct_cha[196 chars]6.66}
+Diff is 1917 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.120s
+
+FAILED (failures=2)
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.101s
+
+OK

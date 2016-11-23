@@ -580,4 +580,56 @@ which fails with the same error as above.
 
 An easy fix - but i also need a small correction to the assertion in the unit test.  
 
-https://github.com/smrkem/docker-flask-tdd/commit/bb9d643e421c5a5b72994b453f903850818c4688
+- https://github.com/smrkem/docker-flask-tdd/commit/bb9d643e421c5a5b72994b453f903850818c4688
+
+took a little detour to fix a test that was starting to duplicate another:
+```
+@patch('stockdata.controllers.stockinfo.YahooFinanceClient')
+def test_get_stock_info_calls_source_get_stock_info(self, mock_source):
+    stock = StockData()
+    stockdata = stock.get_stock_info("SYMB")
+    mock_source.return_value.get_stock_info.assert_called_with("SYMB")
+```
+as well as fix another error that had found its way into my unit tests:  
+- https://github.com/smrkem/docker-flask-tdd/commit/7f2ce36a93081189191b21c3130505ab30689006  
+
+
+
+Now i'm back to the one failing unit test:
+```
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+
+```
+
+
+I started writing new code in the StockData class to get that to pass. The price_history returned by the YahooFinanceClient is a list of dicts. That can easily be used to create a pandas dataframe, which will do all the math for me. It wasn't long before i was getting errors of the nature:
+```
+File "/usr/src/app/stockdata/controllers/stockinfo.py", line 12, in get_stock_info
+  df_historical_data = pd.DataFrame(stockinfo['price_history'])
+File "/usr/local/lib/python3.5/site-packages/pandas/core/frame.py", line 325, in __init__
+  raise TypeError("data argument can't be an iterator")
+TypeError: data argument can't be an iterator
+```
+which happened when pandas was getting something other than a list - like a mock for example.
+
+I wasn't really following the tdd pattern there. let me just start writing the minimum amount of code to move it a little further.
+
+I get to the point of having another StockData method (`get_pv_trend_data`) with some initial unit tests. What i want to do is verify that given a list, (with keys 'Open', 'Close', and 'Volume'), it'll return the correct, relevant output.
+
+***
+I'm kind of refactoring as i go instead of as a regular part of my process - trying to work on that. Here's the commit for the next round:
+
+https://github.com/smrkem/docker-flask-tdd/commit/6aa2d5dfab0daf281ac4096ac9b16fc79ce44575  
+
+and the test messages that got me there:
+
+[test output](../test_messages/10.txt)  
+
+It's becoming more and more difficult to look at the sloppiness in the service unit tests - that part needs some love soon.  
