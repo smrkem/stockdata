@@ -633,3 +633,21 @@ and the test messages that got me there:
 [test output](../test_messages/10.txt)  
 
 It's becoming more and more difficult to look at the sloppiness in the service unit tests - that part needs some love soon.  
+
+But things are looking pretty good. I flip over to my FTs where i'm getting:
+```
+$ tdddocker-run-tests acceptance
+...
+======================================================================
+FAIL: test_can_view_stock_info (test_getting_stock_info.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/acceptance/test_getting_stock_info.py", line 69, in test_can_view_stock_info
+    self.assertIsInstance(pv_trend_data, type(list()))
+AssertionError: 2.94 is not an instance of <class 'list'>
+
+----------------------------------------------------------------------
+Ran 2 tests in 15.307s
+
+```
+Ok - cool. I knew i was going to have to take a closer look at how I was passing that price-volume data to the front end.
