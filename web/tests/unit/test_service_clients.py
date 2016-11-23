@@ -12,67 +12,92 @@ class StockDataTest(TestCase):
         app.config['TESTING'] = True
         return app
 
+    def setUp(self):
+        self.stockdata = StockData()
+        self.sample_price_history = [
+            {'Close': '1.69', 'Volume': '792600', 'Low': '1.61', 'Symbol': 'TST', 'Open': '1.82', 'High': '1.88', 'Adj_Close': '1.69', 'Date': '2016-11-17'},
+            {'Close': '1.67', 'Volume': '756800', 'Low': '1.50', 'Symbol': 'TST', 'Open': '1.50', 'High': '1.73', 'Adj_Close': '1.67', 'Date': '2016-11-16'},
+            {'Close': '1.48', 'Volume': '625600', 'Low': '1.34', 'Symbol': 'TST', 'Open': '1.34', 'High': '1.48', 'Adj_Close': '1.48', 'Date': '2016-11-15'}
+        ]
+        self.sample_source_stockinfo = expected_stock = {
+            "symbol": "SYMB",
+            "name": "Test Company Name",
+            "exchange": "TST",
+            "current_price": 2.32,
+            "year_high": 6.66,
+            "price_history": self.sample_price_history
+        }
+        self.expected_pv_trend_data = {
+            "max_volume": 792600,
+            "min_volume": 625600,
+            "pv_data": [
+                {
+                    "Volume": 792600,
+                    "pct_change": -7.1,
+                    "Date": "2016-11-17"
+                },
+                {
+                    "Volume": 756800,
+                    "pct_change": 11.3,
+                    "Date": "2016-11-16"
+                },
+                {
+                    "Volume": 625600,
+                    "pct_change": 10.4,
+                    "Date": "2016-11-15"
+                }
+            ]
+        }
+
     @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
     def test_get_stock_info_calls_source_get_stock_info(self, mock_source):
-        stock = StockData()
-        stockdata = stock.get_stock_info("SYMB")
+        mock_source.return_value.get_stock_info.return_value = self.sample_source_stockinfo
+        stockdata = self.stockdata.get_stock_info("SYMB")
         mock_source.return_value.get_stock_info.assert_called_with("SYMB")
 
     @patch('stockdata.services.yahoo_finance_client.Share')
     def test_get_stock_info_returns_none_for_no_results(self, mock_share):
-        stock = StockData()
         mock_share.return_value.get_name.return_value = None
-
-        actual_stock = stock.get_stock_info("INVLD")
-
+        actual_stock = self.stockdata.get_stock_info("INVLD")
         self.assertIsNone(actual_stock)
 
 
     @patch('stockdata.services.yahoo_finance_client.Share')
     def test_get_stock_info_returns_formatted_stock(self, mock_share):
-        stock = StockData()
         mock_share.return_value.get_stock_exchange.return_value = "TST"
         mock_share.return_value.get_name.return_value = "Test Company Name"
         mock_share.return_value.get_price.return_value = 2.32
         mock_share.return_value.get_year_high.return_value = 6.66
-        price_history = [{'Close': '1.69', 'Volume': '792600', 'Low': '1.61', 'Symbol': 'TST', 'Open': '1.82', 'High': '1.88', 'Adj_Close': '1.69', 'Date': '2016-11-17'},
-                   {'Close': '1.67', 'Volume': '756800', 'Low': '1.50', 'Symbol': 'TST', 'Open': '1.50', 'High': '1.73', 'Adj_Close': '1.67', 'Date': '2016-11-16'},
-                   {'Close': '1.48', 'Volume': '625600', 'Low': '1.34', 'Symbol': 'TST', 'Open': '1.34', 'High': '1.48', 'Adj_Close': '1.48', 'Date': '2016-11-15'}
-                   ]
-        mock_share.return_value.get_historical.return_value = price_history
+        mock_share.return_value.get_historical.return_value = self.sample_price_history
 
-        expected_pv_trend_data = {
-            "max_volume": 792600,
-            "min_volume": 625600,
-            "pv_data": [
-                {
-                    "volume": 792600,
-                    "pct_change": -7.1,
-                    "date": "2016-11-17"
-                },
-                {
-                    "volume": 756800,
-                    "pct_change": 11.3,
-                    "date": "2016-11-16"
-                },
-                {
-                    "volume": 625600,
-                    "pct_change": 10.4,
-                    "date": "2016-11-15"
-                }
-            ]
-        }
+        actual_stock = self.stockdata.get_stock_info("SYMB")
+
         expected_stock = {
             "symbol": "SYMB",
             "name": "Test Company Name",
             "exchange": "TST",
             "current_price": 2.32,
             "year_high": 6.66,
-            "pv_trend_data": expected_pv_trend_data
+            "pv_trend_data": self.expected_pv_trend_data
         }
-        actual_stock = stock.get_stock_info("SYMB")
-
         self.assertEqual(actual_stock, expected_stock)
+
+    def test_get_pv_trenddata_returns_formatted_data(self):
+        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        for key in self.expected_pv_trend_data.keys():
+            self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
+
+    def test_get_pv_trenddata_gets_max_volume(self):
+        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        self.assertEqual(actual_pv_trend_data['max_volume'], 792600)
+
+    def test_get_pv_trenddata_gets_min_volume(self):
+        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        self.assertEqual(actual_pv_trend_data['min_volume'], 625600)
+
+    def test_get_pv_trenddata_gets_pv_data(self):
+        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        self.assertEqual(actual_pv_trend_data['pv_data'], self.expected_pv_trend_data['pv_data'])
 
 
 class YahooFinanceClientTest(TestCase):
