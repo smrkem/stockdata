@@ -651,3 +651,44 @@ Ran 2 tests in 15.307s
 
 ```
 Ok - cool. I knew i was going to have to take a closer look at how I was passing that price-volume data to the front end.
+
+***
+Along the way my view becomes:
+```
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    stock = None
+    errors = []
+    if request.method == 'POST' and request.form['symbol']:
+        stock = StockData().get_stock_info(request.form['symbol'])
+        if stock is None:
+            errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
+        else:
+            stock['pv_trend_data'] = json.dumps(stock['pv_trend_data'])
+    return render_template('index.html', stock=stock, errors=errors)
+```
+which breaks my unit tests in a really cryptic and scary way.
+
+```
+$ tdddocker-run-tests unit
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ERROR
+
+... ...
+
+AssertionError: Popped wrong request context.  (<RequestContext 'http://localhost/' [POST] of stockdata> instead of <RequestContext 'http://localhost/' [GET] of stockdata>)
+```
