@@ -16,7 +16,10 @@ class HomeViewTest(TestCase):
 
     @patch('stockdata.views.StockData')
     def test_posting_symbol_returns_stock_info(self, mock_stockdata):
-        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
+        mock_stockdata.return_value.get_stock_info.return_value = {
+            "stock":"data",
+            "pv_trend_data": []
+        }
         response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
 
         self.assertEqual(response.status_code, 200)

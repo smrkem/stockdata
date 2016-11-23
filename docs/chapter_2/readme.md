@@ -692,3 +692,20 @@ test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ERROR
 
 AssertionError: Popped wrong request context.  (<RequestContext 'http://localhost/' [POST] of stockdata> instead of <RequestContext 'http://localhost/' [GET] of stockdata>)
 ```
+
+The traceback isn't very helpful either. Looking in the test code for `test_posting_symbol_returns_stock_info` i see that we're mocking the StockData::get_stock_info return value, and attempting to pass that to `json.dumps` - probably not good. TO test the theory i make a little addition to the test_views.py:
+```
+@patch('stockdata.views.StockData')
+  def test_posting_symbol_returns_stock_info(self, mock_stockdata):
+      mock_stockdata.return_value.get_stock_info.return_value = {
+          "stock":"data",
+          "pv_trend_data": []
+      }
+```
+so that the mock's return value contains the key `json.dumps` is looking for.
+```
+AssertionError: {'stock': 'data', 'pv_trend_data': '[]'} != {'stock': 'data'}
+- {'pv_trend_data': '[]', 'stock': 'data'}
++ {'stock': 'data'}
+```
+much better failure there, and i could easily get that to passing - but it's worth a look at what i'm doing there. Whose job is it to know that the browser is expecting json back for the pv_trend_data ? Whose job is it to know that the browser is expecting any pv_trend_data at all?
