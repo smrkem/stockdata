@@ -83,23 +83,31 @@ class StockDataTest(TestCase):
         }
         self.assertEqual(actual_stock, expected_stock)
 
-    def test_get_pv_trenddata_returns_formatted_data(self):
+    @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
+    def test_get_pv_trenddata_returns_formatted_data(self, mock_source):
+        mock_source.return_value.get_stock_info.return_value = {"stock": "data"}
         stock = StockData("SYMB")
         actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         for key in self.expected_pv_trend_data.keys():
             self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
 
-    def test_get_pv_trenddata_gets_max_volume(self):
+    @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
+    def test_get_pv_trenddata_gets_max_volume(self, mock_source):
+        mock_source.return_value.get_stock_info.return_value = {"stock": "data"}
         stock = StockData("SYMB")
         actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         self.assertEqual(actual_pv_trend_data['max_volume'], 792600)
 
-    def test_get_pv_trenddata_gets_min_volume(self):
+    @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
+    def test_get_pv_trenddata_gets_min_volume(self, mock_source):
+        mock_source.return_value.get_stock_info.return_value = {"stock": "data"}
         stock = StockData("SYMB")
         actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         self.assertEqual(actual_pv_trend_data['min_volume'], 625600)
 
-    def test_get_pv_trenddata_gets_pv_data(self):
+    @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
+    def test_get_pv_trenddata_gets_pv_data(self, mock_source):
+        mock_source.return_value.get_stock_info.return_value = {"stock": "data"}
         stock = StockData("SYMB")
         actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         self.assertEqual(actual_pv_trend_data['pv_data'], self.expected_pv_trend_data['pv_data'])
