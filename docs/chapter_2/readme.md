@@ -709,3 +709,8 @@ AssertionError: {'stock': 'data', 'pv_trend_data': '[]'} != {'stock': 'data'}
 + {'stock': 'data'}
 ```
 much better failure there, and i could easily get that to passing - but it's worth a look at what i'm doing there. Whose job is it to know that the browser is expecting json back for the pv_trend_data ? Whose job is it to know that the browser is expecting any pv_trend_data at all?
+
+
+For now, while the app is tiny - every request requires that data. But it'd be nice, and probbly inevitably needed, to be able to toggle off that request. Based on request times it's a fairly expensive query on the api - and it won't be featured in every single view of a stock's info.
+
+I'll leave that decision logic in the view for the time being - but it'll make a separate request to include to pv_trend_data. It'll also dump it to json. This means refactoring - so i actually want to go back to where all my tests were passing, before updating the view to push the FT further.
