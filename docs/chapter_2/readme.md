@@ -726,6 +726,96 @@ Remember - all my tests are passing at this point.
 
 Frig - i've gotta go back and undo all the `self.stockdata = StockData()` stuff in the tests. I'll need to init the object as part of each test in order to pass the test arguments.
 
+I go and change the test class back, along the way making sure to pass a 'symbol' to the StockData init. Skipping a step in the pure TDD method - but meh.
+
+https://github.com/smrkem/docker-flask-tdd/commit/4014282d19b8ac4b34e89f00c65c0d0787c75a66
+
+Now most of them (7) are failing - all with the same error:
+```
+stock = StockData("SYMB")
+TypeError: object() takes no parameters
+```
+Here we go!  
+
+A little bit of code and then check the tests:
+```
+stock = StockData("SYMB")
+TypeError: __init__() takes 1 positional argument but 2 were given
+```
+A minor code addition and:
+```
+======================================================================
+ERROR: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 74, in test_get_stock_info_returns_formatted_stock
+    actual_stock = stock.get_stock_info()
+TypeError: get_stock_info() missing 1 required positional argument: 'symbol'
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 61, in test_get_stock_info_returns_none_for_no_results
+    actual_stock = stock.get_stock_info()
+TypeError: get_stock_info() missing 1 required positional argument: 'symbol'
+
+======================================================================
+FAIL: test_init_calls_source_get_stock_info (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 55, in test_init_calls_source_get_stock_info
+    mock_source.return_value.get_stock_info.assert_called_with("SYMB")
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_stock_info('SYMB')
+Not called
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.077s
+
+FAILED (failures=1, errors=2)
+
+```
+the tests are no longer passing the symbol to `get_stock_info` but the class method is expecting it to. Getting that out of the method argument list changes that error to:
+```
+stockinfo = YahooFinanceClient().get_stock_info(symbol)
+NameError: name 'symbol' is not defined
+```
+Taking the next, crucial step in the StockData refactoring:
+```
+class StockData:
+
+    def __init__(self, symbol):
+        self.stockinfo = YahooFinanceClient().get_stock_info(symbol)
+        self.stockinfo['symbol'] = symbol
+
+    def get_stock_info(self):
+        if self.stockinfo is None:
+            return None
+
+        return {
+            "name": self.stockinfo['name'],
+            "exchange": self.stockinfo['exchange'],
+            "current_price": self.stockinfo['current_price'],
+            "year_high": self.stockinfo['year_high'],
+            "pv_trend_data": self.get_pv_trend_data(self.stockinfo['price_history'])
+        }
+
+     ...
+```
+I thought that looked really good - but the tests tell me otherwise.   
+
+[test output](../test_messages/10.txt)  
+
+and the tests are taking considerably longer. I'm initing the StockData in those tests without mocking the YahooFinanceClient at all. not good - dammit.  
+
 ***
 
 I modify the views test a bit:
@@ -744,3 +834,8 @@ I modify the views test a bit:
         )
 ```
 which fails of course.  
+
+- https://github.com/smrkem/docker-flask-tdd/commit/54a94928722c352c6d23f0cb95d508133b3b5624
+
+- https://github.com/smrkem/docker-flask-tdd/commit/fa4d7913a21582f4e9b9f7951e2561c5007afe91  
+-
