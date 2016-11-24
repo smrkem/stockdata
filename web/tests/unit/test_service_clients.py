@@ -13,7 +13,6 @@ class StockDataTest(TestCase):
         return app
 
     def setUp(self):
-        self.stockdata = StockData()
         self.sample_price_history = [
             {'Close': '1.69', 'Volume': '792600', 'Low': '1.61', 'Symbol': 'TST', 'Open': '1.82', 'High': '1.88', 'Adj_Close': '1.69', 'Date': '2016-11-17'},
             {'Close': '1.67', 'Volume': '756800', 'Low': '1.50', 'Symbol': 'TST', 'Open': '1.50', 'High': '1.73', 'Adj_Close': '1.67', 'Date': '2016-11-16'},
@@ -50,15 +49,16 @@ class StockDataTest(TestCase):
         }
 
     @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
-    def test_get_stock_info_calls_source_get_stock_info(self, mock_source):
+    def test_init_calls_source_get_stock_info(self, mock_source):
         mock_source.return_value.get_stock_info.return_value = self.sample_source_stockinfo
-        stockdata = self.stockdata.get_stock_info("SYMB")
+        stock = StockData("SYMB")
         mock_source.return_value.get_stock_info.assert_called_with("SYMB")
 
     @patch('stockdata.services.yahoo_finance_client.Share')
     def test_get_stock_info_returns_none_for_no_results(self, mock_share):
         mock_share.return_value.get_name.return_value = None
-        actual_stock = self.stockdata.get_stock_info("INVLD")
+        stock = StockData("INVLD")
+        actual_stock = stock.get_stock_info()
         self.assertIsNone(actual_stock)
 
 
@@ -70,7 +70,8 @@ class StockDataTest(TestCase):
         mock_share.return_value.get_year_high.return_value = 6.66
         mock_share.return_value.get_historical.return_value = self.sample_price_history
 
-        actual_stock = self.stockdata.get_stock_info("SYMB")
+        stock = StockData("SYMB")
+        actual_stock = stock.get_stock_info()
 
         expected_stock = {
             "symbol": "SYMB",
@@ -83,20 +84,24 @@ class StockDataTest(TestCase):
         self.assertEqual(actual_stock, expected_stock)
 
     def test_get_pv_trenddata_returns_formatted_data(self):
-        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        stock = StockData("SYMB")
+        actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         for key in self.expected_pv_trend_data.keys():
             self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
 
     def test_get_pv_trenddata_gets_max_volume(self):
-        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        stock = StockData("SYMB")
+        actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         self.assertEqual(actual_pv_trend_data['max_volume'], 792600)
 
     def test_get_pv_trenddata_gets_min_volume(self):
-        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        stock = StockData("SYMB")
+        actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         self.assertEqual(actual_pv_trend_data['min_volume'], 625600)
 
     def test_get_pv_trenddata_gets_pv_data(self):
-        actual_pv_trend_data = self.stockdata.get_pv_trend_data(self.sample_price_history)
+        stock = StockData("SYMB")
+        actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         self.assertEqual(actual_pv_trend_data['pv_data'], self.expected_pv_trend_data['pv_data'])
 
 
