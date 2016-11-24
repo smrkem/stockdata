@@ -7,7 +7,7 @@ def index():
     stock = None
     errors = []
     if request.method == 'POST' and request.form['symbol']:
-        stock = StockData().get_stock_info(request.form['symbol'])
+        stock = StockData(request.form['symbol']).get_stock_info()
         if stock is None:
             errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
         # else:

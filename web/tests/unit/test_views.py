@@ -14,6 +14,11 @@ class HomeViewTest(TestCase):
         self.client.get('/')
         self.assert_template_used('index.html')
 
+    # @patch('stockdata.views.StockData')
+    # def test_stockdata_init_with_posted_symbol(self, mock_stockdata):
+    #     response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
+    #     mock_stockdata.assert_called_with('ANYSYMBOL')
+
     @patch('stockdata.views.StockData')
     def test_posting_symbol_returns_stock_info(self, mock_stockdata):
         mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
