@@ -713,4 +713,34 @@ much better failure there, and i could easily get that to passing - but it's wor
 
 For now, while the app is tiny - every request requires that data. But it'd be nice, and probbly inevitably needed, to be able to toggle off that request. Based on request times it's a fairly expensive query on the api - and it won't be featured in every single view of a stock's info.
 
-I'll leave that decision logic in the view for the time being - but it'll make a separate request to include to pv_trend_data. It'll also dump it to json. This means refactoring - so i actually want to go back to where all my tests were passing, before updating the view to push the FT further.
+I'll leave that decision logic in the view for the time being - but it'll make a separate request to include to pv_trend_data. It'll also dump it to json. This means refactoring - so i actually want to go back to where all my tests were passing, before updating the view to push the FT further. I want all my tests to be passing, so I know when i'm done they should all be passing again along with whatever new tests I add.
+
+***
+Now there's going to be multiple calls to the StockData class and it's time to think about DRYing it up a bit. I can imagine keeping `get_stock_info` and having it return, not everything like it currently does, but sort of _'the basics'_ - name, exchange, current_price, etc. For now i think it's ok to leave year_high in there as well.
+
+The view can make a second call (to `get_pv_trend_data`) to populate that part of the stock object it returns. But I don't want to make an additional call to the YahooFinanceClient - that's what I'm trying to minimize here. I suspect ultimately that it's the client which will need the ability to dynamically include that request or not - but for now I think i'll be headed in the right direction to initialize the StockData class with the symbol and a stockinfo property holding what it gets back from the YahooFinanceClient.
+
+Remember - all my tests are passing at this point.  
+
+...  
+
+Frig - i've gotta go back and undo all the `self.stockdata = StockData()` stuff in the tests. I'll need to init the object as part of each test in order to pass the test arguments.
+
+***
+
+I modify the views test a bit:
+```
+
+    @patch('stockdata.views.StockData')
+    def test_posting_symbol_returns_stock_info(self, mock_stockdata):
+        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
+        mock_stockdata.return_value.get_pv_trend_data.return_value = 'sample pv_trend_data'
+        response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
+
+        self.assertEqual(response.status_code, 200)
+        mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+        self.assertEqual(self.get_context_variable('stock'),
+          {"stock":"data", "pv_trend_data": 'sample pv_trend_data'}
+        )
+```
+which fails of course.  
