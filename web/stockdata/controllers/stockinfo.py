@@ -4,18 +4,20 @@ import pandas as pd
 
 class StockData:
 
-    def get_stock_info(self, symbol):
-        stockinfo = YahooFinanceClient().get_stock_info(symbol)
-        if stockinfo is None:
+    def __init__(self, symbol):
+        self.stockinfo = YahooFinanceClient().get_stock_info(symbol)
+        self.stockinfo['symbol'] = symbol
+
+    def get_stock_info(self):
+        if self.stockinfo is None:
             return None
 
         return {
-            "symbol": symbol,
-            "name": stockinfo['name'],
-            "exchange": stockinfo['exchange'],
-            "current_price": stockinfo['current_price'],
-            "year_high": stockinfo['year_high'],
-            "pv_trend_data": self.get_pv_trend_data(stockinfo['price_history'])
+            "name": self.stockinfo['name'],
+            "exchange": self.stockinfo['exchange'],
+            "current_price": self.stockinfo['current_price'],
+            "year_high": self.stockinfo['year_high'],
+            "pv_trend_data": self.get_pv_trend_data(self.stockinfo['price_history'])
         }
 
     def get_pv_trend_data(self, price_history):
@@ -26,7 +28,7 @@ class StockData:
             (df['Close'] - df['Open']) / df['Open'] * 100,
             1
         )
-        
+
         df_stats = df.describe()
         pv_trend_data = {
             "max_volume": df_stats['Volume']['max'],
