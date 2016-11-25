@@ -854,7 +854,9 @@ The app runs fine locally (`docker-compose up`), and the FTs are failing with a 
 json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
 ```
 
-It'll be the veiws job to know it needs to get the pv_trend_data and also dump that to appropriate json. I'll have to update my veiws tests first. Haven't looked at an updated __Agenda__ for a while:
+It'll be the veiws job to know it needs to get the pv_trend_data and also dump that to appropriate json. I'll have to update my veiws tests first.  
+
+Haven't looked at an updated __Agenda__ for a while:
 
 ***
 ### Agenda:
@@ -866,7 +868,8 @@ It'll be the veiws job to know it needs to get the pv_trend_data and also dump t
 6. ~~Write FT that checks getting price-volume trend data~~
 7. Refactor/Write unit tests for the approach
 8. Code till unit tests pass, verifying FT passes at the end
-9. Add bootstrap to the app so it looks nicer
+9. Add bootstrap to the app so it looks nicer  
+
 ***
 
 I'm right in the middle of that second outside-inside TDD loop - write FT, refactor till unit tests pass again, write / refactor unit tests, code till unit tests pass again. At the end that FT should pass as well :)  
