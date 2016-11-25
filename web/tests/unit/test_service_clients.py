@@ -18,8 +18,7 @@ class StockDataTest(TestCase):
             {'Close': '1.67', 'Volume': '756800', 'Low': '1.50', 'Symbol': 'TST', 'Open': '1.50', 'High': '1.73', 'Adj_Close': '1.67', 'Date': '2016-11-16'},
             {'Close': '1.48', 'Volume': '625600', 'Low': '1.34', 'Symbol': 'TST', 'Open': '1.34', 'High': '1.48', 'Adj_Close': '1.48', 'Date': '2016-11-15'}
         ]
-        self.sample_source_stockinfo = expected_stock = {
-            "symbol": "SYMB",
+        self.sample_source_stockinfo = {
             "name": "Test Company Name",
             "exchange": "TST",
             "current_price": 2.32,
@@ -62,13 +61,9 @@ class StockDataTest(TestCase):
         self.assertIsNone(actual_stock)
 
 
-    @patch('stockdata.services.yahoo_finance_client.Share')
-    def test_get_stock_info_returns_formatted_stock(self, mock_share):
-        mock_share.return_value.get_stock_exchange.return_value = "TST"
-        mock_share.return_value.get_name.return_value = "Test Company Name"
-        mock_share.return_value.get_price.return_value = 2.32
-        mock_share.return_value.get_year_high.return_value = 6.66
-        mock_share.return_value.get_historical.return_value = self.sample_price_history
+    @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
+    def test_get_stock_info_returns_formatted_stock(self, mock_source):
+        mock_source.return_value.get_stock_info.return_value = self.sample_source_stockinfo
 
         stock = StockData("SYMB")
         actual_stock = stock.get_stock_info()

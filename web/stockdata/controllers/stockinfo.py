@@ -6,13 +6,15 @@ class StockData:
 
     def __init__(self, symbol):
         self.stockinfo = YahooFinanceClient().get_stock_info(symbol)
-        self.stockinfo['symbol'] = symbol
+        if self.stockinfo is not None:
+            self.stockinfo['symbol'] = symbol
 
     def get_stock_info(self):
         if self.stockinfo is None:
             return None
 
         return {
+            "symbol": self.stockinfo['symbol'],
             "name": self.stockinfo['name'],
             "exchange": self.stockinfo['exchange'],
             "current_price": self.stockinfo['current_price'],

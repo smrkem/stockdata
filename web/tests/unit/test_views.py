@@ -14,10 +14,10 @@ class HomeViewTest(TestCase):
         self.client.get('/')
         self.assert_template_used('index.html')
 
-    # @patch('stockdata.views.StockData')
-    # def test_stockdata_init_with_posted_symbol(self, mock_stockdata):
-    #     response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
-    #     mock_stockdata.assert_called_with('ANYSYMBOL')
+    @patch('stockdata.views.StockData')
+    def test_stockdata_init_with_posted_symbol(self, mock_stockdata):
+        response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
+        mock_stockdata.assert_called_with('ANYSYMBOL')
 
     @patch('stockdata.views.StockData')
     def test_posting_symbol_returns_stock_info(self, mock_stockdata):
@@ -25,7 +25,7 @@ class HomeViewTest(TestCase):
         response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
 
         self.assertEqual(response.status_code, 200)
-        mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+        mock_stockdata.return_value.get_stock_info.assert_called_with()
         self.assertEqual(self.get_context_variable('stock'), {"stock":"data"})
 
     @patch('stockdata.views.StockData')
@@ -35,7 +35,7 @@ class HomeViewTest(TestCase):
 
         errors = ["Could not find any stock for symbol: 'not-valid'"]
         self.assertEqual(self.get_context_variable('errors'), errors)
-        mock_stockdata.return_value.get_stock_info.assert_called_with('not-valid')
+        mock_stockdata.return_value.get_stock_info.assert_called_with()
 
 
 if __name__ == '__main__':

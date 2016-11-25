@@ -4,12 +4,14 @@ from stockdata.controllers.stockinfo import StockData
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    stock = None
+    stockinfo = None
     errors = []
     if request.method == 'POST' and request.form['symbol']:
-        stock = StockData(request.form['symbol']).get_stock_info()
-        if stock is None:
+        stock = StockData(request.form['symbol'])
+        stockinfo = stock.get_stock_info()
+        if stockinfo is None:
             errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
+            
         # else:
         #     stock['pv_trend_data'] = json.dumps(stock['pv_trend_data'])
-    return render_template('index.html', stock=stock, errors=errors)
+    return render_template('index.html', stock=stockinfo, errors=errors)
