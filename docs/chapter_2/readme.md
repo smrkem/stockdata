@@ -839,3 +839,19 @@ which fails of course.
 
 - https://github.com/smrkem/docker-flask-tdd/commit/fa4d7913a21582f4e9b9f7951e2561c5007afe91  
 -
+
+-  
+- found myself in a situation where i want to return None from a StockData("symbol") call.
+
+Here's the final commit, with StockData `__init__` fetching all the data and storing it, with updated, passing tests.  
+- https://github.com/smrkem/docker-flask-tdd/commit/a68ea4fabdfd8a1c79c9406b7f3448353b8c49aa  
+
+and the test messages along the way:  
+- [test output](../test_messages/11.txt)
+
+The app runs fine locally (`docker-compose up`), and the FTs are failing with a lovely:
+```
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+```
+
+It'll be the veiws job to know it needs to get the pv_trend_data and also dump that to appropriate json. I'll have to update my veiws tests first.
