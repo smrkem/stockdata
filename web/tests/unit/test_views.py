@@ -1,6 +1,7 @@
 import unittest, json
 from unittest.mock import patch
 from flask_testing import TestCase
+from flask import url_for
 from stockdata import app
 
 
@@ -13,6 +14,37 @@ class HomeViewTest(TestCase):
     def test_home_view_calls_index_template(self):
         self.client.get('/')
         self.assert_template_used('index.html')
+
+    def test_home_view_loads_javascript(self):
+        response = self.client.get('/')
+        response = response.data.decode('utf')
+
+        src = url_for('static', filename='stockdata.js')
+        expected_tag = "<script src=\"{}\" >".format(src)
+        self.assertIn(expected_tag, response)
+
+    def test_stockdata_javascript_returns_ok(self):
+        response = self.client.get(url_for('static', filename='stockdata.js'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_home_view_loads_jquery(self):
+        response = self.client.get('/')
+        response = response.data.decode('utf')
+
+        pattern = r'<script src=".*code\.jquery\.com\/.*" >'
+        self.assertRegex(response, pattern)
+
+    def test_main_css_returns_ok(self):
+        response = self.client.get(url_for('static', filename='style.css'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_home_view_loads_css(self):
+        response = self.client.get('/')
+        response = response.data.decode('utf')
+
+        src = url_for('static', filename='style.css')
+        expected_tag = '<link rel="stylesheet" href="{}" type="text/css">'.format(src)
+        self.assertIn(expected_tag, response)
 
     @patch('stockdata.views.StockData')
     def test_stockdata_init_with_posted_symbol(self, mock_stockdata):

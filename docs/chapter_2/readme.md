@@ -909,3 +909,147 @@ Here's the __Agenda__ current state:
 ***
 
 Like i mentioned - i'm gonna forego looking into different javascript testing frameworks for the front end and just do some straight-up coding.  
+
+I can at least add a view test to ensure the page includes the javascript element with the correct source:  
+```
+
+    def test_home_view_loads_javascript(self):
+        response = self.client.get('/')
+        print(type(response))
+        print(dir(response))
+        self.assert_template_used('index.html')
+```
+(i had to resort to introspecting the python object since documentation on flask-testing classes and methods is apparently shit - or at least very, very hard to find. )
+
+### ASIDE: A Rant on my IDE
+currently using atom and struggling. haven't spent much time trying to get it set up properly with code indexing and hinting. it'd be nice to be able to jump to file + line in source code and also
+see available methods in a dropdown. like pycharm.
+
+i also need to fix my disaster of a shell terminal
+***
+
+I end up with:
+```
+
+    def test_home_view_loads_javascript(self):
+        response = self.client.get('/')
+        response = response.data.decode('utf')
+
+        src = url_for('static', filename='stockdata.js')
+        expected_tag = "<script src=\"{}\" >".format(src)
+        self.assertIn(expected_tag, response)
+```
+which fails nicely:
+```
+$ tdddocker-run-tests unit  
+
+...  
+
+======================================================================
+FAIL: test_home_view_loads_javascript (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_views.py", line 24, in test_home_view_loads_javascript
+    self.assertIn(expected_tag, response)
+AssertionError: '<script src="/static/stockdata.js" >' not found in '<html>\n  <head>\n    <title>StockData</title>\n  </head>\n  <body>\n      <h1>StockData</h1>\n      \n      <form method="post">\n        <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">\n      </form>\n      \n  </body>\n</html>'
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.092s
+
+FAILED (failures=1)
+```
+
+And then  
+```
+
+    def test_stockdata_javascript_returns_ok(self):
+        response = self.client.get(url_for('static', filename='stockdata.js'))
+        self.assertEqual(response.status_code, 200)
+```
+with the failure:
+```
+
+======================================================================
+FAIL: test_stockdata_javascript_returns_ok (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_views.py", line 29, in test_stockdata_javascript_returns_ok
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.091s
+
+FAILED (failures=1)
+```  
+
+perfect. the tests are telling me what to do next. that's how i want it to be. I add a 'static' folder inside the app along with an empty 'static/stockdata.js' file. Everything passes.
+
+I have a blank stockdata.js file being loaded onto the page. I'm going to be using jQuery to help display the pv-trend-graph. another quick unit test:
+```
+
+    def test_home_view_loads_javascript(self):
+        response = self.client.get('/')
+        response = response.data.decode('utf')
+
+        src = url_for('static', filename='stockdata.js')
+        expected_tag = "<script src=\"{}\" >".format(src)
+        self.assertIn(expected_tag, response)
+```  
+And i'm only guessing at this point with the exact regex. Gonna fine tune that as needed. it fails:
+```
+======================================================================
+FAIL: test_home_view_loads_jquery (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_views.py", line 35, in test_home_view_loads_jquery
+    self.assertRegex(response, pattern)
+AssertionError: Regex didn't match: '<script src=".*code\\.jquery\\.com\\/.*" >' not found in '<html>\n  <head>\n    <title>StockData</title>\n  </head>\n  <body>\n      <h1>StockData</h1>\n      \n      <form method="post">\n        <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">\n      </form>\n      \n\n      <script src="/static/stockdata.js" ></script>\n  </body>\n</html>'
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.094s
+
+FAILED (failures=1)
+
+```
+I add the script tag to my template 'index.js' file - which at the time of writing looks like this:
+- `<script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>`
+
+What that passes I repeat the process for my new `static/style.css` file.
+```
+$ tdddocker-run-tests unit
+...  
+
+======================================================================
+FAIL: test_home_view_loads_css (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_views.py", line 47, in test_home_view_loads_css
+    self.assertIn(expected_tag, response)
+AssertionError: '<link rel="stylesheet" href="/static/style.css" type="text/css">' not found in '<html>\n  <head>\n    <title>StockData</title>\n  </head>\n  <body>\n      <h1>StockData</h1>\n      \n      <form method="post">\n        <input type="text" name="symbol" id="in_symbol" placeholder="Enter a stock symbol">\n      </form>\n      \n\n      <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>\n      <script src="/static/stockdata.js" ></script>\n  </body>\n</html>'
+
+======================================================================
+FAIL: test_main_css_returns_ok (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_views.py", line 39, in test_main_css_returns_ok
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.099s
+
+FAILED (failures=2)
+
+```
+
+
+All tests are passing. Time to get started on that front end.
+
+
+### LOoking ahead
+this thing is gonna incorporate react, and look at testing that with the FT and maybe a javascript testing framework (qunit maybe - but a cli tool would be better)
+
+FTs have a problem with threading? look into the flask-testing LiveServerTestCase and how it handles threading. possibly need to do the  patching in the 'clsSetUp' or whatever function.
+
+***
