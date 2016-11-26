@@ -868,7 +868,8 @@ Haven't looked at an updated __Agenda__ for a while:
 6. ~~Write FT that checks getting price-volume trend data~~
 7. Refactor/Write unit tests for the approach
 8. Code till unit tests pass, verifying FT passes at the end
-9. Add bootstrap to the app so it looks nicer  
+9. Write a js front-end for the graph
+10. Add bootstrap to the app so it looks nicer  
 
 ***
 
@@ -888,3 +889,23 @@ and then some more test refactoring:
 - https://github.com/smrkem/docker-flask-tdd/commit/395df6a03793246d0f8aec2f4c546422f54f75a4
 
 to get everything back to passing! Examining the app in the front end yields the same encouraging result with a real stock symbol. There's a ton of data attached to the `div#price-volume-trend-graph` element which I can see when inspecting the page in chrome browser.
+
+
+Here's the __Agenda__ current state:
+
+***
+### Agenda:
+1. ~~Refactor project to use Flask Manager (`manage.py`)~~
+2. ~~Refactor project to get info from yahoo-finance - Get all tests back to passing~~
+3. ~~Write FT that checks getting 1yr high and current price.~~
+4. ~~Write unit tests for the approach~~
+5. ~~Code till unit tests pass, verifying FT passes at the end~~
+6. ~~Write FT that checks getting price-volume trend data~~
+7. ~~Refactor/Write unit tests for the approach~~
+8. ~~Code till unit tests pass, verifying FT passes at the end~~
+9. Write a js front-end for the graph
+10. Add bootstrap to the app so it looks nicer  
+
+***
+
+Like i mentioned - i'm gonna forego looking into different javascript testing frameworks for the front end and just do some straight-up coding.  
