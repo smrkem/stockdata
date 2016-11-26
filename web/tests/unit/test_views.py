@@ -21,7 +21,7 @@ class HomeViewTest(TestCase):
 
     @patch('stockdata.views.StockData')
     def test_posting_symbol_returns_formatted_stock_info(self, mock_stockdata):
-        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data", "price_history":"stock price history"}
+        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
         mock_stockdata.return_value.get_pv_trend_data.return_value = ["date1 price data", "date2 price data"]
         response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
 

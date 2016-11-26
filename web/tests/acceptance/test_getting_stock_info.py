@@ -66,8 +66,11 @@ class NewVisitorTest(LiveServerTestCase):
         # Along with some price-volume trend data
         pv_trend_graph = self.browser.find_element_by_id("price-volume-trend-graph")
         pv_trend_data = json.loads(pv_trend_graph.get_attribute("data-pv_data"))
-        self.assertIsInstance(pv_trend_data, type(list()))
-        self.assertGreater(len(pv_trend_data), 2)
+        self.assertIsInstance(pv_trend_data, type(dict()))
+        for key in ['max_volume', 'min_volume', 'pv_data']:
+            self.assertTrue(key in pv_trend_data.keys())
+        self.assertIsInstance(pv_trend_data['pv_data'], type(list()))
+        self.assertGreater(len(pv_trend_data['pv_data']), 2)
 
 
 if __name__ == '__main__':
