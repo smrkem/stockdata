@@ -18,12 +18,11 @@ class StockData:
             "name": self.stockinfo['name'],
             "exchange": self.stockinfo['exchange'],
             "current_price": self.stockinfo['current_price'],
-            "year_high": self.stockinfo['year_high'],
-            "pv_trend_data": self.get_pv_trend_data(self.stockinfo['price_history'])
+            "year_high": self.stockinfo['year_high']
         }
 
-    def get_pv_trend_data(self, price_history):
-        df = pd.DataFrame(price_history)
+    def get_pv_trend_data(self):
+        df = pd.DataFrame(self.stockinfo['price_history'])
         for key in ['Volume', 'Open', 'Close']:
             df[key] = pd.to_numeric(df[key])
         df['pct_change'] = round(

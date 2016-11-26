@@ -883,3 +883,8 @@ and follow the test ouput:
 
 (along the way breaking my unit tests again and fixing them with:  https://github.com/smrkem/docker-flask-tdd/commit/e4df608f29f3a5ba5cc446c8133b07f8b3265037
 )
+
+and then some more test refactoring:  
+- https://github.com/smrkem/docker-flask-tdd/commit/395df6a03793246d0f8aec2f4c546422f54f75a4
+
+to get everything back to passing! Examining the app in the front end yields the same encouraging result with a real stock symbol. There's a ton of data attached to the `div#price-volume-trend-graph` element which I can see when inspecting the page in chrome browser.

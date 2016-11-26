@@ -11,7 +11,6 @@ def index():
         stockinfo = stock.get_stock_info()
         if stockinfo is None:
             errors.append("Could not find any stock for symbol: '{}'".format(request.form['symbol']))
-            
-        # else:
-        #     stock['pv_trend_data'] = json.dumps(stock['pv_trend_data'])
+        else:
+            stockinfo['pv_trend_data'] = json.dumps(stock.get_pv_trend_data())
     return render_template('index.html', stock=stockinfo, errors=errors)
