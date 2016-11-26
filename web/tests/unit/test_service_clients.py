@@ -73,8 +73,7 @@ class StockDataTest(TestCase):
             "name": "Test Company Name",
             "exchange": "TST",
             "current_price": 2.32,
-            "year_high": 6.66,
-            "pv_trend_data": self.expected_pv_trend_data
+            "year_high": 6.66
         }
         self.assertEqual(actual_stock, expected_stock)
 
@@ -85,6 +84,7 @@ class StockDataTest(TestCase):
         actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
         for key in self.expected_pv_trend_data.keys():
             self.assertTrue(key in actual_pv_trend_data.keys(), "key: {} was not in actual_pv_trend_data".format(key))
+        self.assertEqual(actual_pv_trend_data, self.expected_pv_trend_data)
 
     @patch('stockdata.controllers.stockinfo.YahooFinanceClient')
     def test_get_pv_trenddata_gets_max_volume(self, mock_source):

@@ -1,4 +1,4 @@
-import unittest
+import unittest, json
 from unittest.mock import patch
 from flask_testing import TestCase
 from stockdata import app
@@ -20,13 +20,19 @@ class HomeViewTest(TestCase):
         mock_stockdata.assert_called_with('ANYSYMBOL')
 
     @patch('stockdata.views.StockData')
-    def test_posting_symbol_returns_stock_info(self, mock_stockdata):
-        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
+    def test_posting_symbol_returns_formatted_stock_info(self, mock_stockdata):
+        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data", "price_history":"stock price history"}
+        mock_stockdata.return_value.get_pv_trend_data.return_value = ["date1 price data", "date2 price data"]
         response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
 
         self.assertEqual(response.status_code, 200)
         mock_stockdata.return_value.get_stock_info.assert_called_with()
-        self.assertEqual(self.get_context_variable('stock'), {"stock":"data"})
+        mock_stockdata.return_value.get_pv_trend_data.assert_called_with()
+        expected_stock = {
+            "stock":"data",
+            "pv_trend_data": json.dumps(["date1 price data", "date2 price data"])
+        }
+        self.assertEqual(self.get_context_variable('stock'), expected_stock)
 
     @patch('stockdata.views.StockData')
     def test_posting_invalid_symbol_returns_error(self, mock_stockdata):
