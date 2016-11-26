@@ -1,0 +1,333 @@
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 78, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'pv_trend_data': {'max_volume': 792600.0, [326 chars]YMB'} != {'name': 'Test Company Name', 'exchange': '[60 chars]YMB'}
+Diff is 704 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 30, in test_posting_symbol_returns_formatted_stock_info
+    mock_stockdata.return_value.get_pv_trend_data.assert_called_with("stock price history")
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_pv_trend_data('stock price history')
+Not called
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.098s
+
+FAILED (failures=2)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 30, in test_posting_symbol_returns_formatted_stock_info
+    mock_stockdata.return_value.get_pv_trend_data.assert_called_with("stock price history")
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_pv_trend_data('stock price history')
+Not called
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.084s
+
+FAILED (failures=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 30, in test_posting_symbol_returns_formatted_stock_info
+    mock_stockdata.return_value.get_pv_trend_data.assert_called_with("stock price history")
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 792, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: Expected call: get_pv_trend_data('stock price history')
+Actual call: get_pv_trend_data()
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.093s
+
+FAILED (failures=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 35, in test_posting_symbol_returns_formatted_stock_info
+    self.assertEqual(self.get_context_variable('stock'), expected_stock)
+AssertionError: {'pv_trend_data': ['date1 price data', 'dat[68 chars]ory'} != {'stock': 'data', 'pv_trend_data': '["date1[30 chars]a"]'}
++ {'pv_trend_data': '["date1 price data", "date2 price data"]', 'stock': 'data'}
+- {'price_history': 'stock price history',
+-  'pv_trend_data': ['date1 price data', 'date2 price data'],
+-  'stock': 'data'}
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.087s
+
+FAILED (failures=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+
+__At this point i break a bunch of unit tests by refactoring StockData::get_pv_trend_info to not
+take the price_history as an argument but get it from self.stockinfo.__
+
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 93, in test_get_pv_trenddata_gets_max_volume
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 100, in test_get_pv_trenddata_gets_min_volume
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 107, in test_get_pv_trenddata_gets_pv_data
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_pv_trenddata_returns_formatted_data
+    actual_pv_trend_data = stock.get_pv_trend_data(self.sample_price_history)
+TypeError: get_pv_trend_data() takes 1 positional argument but 2 were given
+
+======================================================================
+FAIL: test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 35, in test_posting_symbol_returns_formatted_stock_info
+    self.assertEqual(self.get_context_variable('stock'), expected_stock)
+AssertionError: {'pv_trend_data': ['date1 price data', 'date2 price data'],[52 chars]ory'} != {'pv_trend_data': '["date1 price data", "date2 price data"][14 chars]ata'}
++ {'pv_trend_data': '["date1 price data", "date2 price data"]', 'stock': 'data'}
+- {'price_history': 'stock price history',
+-  'pv_trend_data': ['date1 price data', 'date2 price data'],
+-  'stock': 'data'}
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.053s
+
+FAILED (failures=1, errors=4)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+
+I refactory the tests (https://github.com/smrkem/docker-flask-tdd/commit/e4df608f29f3a5ba5cc446c8133b07f8b3265037) to get back to:
+
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_posting_symbol_returns_formatted_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 35, in test_posting_symbol_returns_formatted_stock_info
+    self.assertEqual(self.get_context_variable('stock'), expected_stock)
+AssertionError: {'sto[25 chars]ta': ['date1 price data', 'date2 price data'],[35 chars]ory'} != {'sto[25 chars]ta': '["date1 price data", "date2 price data"]'}
++ {'pv_trend_data': '["date1 price data", "date2 price data"]', 'stock': 'data'}
+- {'price_history': 'stock price history',
+-  'pv_trend_data': ['date1 price data', 'date2 price data'],
+-  'stock': 'data'}
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.095s
+
+FAILED (failures=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-

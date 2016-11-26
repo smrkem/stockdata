@@ -873,3 +873,13 @@ Haven't looked at an updated __Agenda__ for a while:
 ***
 
 I'm right in the middle of that second outside-inside TDD loop - write FT, refactor till unit tests pass again, write / refactor unit tests, code till unit tests pass again. At the end that FT should pass as well :)  
+
+I update the tests:  
+- https://github.com/smrkem/docker-flask-tdd/commit/93157afa46553e00bddc811db69af29c9aafb6ed
+
+
+and follow the test ouput:
+- [test output](../test_messages/12.txt)  
+
+(along the way breaking my unit tests again and fixing them with:  https://github.com/smrkem/docker-flask-tdd/commit/e4df608f29f3a5ba5cc446c8133b07f8b3265037
+)
