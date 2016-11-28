@@ -35,11 +35,6 @@ rect {
   position: relative;
   height: 84px;
 }
-#graph-legend rect {
-  position: static;
-  display: inline-block;
-}
-
 
 #price-volume-trend-graph {
   padding: 50px;
@@ -69,4 +64,13 @@ rect {
   position: relative;
   height: 20px;
   margin-left: 45px;
+}
+
+
+
+
+#graph-legend label,
+#graph-legend rect {
+  position: static;
+  display: inline-block;
 }

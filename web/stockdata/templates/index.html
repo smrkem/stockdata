@@ -51,41 +51,25 @@
             <div id="day-data-rects"></div>
           </div>
           <div id="graph-legend">
-             <label>Less</label>
-             <rect style="background: #666; opacity: 0.3;"></rect>
-             <rect style="background: #666; opacity: 0.5;"></rect>
-             <rect style="background: #666; opacity: 0.7;"></rect>
-             <rect style="background: #666; opacity: 1;"></rect>
-             <label>More</label>
+            <div id="volume-density-legend">
+               <label>Less</label>
+               <rect style="background: #aaa; opacity: 0.3;"></rect>
+               <rect style="background: #aaa; opacity: 0.5;"></rect>
+               <rect style="background: #aaa; opacity: 0.7;"></rect>
+               <rect style="background: #aaa; opacity: 1;"></rect>
+               <label>More</label>
+             </div>
+             <div id="price-color-legend">
+                <label>Price Down</label>
+                <rect style="background: #ff0000;"></rect>
+                <rect style="background: #ddd;"></rect>
+                <rect style="background: #00ff00;"></rect>
+                <label>Price Up</label>
+              </div>
           </div>
         </div>
         {% endif %}
       {% endif %}
-
-{% if debug %}
-<hr>
-<div id="price-volume-trend-graph" data-pv_data='{{ stock.pv_trend_data }}' >
-  <div id="month-labels"></div>
-  <div id="graph-wrap">
-    <!-- row-0, row-1, ..., row-7 -->
-    <div id="day-labels">
-      <label class="row-1">Mon</label>
-      <label class="row-3">Wed</label>
-      <label class="row-5">Fri</label>
-    </div>
-    <div id="day-data-rects"></div>
-  </div>
-  <div id="graph-legend">
-     <label>Less</label>
-     <rect style="background: #666; opacity: 0.3;"></rect>
-     <rect style="background: #666; opacity: 0.5;"></rect>
-     <rect style="background: #666; opacity: 0.7;"></rect>
-     <rect style="background: #666; opacity: 1;"></rect>
-     <label>More</label>
-  </div>
-</div>
-{% endif %}
-
 
       <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
       <script src="{{ url_for('static', filename='stockdata.js') }}" ></script>

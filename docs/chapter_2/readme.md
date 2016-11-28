@@ -1053,3 +1053,5 @@ this thing is gonna incorporate react, and look at testing that with the FT and 
 FTs have a problem with threading? look into the flask-testing LiveServerTestCase and how it handles threading. possibly need to do the  patching in the 'clsSetUp' or whatever function.
 
 ***
+
+Going to want to implement some kind of cacheing - enter a db. But initially can begin building the cache system to drive development and testing - ie: save a response to a file and add ability to load that response from 'cache'.
