@@ -37,9 +37,11 @@ class StockData:
         )
 
         df_stats = df.describe()
+        print(df_stats['Volume'])
         pv_trend_data = {
             "max_volume": df_stats['Volume']['max'],
             "min_volume": df_stats['Volume']['min'],
+            "volume_p75": df_stats['Volume']['75%'],
             "pv_data": df[['Volume', 'Date', 'pct_change']].to_dict('records')
         }
         return pv_trend_data
