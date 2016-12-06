@@ -38,37 +38,14 @@
           <td id="stck-1yr-high">{{ stock.year_high }}</td>
         </tr>
       </table>
-        {% if stock.pv_trend_data %}
-        <div id="price-volume-trend-graph" data-pv_data='{{ stock.pv_trend_data }}' >
-          <div id="month-labels"></div>
-          <div id="graph-wrap">
-            <!-- row-0, row-1, ..., row-7 -->
-            <div id="day-labels">
-              <label class="row-1">Mon</label>
-              <label class="row-3">Wed</label>
-              <label class="row-5">Fri</label>
-            </div>
-            <div id="day-data-rects"></div>
-          </div>
-          <div id="graph-legend">
-            <div id="volume-density-legend">
-               <label>Less</label>
-               <rect style="background: #aaa; opacity: 0.3;"></rect>
-               <rect style="background: #aaa; opacity: 0.5;"></rect>
-               <rect style="background: #aaa; opacity: 0.7;"></rect>
-               <rect style="background: #aaa; opacity: 1;"></rect>
-               <label>More</label>
-             </div>
-             <div id="price-color-legend">
-                <label>Price Down</label>
-                <rect style="background: #ff0000;"></rect>
-                <rect style="background: #ddd;"></rect>
-                <rect style="background: #00ff00;"></rect>
-                <label>Price Up</label>
-              </div>
-          </div>
+
+      <div id="graph_wrapper"></div>
+
+        <div id="grpah_datas">
+          {% if stock.pv_history_data %}
+            <div id="price_volume_history_data" data-pv_data='{{ stock.pv_history_data }}' ></div>
+          {% endif %}
         </div>
-        {% endif %}
       {% endif %}
 
       <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>

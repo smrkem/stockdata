@@ -2,43 +2,14 @@ body {
     font-family: arial, sans-serif;
 }
 
-rect {
-  display: block;
-  height: 7px;
-  width: 7px;
-  position: absolute;
+#graph_wrapper {
+  /*padding: 40px;
+  margin: 40px;*/
 }
 
-.row-0 {
-  top: 0px;
-}
-.row-1 {
-  top: 9px;
-}
-.row-2 {
-  top: 18px;
-}
-.row-3 {
-  top: 27px;
-}
-.row-4 {
-  top: 36px;
-}
-.row-5 {
-  top: 45px;
-}
-.row-6 {
-  top: 54px;
-}
-
-#day-data-rects {
-  position: relative;
-  height: 84px;
-}
-
-#price-volume-trend-graph {
-  padding: 50px;
-  margin: 50px;
+.graph {
+  padding: 10px;
+  margin: 10px;
   border: 1px solid #aaa;
 }
 

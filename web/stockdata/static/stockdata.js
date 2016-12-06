@@ -1,9 +1,101 @@
 $( document ).ready(function() {
-    if ($("#price-volume-trend-graph").length) {
-      init_pv_trend_data_graph();
+    if ($("#price_volume_history_data").length) {
+      init_volume_graph($("#price_volume_history_data").data('pv_data'));
     }
 
 });
+
+function init_volume_graph(volume_data) {
+  var graph_wrapper = $("#graph_wrapper");
+
+  var graph = $('<div class="graph" id="volume_graph" style="padding: 10px; margin: 10px; border: 1px solid #aaa;">');
+
+  graph_wrapper.append(graph);
+    console.log("in init_volume_graph. graph width: " + graph.width());
+
+  var details = $('<div class="graph_details">');
+  graph.append(details);
+  var title = $('<h2 class="graph_title">');
+  start_date = volume_data.pv_data[0].Date;
+  end_date = volume_data.pv_data[volume_data.pv_data.length - 1].Date;
+  title.text(`Trading Volume History ${start_date} to ${end_date}`);
+  details.append(title);
+
+
+  var plot_wrap = $('<div class="plot_wrap">');
+  graph.append(plot_wrap);
+
+  var plot = $('<canvas class="plot"  style="width: 100%;">');
+  plot_wrap.append(plot);
+
+  plot_against_date(plot, volume_data.pv_data);
+
+}
+
+
+function plot_against_date(plot, data) {
+  var parts = data[0].Date.split('-');
+  var lastDate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+  var parts = data[data.length - 1].Date.split('-');
+  var firstDate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+  var oneDay = 24 * 60 * 60 * 1000;
+  var numDays = Math.round((lastDate.getTime() - firstDate.getTime()) / oneDay);
+
+  // console.log(firstDate, lastDate);
+  // console.log(numDays);
+  console.log(plot.width());
+  console.log("in plot_against_date. graph_wrapper width: " + $("#graph_wrapper").width());
+
+  var ctx = plot[0].getContext('2d');
+  ctx.moveTo(0,0);
+  ctx.lineTo(200,100);
+  ctx.stroke();
+
+}
+
+
+
+
+
+
+
+function init_price_graph(price_data) {
+  console.log(price_data);
+  var graph = $('<div class="graph" id="price_graph">');
+  var details = $('<div class="graph_details">');
+  var title = $('<h2 class="graph_title">');
+  start_date = price_data.pv_data[0].Date;
+  end_date = price_data.pv_data[price_data.pv_data.length - 1].Date;
+  title.text(`Price History ${start_date} to ${end_date}`);
+  details.append(title);
+  graph.append(details);
+
+  var plot_wrap = $('<div id="plot_wrap">');
+  var plot = $('<canvas id="plot">');
+  plot_wrap.append(plot);
+  graph.append(plot_wrap);
+  $("#graph_wrapper").append(graph);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function init_pv_trend_data_graph() {
   max_volume = 0;
