@@ -1,0 +1,201 @@
+test_get_stock_info_calls_source_get_stock_info (unit_tests.test_service_clients.StockDataTest) ... ERROR
+test_home_view_calls_index_template (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (unit_tests.test_views.HomeViewTest) ... ok
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_visit_homepage (z_acceptance_tests.test_getting_stock_info.NewVisitorTest) ... 127.0.0.1 - - [16/Nov/2016 01:28:00] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:28:00] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:28:01] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:28:01] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:28:02] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:28:02] "POST / HTTP/1.1" 200 -
+ok
+
+======================================================================
+ERROR: test_get_stock_info_calls_source_get_stock_info (unit_tests.test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1149, in patched
+    arg = patching.__enter__()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1221, in __enter__
+    original, local = self.get_original()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1195, in get_original
+    "%s does not have the attribute %r" % (target, name)
+AttributeError: <module 'stockdata.services' from '/usr/src/app/stockdata/services.py'> does not have the attribute 'YahooFinanceClient'
+
+----------------------------------------------------------------------
+Ran 5 tests in 6.270s
+
+FAILED (errors=1)
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+
+
+Traceback (most recent call last):
+  File "manage.py", line 2, in <module>
+    from stockdata import app
+  File "/usr/src/app/stockdata/__init__.py", line 8, in <module>
+    from stockdata import views
+  File "/usr/src/app/stockdata/views.py", line 3, in <module>
+    from stockdata.services import StockData
+  File "/usr/src/app/stockdata/services.py", line 1, in <module>
+    from stockdata.sources.YahooFinanceClient import YahooFinanceClient
+ImportError: No module named 'stockdata.sources'
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+
+test_get_stock_info_calls_source_get_stock_info (unit_tests.test_service_clients.StockDataTest) ... FAIL
+test_home_view_calls_index_template (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (unit_tests.test_views.HomeViewTest) ... ok
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_visit_homepage (z_acceptance_tests.test_getting_stock_info.NewVisitorTest) ... 127.0.0.1 - - [16/Nov/2016 01:36:23] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:36:23] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:36:24] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:36:24] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:36:24] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:36:24] "POST / HTTP/1.1" 200 -
+ok
+
+======================================================================
+FAIL: test_get_stock_info_calls_source_get_stock_info (unit_tests.test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit_tests/test_service_clients.py", line 19, in test_get_stock_info_calls_source_get_stock_info
+    mock_source.return_value.get_stock_info.assert_called_with("SYMB")
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_stock_info('SYMB')
+Not called
+
+----------------------------------------------------------------------
+Ran 5 tests in 5.699s
+
+FAILED (failures=1)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_stock_info_calls_source_get_stock_info (unit_tests.test_service_clients.StockDataTest) ... ok
+test_home_view_calls_index_template (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (unit_tests.test_views.HomeViewTest) ... ok
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_visit_homepage (z_acceptance_tests.test_getting_stock_info.NewVisitorTest) ... 127.0.0.1 - - [16/Nov/2016 01:37:44] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:44] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:37:44] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:37:45] "POST / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/src/app/stockdata/views.py", line 10, in index
+    stock = StockData().get_stock_info(request.form['symbol'])
+  File "/usr/src/app/stockdata/services.py", line 21, in get_stock_info
+    return YahooFinanceClient().get_stock_info(symbol)
+AttributeError: 'YahooFinanceClient' object has no attribute 'get_stock_info'
+127.0.0.1 - - [16/Nov/2016 01:37:45] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:45] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:45] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:45] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:45] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:46] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:37:46] "GET /?__debugger__=yes&cmd=resource&f=source.png HTTP/1.1" 200 -
+ERROR
+
+======================================================================
+ERROR: test_can_visit_homepage (z_acceptance_tests.test_getting_stock_info.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/z_acceptance_tests/test_getting_stock_info.py", line 47, in test_can_visit_homepage
+    self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+  File "/usr/src/app/tests/z_acceptance_tests/test_getting_stock_info.py", line 28, in check_stock_info_for
+    stockinfo_table = self.browser.find_element_by_id("stock-info")
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"stock-info"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmpcozyfggq/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
+    at fxdriver.Timer.prototype.setTimeout/<.notify (file:///tmp/tmpcozyfggq/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.895s
+
+FAILED (errors=1)
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_stock_info_calls_source_get_stock_info (unit_tests.test_service_clients.StockDataTest) ... ok
+test_home_view_calls_index_template (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (unit_tests.test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (unit_tests.test_views.HomeViewTest) ... ok
+ * Running on http://127.0.0.1:8943/ (Press CTRL+C to quit)
+test_can_visit_homepage (z_acceptance_tests.test_getting_stock_info.NewVisitorTest) ... 127.0.0.1 - - [16/Nov/2016 01:39:12] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:39:12] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [16/Nov/2016 01:39:13] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Nov/2016 01:39:13] "GET /favicon.ico HTTP/1.1" 404 -
+ERROR
+
+======================================================================
+ERROR: test_can_visit_homepage (z_acceptance_tests.test_getting_stock_info.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/z_acceptance_tests/test_getting_stock_info.py", line 47, in test_can_visit_homepage
+    self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
+  File "/usr/src/app/tests/z_acceptance_tests/test_getting_stock_info.py", line 28, in check_stock_info_for
+    stockinfo_table = self.browser.find_element_by_id("stock-info")
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 269, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: {"method":"id","selector":"stock-info"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmpmhe79kr7/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
+    at fxdriver.Timer.prototype.setTimeout/<.notify (file:///tmp/tmpmhe79kr7/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.694s
+
+FAILED (errors=1)

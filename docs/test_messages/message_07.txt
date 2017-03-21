@@ -1,0 +1,151 @@
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... FAIL
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... FAIL
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest) ... FAIL
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 45, in test_get_stock_info_fetches_exchange
+    mock_share.return_value.get_stock_exchange.assert_called_with()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_stock_exchange()
+Not called
+
+======================================================================
+FAIL: test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 40, in test_get_stock_info_fetches_name
+    mock_share.return_value.get_name.assert_called_with()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_name()
+Not called
+
+======================================================================
+FAIL: test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 59, in test_get_stock_info_returns_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: None != {'exchange': 'TST', 'name': 'Test Company Name', 'symbol': 'SYMB'}
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+FAILED (failures=3)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... FAIL
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest) ... FAIL
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 45, in test_get_stock_info_fetches_exchange
+    mock_share.return_value.get_stock_exchange.assert_called_with()
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 783, in assert_called_with
+    raise AssertionError('Expected call: %s\nNot called' % (expected,))
+AssertionError: Expected call: get_stock_exchange()
+Not called
+
+======================================================================
+FAIL: test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 59, in test_get_stock_info_returns_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'name': <MagicMock name='Share().get_name()' id='140001374222040'>} != {'symbol': 'SYMB', 'exchange': 'TST', 'name': 'Test Company Name'}
+- {'name': <MagicMock name='Share().get_name()' id='140001374222040'>}
++ {'exchange': 'TST', 'name': 'Test Company Name', 'symbol': 'SYMB'}
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.022s
+
+FAILED (failures=2)
+
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest) ... FAIL
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 59, in test_get_stock_info_returns_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'exchange': 'TST', 'name': <MagicMock name[39 chars]08'>} != {'symbol': 'SYMB', 'exchange': 'TST', 'name[18 chars]ame'}
++ {'exchange': 'TST', 'name': 'Test Company Name', 'symbol': 'SYMB'}
+- {'exchange': 'TST',
+-  'name': <MagicMock name='Share().get_name()' id='140617913058808'>}
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.022s
+
+FAILED (failures=1)
+
+
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_stock_info_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_returns_stock (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.020s
+
+OK

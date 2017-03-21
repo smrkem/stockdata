@@ -1,0 +1,76 @@
+body {
+    font-family: arial, sans-serif;
+}
+
+rect {
+  display: block;
+  height: 7px;
+  width: 7px;
+  position: absolute;
+}
+
+.row-0 {
+  top: 0px;
+}
+.row-1 {
+  top: 9px;
+}
+.row-2 {
+  top: 18px;
+}
+.row-3 {
+  top: 27px;
+}
+.row-4 {
+  top: 36px;
+}
+.row-5 {
+  top: 45px;
+}
+.row-6 {
+  top: 54px;
+}
+
+#day-data-rects {
+  position: relative;
+  height: 84px;
+}
+
+#price-volume-trend-graph {
+  padding: 50px;
+  margin: 50px;
+  border: 1px solid #aaa;
+}
+
+
+
+#price-volume-trend-graph label {
+  font-size: 11px;
+  position: absolute;
+  line-height: 9px;
+}
+
+#day-data-rects {
+  margin-left: 45px;
+  width: auto;
+  min-height: 100px;
+}
+#day-labels {
+  width: 35px;
+  float: left;
+  position: relative;
+}
+#month-labels {
+  position: relative;
+  height: 20px;
+  margin-left: 45px;
+}
+
+
+
+
+#graph-legend label,
+#graph-legend rect {
+  position: static;
+  display: inline-block;
+}

@@ -1,38 +1,8 @@
-import unittest
-from unittest.mock import patch
+import unittest, json
 from selenium import webdriver as wd
 from selenium.webdriver.common.keys import Keys
-from flask_testing import LiveServerTestCase, TestCase
+from flask_testing import LiveServerTestCase
 from stockdata import app
-
-
-class ViewsUnitTest(TestCase):
-
-    def create_app(self):
-        app.config['TESTING'] = True
-        return app
-
-    def test_home_view_calls_index_template(self):
-        self.client.get('/')
-        self.assert_template_used('index.html')
-
-    @patch('stockdata.views.StockData')
-    def test_posting_symbol_returns_stock_info(self, mock_stockdata):
-        mock_stockdata.return_value.get_stock_info.return_value = {"stock":"data"}
-        response = self.client.post('/', data={'symbol': 'ANYSYMBOL'})
-
-        self.assertEqual(response.status_code, 200)
-        mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
-        self.assertEqual(self.get_context_variable('stock'), {"stock":"data"})
-
-    @patch('stockdata.views.StockData')
-    def test_posting_invalid_symbol_returns_error(self, mock_stockdata):
-        mock_stockdata.return_value.get_stock_info.return_value = None
-        response = self.client.post('/', data={'symbol': 'not-valid'})
-
-        errors = ["Could not find any stock for symbol: 'not-valid'"]
-        self.assertEqual(self.get_context_variable('errors'), errors)
-        mock_stockdata.return_value.get_stock_info.assert_called_with('not-valid')
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -58,6 +28,10 @@ class NewVisitorTest(LiveServerTestCase):
         stockinfo_table = self.browser.find_element_by_id("stock-info")
         for value in stockinfo:
             self.assertIn(value, stockinfo_table.text, "Check {} is in stock info".format(value))
+        current_price = stockinfo_table.find_element_by_id("stck-curent-price").text
+        year_high = stockinfo_table.find_element_by_id("stck-1yr-high").text
+        self.assertRegexpMatches(current_price, r'^\d+\.\d+$')
+        self.assertRegexpMatches(year_high, r'^\d+\.\d+$')
 
     def test_can_visit_homepage(self):
         # Jim needs to get some stock info.
@@ -70,20 +44,33 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id("in_symbol")
         self.assertEqual(inputbox.get_attribute('placeholder'), "Enter a stock symbol")
 
-        # He enters "AETI" and hits Enter.
-        self.submit_stock_symbol("AETI")
-
-        # He sees the stock name and stock exchange on the page.
-        self.check_stock_info_for(("AETI", "American Electric Technologies Inc", "NASDAQ"))
-
         # Jim tries to enter some junk to see if the app breaks
         self.submit_stock_symbol("INVALID")
         errors = self.browser.find_element_by_id("errors")
         self.assertIn("Could not find any stock for symbol: 'INVALID'", errors.text)
 
+        # He enters "AETI" and hits Enter.
+        self.submit_stock_symbol("AETI")
+
+        # He sees the stock name and stock exchange on the page.
+        self.check_stock_info_for(("AETI", "American Electric Technologies", "NCM"))
+
+    def test_can_view_stock_info(self):
+        # Jim returns to the app
+        self.browser.get(self.get_server_url())
+
         # He tries a different stock symbol and sees the new name and exchange on the page.
         self.submit_stock_symbol("CRNT")
-        self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NASDAQ"))
+        self.check_stock_info_for(("CRNT", "Ceragon Networks Ltd", "NMS"))
+
+        # Along with some price-volume trend data
+        pv_trend_graph = self.browser.find_element_by_id("price-volume-trend-graph")
+        pv_trend_data = json.loads(pv_trend_graph.get_attribute("data-pv_data"))
+        self.assertIsInstance(pv_trend_data, type(dict()))
+        for key in ['max_volume', 'min_volume', 'pv_data']:
+            self.assertTrue(key in pv_trend_data.keys())
+        self.assertIsInstance(pv_trend_data['pv_data'], type(list()))
+        self.assertGreater(len(pv_trend_data['pv_data']), 2)
 
 
 if __name__ == '__main__':

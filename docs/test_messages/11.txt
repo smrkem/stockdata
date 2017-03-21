@@ -1,0 +1,575 @@
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ERROR
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ERROR
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 93, in test_get_pv_trenddata_gets_max_volume
+    stock = StockData("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 98, in test_get_pv_trenddata_gets_min_volume
+    stock = StockData("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+ERROR: test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 103, in test_get_pv_trenddata_gets_pv_data
+    stock = StockData("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+ERROR: test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 87, in test_get_pv_trenddata_returns_formatted_data
+    stock = StockData("SYMB")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'pv_[29 chars]25600.0, 'max_volume': 792600.0, 'pv_data': [{[271 chars]2.32} != {'pv_[29 chars]25600, 'max_volume': 792600, 'pv_data': [{'pct[285 chars]2.32}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.798s
+
+FAILED (failures=1, errors=5)
+
+
+-----------------------------------------------------------------------
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'current_price': 2.32, 'pv_trend_data': {'[308 chars]ame'} != {'exchange': 'TST', 'pv_trend_data': {'max_[322 chars]2.32}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.099s
+
+FAILED (failures=1, errors=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... FAIL
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'name': 'Test Company Name', 'exchange': '[308 chars]2.32} != {'current_price': 2.32, 'year_high': 6.66, [322 chars]600}}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_stockdata_init_with_posted_symbol (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 21, in test_stockdata_init_with_posted_symbol
+    mock_stockdata.assert_called_with('ANYSYMBOL')
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 792, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: Expected call: StockData('ANYSYMBOL')
+Actual call: StockData()
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.094s
+
+FAILED (failures=2, errors=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... FAIL
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... FAIL
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'pv_[29 chars]25600.0, 'pv_data': [{'pct_change': -7.1, 'Dat[271 chars]2.32} != {'pv_[29 chars]25600, 'pv_data': [{'pct_change': -7.1, 'Date'[285 chars]2.32}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_posting_invalid_symbol_returns_error (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 38, in test_posting_invalid_symbol_returns_error
+    mock_stockdata.return_value.get_stock_info.assert_called_with('not-valid')
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 792, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: Expected call: get_stock_info('not-valid')
+Actual call: get_stock_info()
+
+======================================================================
+FAIL: test_posting_symbol_returns_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 28, in test_posting_symbol_returns_stock_info
+    mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 792, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: Expected call: get_stock_info('ANYSYMBOL')
+Actual call: get_stock_info()
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.096s
+
+FAILED (failures=3, errors=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... FAIL
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'current_price': 2.32, 'name': 'Test Compa[308 chars]0.0}} != {'name': 'Test Company Name', 'exchange': '[322 chars]600}}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_posting_invalid_symbol_returns_error (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 37, in test_posting_invalid_symbol_returns_error
+    self.assertEqual(self.get_context_variable('errors'), errors)
+AssertionError: Lists differ: [] != ["Could not find any stock for symbol: 'not-valid'"]
+
+Second list contains 1 additional elements.
+First extra element 0:
+"Could not find any stock for symbol: 'not-valid'"
+
+- []
++ ["Could not find any stock for symbol: 'not-valid'"]
+
+======================================================================
+FAIL: test_posting_symbol_returns_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 28, in test_posting_symbol_returns_stock_info
+    mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 792, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: Expected call: get_stock_info('ANYSYMBOL')
+Actual call: get_stock_info()
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.113s
+
+FAILED (failures=3, errors=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... FAIL
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'year_high': 6.66, 'current_price': 2.32, [308 chars]TST'} != {'current_price': 2.32, 'pv_trend_data': {'[322 chars]ame'}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_posting_symbol_returns_stock_info (test_views.HomeViewTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_views.py", line 28, in test_posting_symbol_returns_stock_info
+    mock_stockdata.return_value.get_stock_info.assert_called_with('ANYSYMBOL')
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 792, in assert_called_with
+    raise AssertionError(_error_message()) from cause
+AssertionError: Expected call: get_stock_info('ANYSYMBOL')
+Actual call: get_stock_info()
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.103s
+
+FAILED (failures=2, errors=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ERROR
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+ERROR: test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 60, in test_get_stock_info_returns_none_for_no_results
+    stock = StockData("INVLD")
+  File "/usr/src/app/stockdata/controllers/stockinfo.py", line 9, in __init__
+    self.stockinfo['symbol'] = symbol
+TypeError: 'NoneType' object does not support item assignment
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'name': 'Test Company Name', 'exchange': '[308 chars]6.66} != {'exchange': 'TST', 'pv_trend_data': {'max_[322 chars]6.66}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.101s
+
+FAILED (failures=1, errors=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... FAIL
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+======================================================================
+FAIL: test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/unittest/mock.py", line 1157, in patched
+    return func(*args, **keywargs)
+  File "/usr/src/app/tests/unit/test_service_clients.py", line 84, in test_get_stock_info_returns_formatted_stock
+    self.assertEqual(actual_stock, expected_stock)
+AssertionError: {'pv_[29 chars]92600.0, 'pv_data': [{'pct_change': -7.1, 'Vol[271 chars]TST'} != {'pv_[29 chars]92600, 'pv_data': [{'Volume': 792600, 'pct_cha[285 chars]TST'}
+Diff is 880 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.103s
+
+FAILED (failures=1)
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
+test_get_pv_trenddata_gets_max_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_min_volume (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_gets_pv_data (test_service_clients.StockDataTest) ... ok
+test_get_pv_trenddata_returns_formatted_data (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_formatted_stock (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_returns_none_for_no_results (test_service_clients.StockDataTest) ... ok
+test_init_calls_source_get_stock_info (test_service_clients.StockDataTest) ... ok
+test_get_stock_info_fetches_current_price (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_exchange (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_historical_prices (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_name (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_fetches_year_high (test_service_clients.YahooFinanceClientTest) ... ok
+test_get_stock_info_gets_share_for_symbol (test_service_clients.YahooFinanceClientTest) ... ok
+test_home_view_calls_index_template (test_views.HomeViewTest) ... ok
+test_posting_invalid_symbol_returns_error (test_views.HomeViewTest) ... ok
+test_posting_symbol_returns_stock_info (test_views.HomeViewTest) ... ok
+test_stockdata_init_with_posted_symbol (test_views.HomeViewTest) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.105s
+
+OK
+
+
+
+
+
+
+------
+\\\\\\
+//////
+-
