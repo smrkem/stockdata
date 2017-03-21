@@ -6,7 +6,6 @@ import pickle, os
 class StockData:
 
     def __init__(self, symbol):
-        # todo: check cache first
         if (self.get_from_cache(symbol)):
             return
 
@@ -37,7 +36,6 @@ class StockData:
         )
 
         df_stats = df.describe()
-        print(df_stats['Volume'])
         pv_trend_data = {
             "max_volume": df_stats['Volume']['max'],
             "min_volume": df_stats['Volume']['min'],
@@ -47,16 +45,19 @@ class StockData:
         return pv_trend_data
 
     def save_to_cache(self):
+        if not os.getenv('CACHING'):
+            return False
+
         filepath = 'tests/data/TEST_{}_PICKLE.pk1'.format(self.stockinfo['symbol'])
         with open(filepath, 'wb') as output:
             pickle.dump(self.stockinfo, output, pickle.HIGHEST_PROTOCOL)
 
     def get_from_cache(self, symbol):
+        if not os.getenv('CACHING'):
+            return False
+
         filepath = 'tests/data/TEST_{}_PICKLE.pk1'.format(symbol)
         if (os.path.isfile(filepath)):
-            print('yup')
-            print('-------------------------------------------->>')
-
             with open(filepath, 'rb') as input:
                 self.stockinfo = pickle.load(input)
             return True

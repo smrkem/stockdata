@@ -28,6 +28,7 @@ class StockDataTest(TestCase):
         self.expected_pv_trend_data = {
             "max_volume": 792600,
             "min_volume": 625600,
+            "volume_p75": 774700,
             "pv_data": [
                 {
                     "Volume": 792600,
